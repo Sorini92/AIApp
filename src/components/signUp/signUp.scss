@@ -1,0 +1,39 @@
+@import "../../style/variables.scss";
+
+.signup {
+    &__title {
+        margin-top: 171px;
+        flex-direction: column;
+        &-header {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        &-text {
+            font-weight: 400;
+            font-size: 16px;
+        }
+    }
+    &__btns {
+        margin-top: 24px;
+        margin-bottom: 127px;
+        display: flex;
+        flex-direction: column;
+        &-btn {
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 8px;
+            width: 100%;
+            height: 56px;
+            color: $gray2;
+            border: 1px solid $gray2;
+            border-radius: 8px;
+            background-color: #fff;
+            &:hover {
+                background-color: $gray2;
+                color: #fff
+            }
+        }
+    }
+}
