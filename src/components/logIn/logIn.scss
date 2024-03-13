@@ -1,0 +1,17 @@
+.logIn {
+    &__title {
+        margin-bottom: 8px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 32px;
+        line-height: 40px;
+        color: #000000;
+    }
+    &__form {
+        display: flex;
+        flex-direction: column;
+    }
+    
+}
+
