@@ -1,11 +1,11 @@
-/* import { useState } from "react"; */
+import { useState } from "react";
 import TermsAndPrivacyPolicy from "../../components/termsAndPrivacyPolicy/TermsAndPrivacyPolicy";
-/* import SignUpBtns from "../signUpBtns/SignUpBtns";
-import SignUpForm from "../signUpForm/SignUpForm"; */
+import SignUpBtns from "../signUpBtns/SignUpBtns";
+import SignUpForm from "../signUpForm/SignUpForm";
 import "./signUp.scss";
 
 const SignUp = () => {
-    //const [isCreation, setIsCreation] = useState(false);
+    const [isCreation, setIsCreation] = useState(false);
 
     return (
         <>
@@ -16,7 +16,7 @@ const SignUp = () => {
                 </div>
             </div>
 
-            {/* {isCreation ? <SignUpBtns /> : <SignUpForm />} */}
+            {isCreation ? <SignUpForm /> : <SignUpBtns setIsCreation={setIsCreation} />}
 
             <TermsAndPrivacyPolicy />
         </>
