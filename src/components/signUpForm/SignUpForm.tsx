@@ -42,6 +42,7 @@ const SignUpForm = () => {
         border: "1px solid #4F4F4F",
         marginTop: "16px",
         marginBottom: "12px",
+        fontFamily: "'Inter', sans-serif",
         ":hover": {
             backgroundColor: "#828282",
             border: "1px solid #4F4F4F",

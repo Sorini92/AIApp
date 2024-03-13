@@ -1,6 +1,5 @@
+import { Box } from "@mui/material";
 import Button from "@mui/material/Button";
-
-import "./signUpBtns.scss";
 
 interface ISignUpBtns {
     setIsCreation: (isCreation: boolean) => void;
@@ -8,6 +7,7 @@ interface ISignUpBtns {
 
 const SignUpBtns = ({ setIsCreation }: ISignUpBtns) => {
     const buttonStyle = {
+        fontFamily: "'Inter', sans-serif",
         textTransform: "none",
         fontSize: 16,
         fontWeight: 500,
@@ -22,7 +22,13 @@ const SignUpBtns = ({ setIsCreation }: ISignUpBtns) => {
     };
 
     return (
-        <div className="signupBtns">
+        <Box
+            sx={{
+                marginTop: "24px",
+                display: "flex",
+                flexDirection: "column",
+            }}
+        >
             <Button variant="outlined" sx={buttonStyle} onClick={() => setIsCreation(true)}>
                 Sign Up with Email
             </Button>
@@ -35,7 +41,7 @@ const SignUpBtns = ({ setIsCreation }: ISignUpBtns) => {
             <Button variant="outlined" sx={buttonStyle}>
                 Sign Up with Apple
             </Button>
-        </div>
+        </Box>
     );
 };
 

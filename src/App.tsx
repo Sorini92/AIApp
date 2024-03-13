@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import AuthPage from "./pages/AuthPage/AuthPage";
+import AuthPage from "./pages/Auth/Auth";
 
 function App() {
     return (
