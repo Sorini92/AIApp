@@ -2,7 +2,11 @@ import Button from "@mui/material/Button";
 
 import "./signUpBtns.scss";
 
-const SignUpBtns = () => {
+interface ISignUpBtns {
+    setIsCreation: (isCreation: boolean) => void;
+}
+
+const SignUpBtns = ({ setIsCreation }: ISignUpBtns) => {
     const buttonStyle = {
         textTransform: "none",
         fontSize: 16,
@@ -19,7 +23,7 @@ const SignUpBtns = () => {
 
     return (
         <div className="signupBtns">
-            <Button variant="outlined" sx={buttonStyle}>
+            <Button variant="outlined" sx={buttonStyle} onClick={() => setIsCreation(true)}>
                 Sign Up with Email
             </Button>
             <Button variant="outlined" sx={buttonStyle}>
