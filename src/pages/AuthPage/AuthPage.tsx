@@ -1,44 +1,31 @@
 import { useState } from "react";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
 import SignUp from "../../components/signUp/SignUp";
 
 import "./authPage.scss";
 
 const AuthPage = () => {
-    const [activeTab, setIsActiveTab] = useState<"signup" | "login">("signup");
+    const [value, setValue] = useState(0);
+
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+        setValue(newValue);
+    };
 
     return (
         <div className="authPageWrapper">
             <div className="authPageWrapper__modal">
-                <div className="authPageWrapper__tabs">
-                    <div
-                        className={
-                            activeTab === "signup"
-                                ? "authPageWrapper__tab activeTab"
-                                : "authPageWrapper__tab"
-                        }
-                        onClick={() => setIsActiveTab("signup")}
-                    >
-                        Sign Up
-                    </div>
-                    <div
-                        className={
-                            activeTab === "login"
-                                ? "authPageWrapper__tab activeTab"
-                                : "authPageWrapper__tab"
-                        }
-                        onClick={() => setIsActiveTab("login")}
-                    >
-                        Log In
-                    </div>
-
-                    <div
-                        className="line"
-                        style={
-                            activeTab === "signup" ? { left: 0 } : { left: 232 }
-                        }
-                    ></div>
+                <div className="authPageWrapper__header">
+                    <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                        <Tabs value={value} onChange={handleChange}>
+                            <Tab sx={{ width: 232 }} label="Sign Up" />
+                            <Tab sx={{ width: 232 }} label="Log In" />
+                        </Tabs>
+                    </Box>
                 </div>
-                {activeTab === "signup" ? <SignUp /> : <div>login</div>}
+
+                <div className="authPageWrapper__body">{value ? <div>login</div> : <SignUp />}</div>
             </div>
         </div>
     );

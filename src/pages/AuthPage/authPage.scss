@@ -7,36 +7,15 @@
         padding: 48px;
         background-color: #fff;
         width: 560px;
-        min-height: 820px;
+        height: 100vh;
     }
-    &__tabs {
-        font-weight: 600;
+    &__header {
+        height: 48px;
+    }
+    &__body {
+        height: 100%;
         display: flex;
-        position: relative;
+        flex-direction: column;
+        justify-content: center;
     }
-    &__tab {
-        font-size: 16px;
-        cursor: pointer;
-        width: 232px;
-        height: 38px;
-        text-align: center;
-        color: $gray2;
-        border-bottom: 2px solid $gray5;
-        &:hover {
-            opacity: 0.8;
-        }
-    }
-}
-
-.activeTab {
-    color: $blue1;
-}
-
-.line {
-    position: absolute;
-    height: 2px;
-    background-color: $blue1;
-    width: 232px;
-    bottom: 0;
-    transition: .4s;
 }
