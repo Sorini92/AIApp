@@ -3,7 +3,7 @@ import InputBase from "@mui/material/InputBase";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
-import help from "../../resources/login/help.png";
+import help from "../../img/auth/help.png";
 import "./signUpForm.scss";
 import { useState } from "react";
 
