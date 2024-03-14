@@ -1,34 +1,58 @@
 import { useState } from "react";
 import { Box, Typography } from "@mui/material";
-import SignUpBtns from "../signUpBtns/SignUpBtns";
-import SignUpForm from "../signUpForm/SignUpForm";
+import { CustomButton } from "../app/common/buttons/CustomButton";
+import { SignUpForm } from "../signUpForm/SignUpForm";
 
-const SignUp = () => {
-    const [isCreation, setIsCreation] = useState(false);
+export const SignUp = () => {
+  const [isCreation, setIsCreation] = useState(false);
 
-    return (
-        <>
-            <Box sx={{ flexDirection: "column" }}>
-                <Typography
-                    sx={{
-                        fontSize: "32px",
-                        fontWeight: "600",
-                        marginBottom: "8px",
-                        fontFamily: "'Inter', sans-serif",
-                    }}
-                >
-                    Sign Up
-                </Typography>
-                <Typography
-                    sx={{ fontWeight: "400px", fontSize: "px", fontFamily: "'Inter', sans-serif" }}
-                >
-                    Create an account to access the best AI helper for finance advisors.
-                </Typography>
-            </Box>
+  const handleClickCreationNewAccount = () => {
+    setIsCreation(!isCreation);
+  };
 
-            {isCreation ? <SignUpForm /> : <SignUpBtns setIsCreation={setIsCreation} />}
-        </>
-    );
+  return (
+    <>
+      <Box sx={{ flexDirection: "column" }}>
+        <Typography
+          sx={{
+            fontSize: "32px",
+            fontWeight: "600",
+            marginBottom: "8px",
+          }}
+        >
+          Sign Up
+        </Typography>
+        <Typography sx={{ fontWeight: "400px", fontSize: "px" }}>
+          Create an account to access the best AI helper for finance advisors.
+        </Typography>
+      </Box>
+
+      {isCreation ? (
+        <SignUpForm />
+      ) : (
+        <Box
+          sx={{
+            marginTop: "24px",
+            display: "flex",
+            height: "248px",
+            justifyContent: "space-between",
+            flexDirection: "column",
+          }}
+        >
+          <CustomButton
+            text={"Sign Up with Email"}
+            clickFunction={handleClickCreationNewAccount}
+            type="transperent"
+          />
+          <CustomButton text={"Sign Up with Google"} clickFunction={() => {}} type="transperent" />
+          <CustomButton
+            text={"Sign Up with LinkedIn"}
+            clickFunction={() => {}}
+            type="transperent"
+          />
+          <CustomButton text={"Sign Up with Apple"} clickFunction={() => {}} type="transperent" />
+        </Box>
+      )}
+    </>
+  );
 };
-
-export default SignUp;
