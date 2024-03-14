@@ -7,7 +7,7 @@ function App() {
         <div className="app">
             <Router>
                 <Routes>
-                    <Route path="/auth" element={<AuthPage />} />
+                    <Route path="/" element={<AuthPage />} />
                 </Routes>
             </Router>
         </div>
