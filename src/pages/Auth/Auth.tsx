@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Tabs, Tab, Box, Link } from "@mui/material";
 import { SignUp } from "../../components/signUp/SignUp";
-import LogIn from "../../components/logIn/LogIn";
+import { LogIn } from "../../components/logIn/LogIn";
 
 export const Auth = () => {
   const [value, setValue] = useState(0);

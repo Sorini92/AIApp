@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Typography, TextField, InputLabel, Box, Link } from "@mui/material";
-import { CustomButton } from "../CustomButton";
+import { CustomButton } from "../app/common/buttons/CustomButton";
 import help from "../../resources/login/help.png";
 
 import "./signUpForm.scss";

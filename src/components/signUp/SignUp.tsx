@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box, Typography } from "@mui/material";
-import { CustomButton } from "../CustomButton";
+import { CustomButton } from "../app/common/buttons/CustomButton";
 import { SignUpForm } from "../signUpForm/SignUpForm";
 
 export const SignUp = () => {
