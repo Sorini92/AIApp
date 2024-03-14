@@ -1,156 +1,156 @@
-import { alpha, styled } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-
-import help from "../../resources/login/help.png";
-import "./signUpForm.scss";
 import { useState } from "react";
+import { Typography, TextField, InputLabel, Box, Link } from "@mui/material";
+import { CustomButton } from "../app/common/buttons/CustomButton";
+import help from "../../resources/login/help.png";
 
-const SignUpForm = () => {
-    const [communityChecked, setCommunityChecked] = useState(false);
-    const [registeredChecked, setRegisteredChecked] = useState(false);
+import "./signUpForm.scss";
 
-    const CustomInput = styled(InputBase)(({ theme }) => ({
-        "& .MuiInputBase-input": {
-            borderRadius: 8,
-            position: "relative",
-            backgroundColor: theme.palette.mode === "light" ? "#fff" : "#1A2027",
-            border: "1px solid #BDBDBD",
-            borderColor: theme.palette.mode === "light" ? "#E0E3E7" : "#2D3843",
-            fontSize: 16,
-            padding: "10px 12px",
-            transition: theme.transitions.create([
-                "border-color",
-                "background-color",
-                "box-shadow",
-            ]),
-            "&:focus": {
-                boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
-                borderColor: theme.palette.primary.main,
-            },
-        },
-    }));
+export const SignUpForm = () => {
+  const [communityChecked, setCommunityChecked] = useState(false);
+  const [registeredChecked, setRegisteredChecked] = useState(false);
 
-    const buttonStyle = {
-        textTransform: "none",
-        fontSize: 16,
-        fontWeight: 500,
-        height: 56,
-        color: "#fff",
-        backgroundColor: "#454545",
-        border: "1px solid #4F4F4F",
-        marginTop: "16px",
-        marginBottom: "12px",
-        fontFamily: "'Inter', sans-serif",
-        ":hover": {
-            backgroundColor: "#828282",
-            border: "1px solid #4F4F4F",
-        },
-    };
+  return (
+    <Box component="form" noValidate autoComplete="off">
+      {/* inputs emeil and password */}
 
-    return (
-        <Box
-            className="signupForm"
-            component="form"
-            sx={{
-                "& > :not(style)": { width: "100%" },
-            }}
-            noValidate
-            autoComplete="off"
+      <InputLabel
+        sx={{
+          marginTop: "24px",
+          marginBottom: "4px",
+          display: "flex",
+          alignItems: "end",
+          color: "#000000",
+          marginRight: "4px",
+          fontWeight: 500,
+          lineHeight: "16px",
+        }}
+        htmlFor="email"
+      >
+        Email
+        <Typography
+          sx={{
+            marginLeft: "4px",
+            color: "#828282",
+            fontSize: "12px",
+            lineHeight: "12px",
+          }}
         >
-            <label htmlFor="email">
-                Email <span>required</span>
-            </label>
-            <CustomInput defaultValue="" id="email" />
+          required
+        </Typography>
+      </InputLabel>
+      <TextField fullWidth id="email" variant="outlined" defaultValue="" />
 
-            <label className="signupForm__label" htmlFor="password">
-                Password <span>required</span>
-            </label>
-            <CustomInput defaultValue="" id="password" />
+      <InputLabel
+        sx={{
+          marginTop: "24px",
+          marginBottom: "4px",
+          display: "flex",
+          alignItems: "end",
+          color: "#000000",
+          marginRight: "4px",
+          fontSize: "16px",
+          fontWeight: 500,
+          lineHeight: "16px",
+        }}
+        htmlFor="password"
+      >
+        Password
+        <Typography
+          sx={{
+            color: "#828282",
+            marginLeft: "4px",
+            fontSize: "12px",
+            lineHeight: "12px",
+          }}
+        >
+          required
+        </Typography>
+      </InputLabel>
+      <TextField fullWidth id="password" variant="outlined" defaultValue="" />
 
-            <div className="signupForm__validation">
-                <div className="signupForm__validation-line validated">
-                    &#10003; Minimum 8 characters
-                </div>
-                <div className="signupForm__validation-line">
-                    &times; Contains at least 1 uppercase
-                </div>
+      {/* validation mark */}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          marginTop: "4px",
+          fontSize: "14px",
+          lineHeight: "20px",
+          color: "#828282",
+        }}
+      >
+        <Box className="validated">&#10003; Minimum 8 characters</Box>
+        <Box>&times; Contains at least 1 uppercase</Box>
 
-                <div className="signupForm__validation-line">
-                    &times; Contains at least 1 number or symbol
-                </div>
-                <div className="signupForm__validation-line">
-                    &times; Cannot contain your name or email address
-                </div>
+        <Box>&times; Contains at least 1 number or symbol</Box>
+        <Box>&times; Cannot contain your name or email address</Box>
+      </Box>
+
+      {/* agreement to join community */}
+      <Box sx={{ display: "flex", alignItems: "center", height: "24px", margin: "24px 0" }}>
+        <div
+          className={communityChecked ? "checkbox checked" : "checkbox"}
+          onClick={() => setCommunityChecked(!communityChecked)}
+        >
+          <div className="checkbox-checkmark">&#10003;</div>
+          <input type="checkbox" defaultChecked={communityChecked} />
+        </div>
+        <Typography
+          sx={{
+            marginLeft: "12px",
+            fontWeight: "400",
+            fontSize: "16px",
+            lineHeight: "24px",
+            marginRight: "4px",
+          }}
+        >
+          I want to be a part of
+        </Typography>
+        <Link sx={{ marginRight: "4px" }} underline="none" href="#">
+          AdvisorZen Community
+        </Link>
+        <img className="help" src={help} />
+      </Box>
+
+      {/* render new inputs when checkbox checked */}
+      {communityChecked && (
+        <>
+          <Box sx={{ display: "flex", justifyContent: "space-between" }} className="wrapper"></Box>
+
+          {/* checkbox registered advisor */}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              height: "24px",
+              margin: "24px 0",
+            }}
+          >
+            <div
+              className={registeredChecked ? "checkbox checked" : "checkbox"}
+              onClick={() => setRegisteredChecked(!registeredChecked)}
+            >
+              <div className="checkbox-checkmark">&#10003;</div>
+              <input type="checkbox" defaultChecked={registeredChecked} />
             </div>
+            <Typography
+              sx={{
+                marginLeft: "12px",
+                fontWeight: "400",
+                fontSize: "16px",
+                lineHeight: "24px",
+                marginRight: "4px",
+              }}
+            >
+              I’m Registered Investment Advisor
+            </Typography>
+            <img className="help" src={help} />
+          </Box>
+        </>
+      )}
 
-            <div className="signupForm__agreemant">
-                <div
-                    className={
-                        communityChecked
-                            ? "signupForm__agreemant-checkbox checked"
-                            : "signupForm__agreemant-checkbox"
-                    }
-                    onClick={() => setCommunityChecked(!communityChecked)}
-                >
-                    <div className="signupForm__agreemant-checkbox-checkmark">&#10003;</div>
-                    <input type="checkbox" defaultChecked={communityChecked} />
-                </div>
-                <div className="signupForm__agreemant-text">
-                    I want to be a part of <a href="#">AdvisorZen Community</a>
-                </div>
-                <img src={help} />
-            </div>
-
-            {communityChecked ? (
-                <>
-                    <label htmlFor="username">
-                        Username <span>required</span>
-                    </label>
-                    <CustomInput defaultValue="" id="username" />
-
-                    <div className="signupForm__wrapper">
-                        <div>
-                            <label htmlFor="firstname">
-                                First name <span>required</span>
-                            </label>
-                            <CustomInput defaultValue="" id="firstname" />
-                        </div>
-
-                        <div>
-                            <label htmlFor="lastname">
-                                Last name <span>required</span>
-                            </label>
-                            <CustomInput defaultValue="" id="lastname" />
-                        </div>
-                    </div>
-
-                    <div className="signupForm__agreemant">
-                        <div
-                            className={
-                                registeredChecked
-                                    ? "signupForm__agreemant-checkbox checked"
-                                    : "signupForm__agreemant-checkbox"
-                            }
-                            onClick={() => setRegisteredChecked(!registeredChecked)}
-                        >
-                            <div className="signupForm__agreemant-checkbox-checkmark">&#10003;</div>
-                            <input type="checkbox" defaultChecked={registeredChecked} />
-                        </div>
-                        <div className="signupForm__agreemant-text">
-                            I’m Registered Investment Advisor
-                        </div>
-                        <img src={help} />
-                    </div>
-                </>
-            ) : null}
-
-            <Button variant="outlined" sx={buttonStyle}>
-                Create Account
-            </Button>
-        </Box>
-    );
+      {/* create account button */}
+      <CustomButton text="Create Account" clickFunction={() => {}} type="dark" />
+    </Box>
+  );
 };
-
-export default SignUpForm;
