@@ -43,7 +43,7 @@ export const CustomButton = ({
     textTransform: "none",
     fontSize: 16,
     fontWeight: 500,
-    width: typeof width === "number" ? `${width}px` : `${width}`,
+    width: typeof width === "number" ? `${width}px` : width,
     height: `${height}px`,
     border: `1px solid ${
       type === "red"

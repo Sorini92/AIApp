@@ -25,8 +25,8 @@ export const Auth = () => {
       >
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs value={value} onChange={handleChange}>
-            <Tab sx={{ width: "232px", fontFamily: "'Inter', sans-serif" }} label="Sign Up" />
-            <Tab sx={{ width: "232px", fontFamily: "'Inter', sans-serif" }} label="Log In" />
+            <Tab sx={{ width: "232px" }} label="Sign Up" />
+            <Tab sx={{ width: "232px" }} label="Log In" />
           </Tabs>
         </Box>
 
@@ -35,7 +35,7 @@ export const Auth = () => {
         {value ? (
           <div></div>
         ) : (
-          <Box fontSize={14} color={"#4F4F4F"}>
+          <Box sx={{ fontSize: "14px", color: "#4F4F4F" }}>
             By proceeding, you agree to our
             <Link href="#" underline="none">
               &nbsp;Terms&nbsp;
