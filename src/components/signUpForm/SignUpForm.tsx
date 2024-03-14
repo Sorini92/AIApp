@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Typography, TextField, InputLabel, Box, Link } from "@mui/material";
+import { Typography, Box, Link } from "@mui/material";
 import { CustomButton } from "../app/common/buttons/CustomButton";
-import help from "../../resources/login/help.png";
+import help from "../../img/auth/help.png";
 
 import "./signUpForm.scss";
+import { FormInput } from "../app/common/inputs";
 
 export const SignUpForm = () => {
   const [communityChecked, setCommunityChecked] = useState(false);
@@ -13,60 +14,18 @@ export const SignUpForm = () => {
     <Box component="form" noValidate autoComplete="off">
       {/* inputs emeil and password */}
 
-      <InputLabel
+      <Box
         sx={{
           marginTop: "24px",
-          marginBottom: "4px",
+          height: "168px",
           display: "flex",
-          alignItems: "end",
-          color: "#000000",
-          marginRight: "4px",
-          fontWeight: 500,
-          lineHeight: "16px",
+          flexDirection: "column",
+          justifyContent: "space-between",
         }}
-        htmlFor="email"
       >
-        Email
-        <Typography
-          sx={{
-            marginLeft: "4px",
-            color: "#828282",
-            fontSize: "12px",
-            lineHeight: "12px",
-          }}
-        >
-          required
-        </Typography>
-      </InputLabel>
-      <TextField fullWidth id="email" variant="outlined" defaultValue="" />
-
-      <InputLabel
-        sx={{
-          marginTop: "24px",
-          marginBottom: "4px",
-          display: "flex",
-          alignItems: "end",
-          color: "#000000",
-          marginRight: "4px",
-          fontSize: "16px",
-          fontWeight: 500,
-          lineHeight: "16px",
-        }}
-        htmlFor="password"
-      >
-        Password
-        <Typography
-          sx={{
-            color: "#828282",
-            marginLeft: "4px",
-            fontSize: "12px",
-            lineHeight: "12px",
-          }}
-        >
-          required
-        </Typography>
-      </InputLabel>
-      <TextField fullWidth id="password" variant="outlined" defaultValue="" />
+        <FormInput label="Email" />
+        <FormInput label="Password" showPasswordToggler />
+      </Box>
 
       {/* validation mark */}
       <Box
@@ -115,7 +74,14 @@ export const SignUpForm = () => {
       {/* render new inputs when checkbox checked */}
       {communityChecked && (
         <>
-          <Box sx={{ display: "flex", justifyContent: "space-between" }} className="wrapper"></Box>
+          <FormInput label="Usename" />
+          <Box
+            sx={{ display: "flex", justifyContent: "space-between", marginTop: "16px" }}
+            className="wrapper"
+          >
+            <FormInput label="First Name" width={"226px"} />
+            <FormInput label="Last Name" width={"226px"} />
+          </Box>
 
           {/* checkbox registered advisor */}
           <Box
