@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Tabs, Tab, Box, Link } from "@mui/material";
-import SignUp from "../../components/signUp/SignUp";
+import { SignUp } from "../../components/signUp/SignUp";
 import LogIn from "../../components/logIn/LogIn";
 
-const Auth = () => {
+export const Auth = () => {
   const [value, setValue] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -50,5 +50,3 @@ const Auth = () => {
     </Box>
   );
 };
-
-export default Auth;

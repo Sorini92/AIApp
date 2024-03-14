@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Typography, TextField, InputLabel, Box, Link } from "@mui/material";
 import { CustomButton } from "../CustomButton";
-
 import help from "../../resources/login/help.png";
+
 import "./signUpForm.scss";
 
-const SignUpForm = () => {
+export const SignUpForm = () => {
   const [communityChecked, setCommunityChecked] = useState(false);
   const [registeredChecked, setRegisteredChecked] = useState(false);
 
@@ -154,5 +154,3 @@ const SignUpForm = () => {
     </Box>
   );
 };
-
-export default SignUpForm;

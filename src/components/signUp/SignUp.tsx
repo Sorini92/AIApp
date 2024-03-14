@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { CustomButton } from "../CustomButton";
-import SignUpForm from "../signUpForm/SignUpForm";
+import { SignUpForm } from "../signUpForm/SignUpForm";
 
-const SignUp = () => {
+export const SignUp = () => {
   const [isCreation, setIsCreation] = useState(false);
 
   const handleClickCreationNewAccount = () => {
@@ -56,5 +56,3 @@ const SignUp = () => {
     </>
   );
 };
-
-export default SignUp;

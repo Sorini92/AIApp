@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-import AuthPage from "./pages/Auth/Auth";
+import { Auth } from "./pages/Auth/Auth";
 
 const theme = createTheme({
   typography: {
@@ -15,7 +15,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <Router>
           <Routes>
-            <Route path="/" element={<AuthPage />} />
+            <Route path="/" element={<Auth />} />
           </Routes>
         </Router>
       </ThemeProvider>
