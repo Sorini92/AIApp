@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Typography, TextField, InputLabel, Box, Button, Link } from "@mui/material";
+import { Typography, TextField, InputLabel, Box, Link } from "@mui/material";
+import { CustomButton } from "../CustomButton";
 
 import help from "../../resources/login/help.png";
 import "./signUpForm.scss";
@@ -7,22 +8,6 @@ import "./signUpForm.scss";
 const SignUpForm = () => {
   const [communityChecked, setCommunityChecked] = useState(false);
   const [registeredChecked, setRegisteredChecked] = useState(false);
-
-  const buttonStyle = {
-    textTransform: "none",
-    fontSize: 16,
-    fontWeight: 500,
-    height: 56,
-    color: "#fff",
-    backgroundColor: "#454545",
-    border: "1px solid #4F4F4F",
-    width: "100%",
-    fontFamily: "'Inter', sans-serif",
-    ":hover": {
-      backgroundColor: "#828282",
-      border: "1px solid #4F4F4F",
-    },
-  };
 
   return (
     <Box component="form" noValidate autoComplete="off">
@@ -165,9 +150,7 @@ const SignUpForm = () => {
       )}
 
       {/* create account button */}
-      <Button variant="outlined" sx={buttonStyle}>
-        Create Account
-      </Button>
+      <CustomButton text="Create Account" clickFunction={() => {}} type="dark" />
     </Box>
   );
 };

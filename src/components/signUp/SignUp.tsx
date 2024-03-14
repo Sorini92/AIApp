@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { Box, Typography } from "@mui/material";
-import SignUpBtns from "../signUpBtns/SignUpBtns";
+import { CustomButton } from "../CustomButton";
 import SignUpForm from "../signUpForm/SignUpForm";
 
 const SignUp = () => {
   const [isCreation, setIsCreation] = useState(false);
+
+  const handleClickCreationNewAccount = () => {
+    setIsCreation(!isCreation);
+  };
 
   return (
     <>
@@ -23,7 +27,32 @@ const SignUp = () => {
         </Typography>
       </Box>
 
-      {isCreation ? <SignUpForm /> : <SignUpBtns setIsCreation={setIsCreation} />}
+      {isCreation ? (
+        <SignUpForm />
+      ) : (
+        <Box
+          sx={{
+            marginTop: "24px",
+            display: "flex",
+            height: "248px",
+            justifyContent: "space-between",
+            flexDirection: "column",
+          }}
+        >
+          <CustomButton
+            text={"Sign Up with Email"}
+            clickFunction={handleClickCreationNewAccount}
+            type="transperent"
+          />
+          <CustomButton text={"Sign Up with Google"} clickFunction={() => {}} type="transperent" />
+          <CustomButton
+            text={"Sign Up with LinkedIn"}
+            clickFunction={() => {}}
+            type="transperent"
+          />
+          <CustomButton text={"Sign Up with Apple"} clickFunction={() => {}} type="transperent" />
+        </Box>
+      )}
     </>
   );
 };
