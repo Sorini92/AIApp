@@ -1,19 +1,59 @@
-import { useState } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
 import { Typography, Box, Link } from "@mui/material";
-import { CustomButton } from "../app/common/buttons/CustomButton";
+import { CustomButton } from "../app/common/buttons";
+import { FormInput } from "../app/common/inputs";
+import { IUser } from "../../shared/interfaces/auth";
 import help from "../../img/auth/help.png";
 
 import "./signUpForm.scss";
-import { FormInput } from "../app/common/inputs";
 
 export const SignUpForm = () => {
   const [communityChecked, setCommunityChecked] = useState(false);
-  const [registeredChecked, setRegisteredChecked] = useState(false);
+  const [isDisabled, setIsDisabled] = useState<boolean>(true);
+  const [formData, setFormData] = useState<IUser>({
+    email: "",
+    password: "",
+    userName: "",
+    firstName: "",
+    lastName: "",
+    isRegistered: false,
+  });
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsDisabled(false);
+
+    setFormData({
+      email: "",
+      password: "",
+      userName: "",
+      firstName: "",
+      lastName: "",
+      isRegistered: false,
+    });
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleChangeCheckbox = () => {
+    setFormData((prevData) => ({
+      ...prevData,
+      isRegistered: !formData.isRegistered,
+    }));
+  };
+
+  console.log(formData);
 
   return (
-    <Box component="form" noValidate autoComplete="off">
+    <Box component="form" noValidate autoComplete="off" onSubmit={handleSubmit}>
       {/* inputs emeil and password */}
-
       <Box
         sx={{
           marginTop: "24px",
@@ -23,8 +63,17 @@ export const SignUpForm = () => {
           justifyContent: "space-between",
         }}
       >
-        <FormInput label="Email" />
-        <FormInput label="Password" showPasswordToggler />
+        <FormInput
+          //value={formData.email}
+          //onChange={handleChange}
+          label="Email"
+        />
+        <FormInput
+          //value={formData.password}
+          //onChange={handleChange}
+          label="Password"
+          showPasswordToggler
+        />
       </Box>
 
       {/* validation mark */}
@@ -40,7 +89,6 @@ export const SignUpForm = () => {
       >
         <Box className="validated">&#10003; Minimum 8 characters</Box>
         <Box>&times; Contains at least 1 uppercase</Box>
-
         <Box>&times; Contains at least 1 number or symbol</Box>
         <Box>&times; Cannot contain your name or email address</Box>
       </Box>
@@ -74,13 +122,27 @@ export const SignUpForm = () => {
       {/* render new inputs when checkbox checked */}
       {communityChecked && (
         <>
-          <FormInput label="Usename" />
+          <FormInput
+            //value={formData.username}
+            //onChange={handleChange}
+            label="Usename"
+          />
           <Box
-            sx={{ display: "flex", justifyContent: "space-between", marginTop: "16px" }}
+            sx={{ display: "flex", justifyContent: "space-between", marginTop: "22px" }}
             className="wrapper"
           >
-            <FormInput label="First Name" width={"226px"} />
-            <FormInput label="Last Name" width={"226px"} />
+            <FormInput
+              //value={formData.firstName}
+              //onChange={handleChange}
+              label="First Name"
+              width={"226px"}
+            />
+            <FormInput
+              //value={formData.lastName}
+              //onChange={handleChange}
+              label="Last Name"
+              width={"226px"}
+            />
           </Box>
 
           {/* checkbox registered advisor */}
@@ -93,11 +155,11 @@ export const SignUpForm = () => {
             }}
           >
             <div
-              className={registeredChecked ? "checkbox checked" : "checkbox"}
-              onClick={() => setRegisteredChecked(!registeredChecked)}
+              className={formData.isRegistered ? "checkbox checked" : "checkbox"}
+              onClick={handleChangeCheckbox}
             >
               <div className="checkbox-checkmark">&#10003;</div>
-              <input type="checkbox" defaultChecked={registeredChecked} />
+              <input type="checkbox" checked={formData.isRegistered} onChange={handleChange} />
             </div>
             <Typography
               sx={{
@@ -116,7 +178,12 @@ export const SignUpForm = () => {
       )}
 
       {/* create account button */}
-      <CustomButton text="Create Account" clickFunction={() => {}} type="dark" />
+      <CustomButton
+        text="Create Account"
+        clickFunction={() => console.log(formData)}
+        type="dark"
+        disabled={isDisabled}
+      />
     </Box>
   );
 };

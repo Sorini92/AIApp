@@ -1,13 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-
+import { ThemeProvider } from "@mui/material/styles";
+import { theme } from "../../theme";
 import { Auth } from "../../pages/Auth/Auth";
-
-const theme = createTheme({
-  typography: {
-    fontFamily: "Inter, sans-serif",
-  },
-});
 
 function App() {
   return (

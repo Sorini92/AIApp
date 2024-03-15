@@ -1,41 +1,29 @@
 import { Button } from "@mui/material";
-
-interface ICustomButton {
-  text: string;
-  type: "transperent" | "dark" | "red";
-  height?: number;
-  width?: number | string;
-  clickFunction: () => void;
-}
+import { ICustomButton } from "../../../../shared/interfaces/common";
 
 export const CustomButton = ({
   text,
   clickFunction,
   type,
   height = 56,
+  disabled = false,
   width = "100%",
 }: ICustomButton) => {
-  const darkVariant = {
-    color: "#fff",
-    backgroundColor: "#454545",
-    ":hover": {
-      backgroundColor: "#828282",
+  const variantStyles = {
+    transparent: {
+      color: "#4F4F4F",
+      backgroundColor: "inherit",
+      hoverBackground: "#F2F2F2",
     },
-  };
-
-  const redVariant = {
-    color: "#fff",
-    backgroundColor: "#D01717",
-    ":hover": {
-      backgroundColor: "#EB5757",
+    dark: {
+      color: "#fff",
+      backgroundColor: "#454545",
+      hoverBackground: "#828282",
     },
-  };
-
-  const transperentVariant = {
-    color: "#4F4F4F",
-    backgroundColor: "inherit",
-    ":hover": {
-      backgroundColor: "#F2F2F2",
+    red: {
+      color: "#fff",
+      backgroundColor: "#D01717",
+      hoverBackground: "#EB5757",
     },
   };
 
@@ -45,47 +33,19 @@ export const CustomButton = ({
     fontWeight: 500,
     width: typeof width === "number" ? `${width}px` : width,
     height: `${height}px`,
-    border: `1px solid ${
-      type === "red"
-        ? redVariant.backgroundColor
-        : type === "dark"
-        ? darkVariant.backgroundColor
-        : "#4F4F4F"
-    }`,
-    color: `${
-      type === "red"
-        ? redVariant.color
-        : type === "dark"
-        ? darkVariant.color
-        : transperentVariant.color
-    }`,
-    backgroundColor: `${
-      type === "red"
-        ? redVariant.backgroundColor
-        : type === "dark"
-        ? darkVariant.backgroundColor
-        : transperentVariant.backgroundColor
-    }`,
+    color: variantStyles[type].color,
+    backgroundColor: variantStyles[type].backgroundColor,
+    border: `1px solid ${type === "transparent" ? "#4F4F4F" : variantStyles[type].backgroundColor}`,
     ":hover": {
       border: `1px solid ${
-        type === "red"
-          ? redVariant.backgroundColor
-          : type === "dark"
-          ? darkVariant.backgroundColor
-          : "#4F4F4F"
+        type === "transparent" ? "#4F4F4F" : variantStyles[type].backgroundColor
       }`,
-      backgroundColor: `${
-        type === "red"
-          ? redVariant[":hover"].backgroundColor
-          : type === "dark"
-          ? darkVariant[":hover"].backgroundColor
-          : transperentVariant[":hover"].backgroundColor
-      }`,
+      backgroundColor: variantStyles[type].hoverBackground,
     },
   };
 
   return (
-    <Button variant="outlined" sx={buttonStyle} onClick={clickFunction}>
+    <Button variant="outlined" sx={buttonStyle} onClick={clickFunction} disabled={disabled}>
       {text}
     </Button>
   );
