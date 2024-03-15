@@ -1,2 +1,2 @@
-import { ICustomButton } from "./interfaces";
-export type { ICustomButton };
+import { ICustomButton, IFormInput } from "./interfaces";
+export type { ICustomButton, IFormInput };
