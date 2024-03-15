@@ -4,7 +4,8 @@ import { ICustomButton } from "../../../../shared/interfaces/common";
 export const CustomButton = ({
   text,
   clickFunction,
-  type,
+  kind,
+  type = "button",
   height = 56,
   disabled = false,
   width = "100%",
@@ -33,19 +34,25 @@ export const CustomButton = ({
     fontWeight: 500,
     width: typeof width === "number" ? `${width}px` : width,
     height: `${height}px`,
-    color: variantStyles[type].color,
-    backgroundColor: variantStyles[type].backgroundColor,
-    border: `1px solid ${type === "transparent" ? "#4F4F4F" : variantStyles[type].backgroundColor}`,
+    color: variantStyles[kind].color,
+    backgroundColor: variantStyles[kind].backgroundColor,
+    border: `1px solid ${kind === "transparent" ? "#4F4F4F" : variantStyles[kind].backgroundColor}`,
     ":hover": {
       border: `1px solid ${
-        type === "transparent" ? "#4F4F4F" : variantStyles[type].backgroundColor
+        kind === "transparent" ? "#4F4F4F" : variantStyles[kind].backgroundColor
       }`,
-      backgroundColor: variantStyles[type].hoverBackground,
+      backgroundColor: variantStyles[kind].hoverBackground,
     },
   };
 
   return (
-    <Button variant="outlined" sx={buttonStyle} onClick={clickFunction} disabled={disabled}>
+    <Button
+      type={type}
+      variant="outlined"
+      sx={buttonStyle}
+      onClick={clickFunction}
+      disabled={disabled}
+    >
       {text}
     </Button>
   );

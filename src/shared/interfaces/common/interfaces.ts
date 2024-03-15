@@ -1,6 +1,7 @@
 export interface ICustomButton {
   text: string;
-  type: "transparent" | "dark" | "red";
+  kind: "transparent" | "dark" | "red";
+  type?: "button" | "submit";
   height?: number;
   width?: number | string;
   disabled?: boolean;
@@ -15,5 +16,6 @@ export interface IFormInput {
   height?: string | number;
   marginTop?: string | number;
   value?: string;
+  name: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
