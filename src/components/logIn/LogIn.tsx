@@ -1,15 +1,23 @@
-import { FormEvent } from "react";
-import {
-	Typography,
-	Box,
-	Link,
-	Button
-} from "@mui/material";
+import { FormEvent, useState } from "react";
+import { Typography, Box, Link, Button } from "@mui/material";
 
-import {FormInput} from "../app/common/inputs/FormInput";
+import { FormInput } from "../app/common/inputs/FormInput";
 import "./logIn.scss";
 
 export const LogIn = () => {
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+
+	const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setEmail(event.target.value);
+	};
+
+	const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setPassword(event.target.value);
+	};
+
+	console.log(email);
+	console.log(password);
 
 	const handleSubmit = (event: FormEvent) => {
 		event.preventDefault();
@@ -38,138 +46,23 @@ export const LogIn = () => {
 				autoComplete="off"
 				sx={{ display: "flex", flexDirection: "column" }}
 			>
-				{/* <InputLabel
-					sx={{
-						marginTop: "24px",
-						marginBottom: "4px",
-						display: "flex",
-						alignItems: "end",
-						color: "#000000",
-						marginRight: "4px",
-						fontWeight: 500,
-						lineHeight: "16px",
-					}}
-					htmlFor="email"
-				>
-					Email
-					<Typography
-						sx={{
-							marginLeft: "8px",
-							color: "#828282",
-							fontSize: "12px",
-							lineHeight: "12px",
-						}}
-					>
-						required
-					</Typography>
-				</InputLabel>
-				<TextField
-					fullWidth
-					id="email"
-					variant="outlined"
+				<FormInput
+					label="Email"
+					required={false}
+					showPasswordToggler={false}
+					marginTop="24px"
 					value={email}
-					onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-						setEmail(event.target.value);
-					}}
-					defaultValue=""
-				/> */}
+					onChange={handleEmailChange}
+				/>
 
-				{/* <Box
-					component="label"
-					htmlFor="email"
-					sx={{
-						display: "flex",
-						alignItems: "end",
-						margin: "16px 0 4px 0",
-						fontFamily: "Inter",
-						fontStyle: "normal",
-						fontWeight: "500",
-						fontSize: "16px",
-						lineHeight: "24px",
-						color: "#000000",
-					}}
-				>
-					Email
-					<Typography
-						sx={{
-							marginLeft: "8px",
-							fontFamily: "Inter",
-							fontStyle: "normal",
-							fontWeight: "500",
-							fontSize: "12px",
-							lineHeight: "21px",
-							color: "#828282",
-						}}
-					>
-						required
-					</Typography>
-				</Box>
-				<TextField
-					id="email"
-					fullWidth
-					required
-					type="email"
-					value={email}
-					
-					onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-						setEmail(event.target.value);
-					}}
-					sx={{
-						width: "464px",
-						height: "48px",
-						borderRadius: "81px",
-					}}
-				/> */}
+				<FormInput
+					label="Password"
+					required={false}
+					showPasswordToggler={true}
+					value={password}
+					onChange={handlePasswordChange}
+				/>
 
-				{/* <FormControl variant="outlined"> */}
-				{/* <Box
-					component="label"
-					htmlFor="outlined-adornment-password"
-					sx={{
-						margin: "16px 0 4px 0",
-						fontFamily: "Inter",
-						fontStyle: "normal",
-						fontWeight: "500",
-						fontSize: "16px",
-						lineHeight: "24px",
-						color: "#000000",
-					}}
-				>
-					Password
-				</Box>
-
-				<OutlinedInput
-					id="outlined-adornment-password"
-					fullWidth
-					required={true}
-					type={showPassword ? "text" : "password"}
-					sx={{
-						width: "464px",
-						height: "48px",
-						borderRadius: "8px",
-					}}
-					endAdornment={
-						<InputAdornment position="end">
-							<IconButton
-								aria-label="toggle password visibility"
-								onClick={handleClickShowPassword}
-								// onMouseDown={handleMouseDownPassword}
-								edge="end"
-							>
-								<CardMedia
-									component="img"
-									image={showPassword ? visibilityOff : visibility}
-									alt="eye"
-								/>
-							</IconButton>
-						</InputAdornment>
-					}
-				/> */}
-
-				<FormInput label="Email" required={false} showPasswordToggler={false}/>
-
-				<FormInput label="Password" required={false} showPasswordToggler={true}/>
-				
 				<Link
 					href="#"
 					variant="body2"
@@ -186,9 +79,6 @@ export const LogIn = () => {
 				>
 					Forgot password?
 				</Link>
-
-				
-
 
 				<Button
 					type="submit"
