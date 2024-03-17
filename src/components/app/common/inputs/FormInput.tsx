@@ -16,6 +16,7 @@ import "./inputs.scss";
 
 export const FormInput = ({
   label,
+  error = false,
   required = true,
   showPasswordToggler = false,
   width = "100%",
@@ -66,6 +67,7 @@ export const FormInput = ({
       </InputLabel>
       <OutlinedInput
         id={label}
+        error={error}
         fullWidth
         required
         name={name}
