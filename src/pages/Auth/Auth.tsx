@@ -32,21 +32,38 @@ export const Auth = () => {
 
 				<Box>{value ? <LogIn /> : <SignUp />}</Box>
 
-				{value ? (
-					<div></div>
-				) : (
-					<Box sx={{ fontSize: "14px", color: "#4F4F4F" }}>
-						By proceeding, you agree to our
-						<Link href="#" underline="hover">
-							&nbsp;Terms&nbsp;
-						</Link>
-						and
-						<Link href="#" underline="hover">
-							&nbsp;Privacy Policy&nbsp;
-						</Link>
-					</Box>
-				)}
-			</Box>
-		</Box>
-	);
+
+        {value ? (
+          <div></div>
+        ) : (
+          <Box sx={{ fontSize: "14px", color: "#4F4F4F" }}>
+            By proceeding, you agree to our&nbsp;
+            <Link
+              href="#"
+              underline="hover"
+              sx={{
+                ":hover": {
+                  color: "#1976D2",
+                },
+              }}
+            >
+              Terms
+            </Link>
+            &nbsp;and&nbsp;
+            <Link
+              href="#"
+              underline="hover"
+              sx={{
+                ":hover": {
+                  color: "#1976D2",
+                },
+              }}
+            >
+              Privacy Policy
+            </Link>
+          </Box>
+        )}
+      </Box>
+    </Box>
+  );
 };

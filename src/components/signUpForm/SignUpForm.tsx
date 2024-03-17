@@ -8,16 +8,18 @@ import help from "../../img/auth/help.png";
 import "./signUpForm.scss";
 
 export const SignUpForm = () => {
-	const [communityChecked, setCommunityChecked] = useState(false);
-	const [creationStatus, setCreationStatus] = useState<boolean>(false);
-	const [formData, setFormData] = useState<IUser>({
-		email: "",
-		password: "",
-		userName: "",
-		firstName: "",
-		lastName: "",
-		isRegistered: false,
-	});
+
+  const [communityChecked, setCommunityChecked] = useState<boolean>(false);
+  const [creationStatus, setCreationStatus] = useState<boolean>(false);
+  //const [isEmailExisting, setIsEmailExisting] = useState<boolean>(false);
+  const [formData, setFormData] = useState<IUser>({
+    email: "",
+    password: "",
+    userName: "",
+    firstName: "",
+    lastName: "",
+    isRegistered: false,
+  });
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -55,20 +57,24 @@ export const SignUpForm = () => {
 		<Box component="form" autoComplete="off" onSubmit={handleSubmit}>
 			{/* inputs emeil and password */}
 
-			<FormInput
-				marginTop="24px"
-				value={formData.email}
-				onChange={handleChange}
-				label="Email"
-				name="email"
-			/>
-			<FormInput
-				value={formData.password}
-				onChange={handleChange}
-				label="Password"
-				showPasswordToggler
-				name="password"
-			/>
+      <FormInput
+        marginTop="24px"
+        value={formData.email}
+        onChange={handleChange}
+        label="Email"
+        name="email"
+        // error={isEmailExisting}
+      />
+      {/* {isEmailExisting && (
+        <Typography sx={{ fontSize: "14px", color: "red" }}>Такой Email уже существует</Typography>
+      )} */}
+      <FormInput
+        value={formData.password}
+        onChange={handleChange}
+        label="Password"
+        showPasswordToggler
+        name="password"
+      />
 
 			{/* validation mark */}
 			<Box
@@ -87,38 +93,40 @@ export const SignUpForm = () => {
 				<Box>&times; Cannot contain your name or email address</Box>
 			</Box>
 
-			{/* agreement to join community */}
-			<Box
-				sx={{
-					display: "flex",
-					alignItems: "center",
-					height: "24px",
-					margin: "24px 0",
-				}}
-			>
-				<div
-					className={communityChecked ? "checkbox checked" : "checkbox"}
-					onClick={() => setCommunityChecked(!communityChecked)}
-				>
-					<div className="checkbox-checkmark">&#10003;</div>
-					<input type="checkbox" defaultChecked={communityChecked} />
-				</div>
-				<Typography
-					sx={{
-						marginLeft: "12px",
-						fontWeight: "400",
-						fontSize: "16px",
-						lineHeight: "24px",
-						marginRight: "4px",
-					}}
-				>
-					I want to be a part of
-				</Typography>
-				<Link sx={{ marginRight: "4px" }} underline="hover" href="#">
-					AdvisorZen Community
-				</Link>
-				<img className="help" src={help} />
-			</Box>
+      {/* agreement to join community */}
+      <Box sx={{ display: "flex", alignItems: "center", height: "24px", margin: "24px 0" }}>
+        <div
+          className={communityChecked ? "checkbox checked" : "checkbox"}
+          onClick={() => setCommunityChecked(!communityChecked)}
+        >
+          <div className="checkbox-checkmark">&#10003;</div>
+          <input type="checkbox" defaultChecked={communityChecked} />
+        </div>
+        <Typography
+          sx={{
+            marginLeft: "12px",
+            fontWeight: "400",
+            fontSize: "16px",
+            lineHeight: "24px",
+            marginRight: "4px",
+          }}
+        >
+          I want to be a part of
+        </Typography>
+        <Link
+          sx={{
+            marginRight: "4px",
+            ":hover": {
+              color: "#1976D2",
+            },
+          }}
+          underline="hover"
+          href="#"
+        >
+          AdvisorZen Community
+        </Link>
+        <img className="help" src={help} />
+      </Box>
 
 			{/* render new inputs when checkbox checked */}
 			{communityChecked && (

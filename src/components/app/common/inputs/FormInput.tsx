@@ -15,6 +15,7 @@ import visibilityOff from "../../../../img/auth/visibilityOff.png";
 import "./inputs.scss";
 
 export const FormInput = ({
+
 	label,
 	required = true,
 	showPasswordToggler = false,
@@ -24,7 +25,9 @@ export const FormInput = ({
 	value,
 	onChange,
 	name,
+  error = false,
 	sx = {},
+
 }: IFormInput) => {
 	const [showPassword, setShowPassword] = useState(false);
 
@@ -76,6 +79,7 @@ export const FormInput = ({
 			<OutlinedInput
 				id={label}
 				fullWidth
+        error={error}
 				required
 				name={name}
 				value={value}
@@ -105,4 +109,3 @@ export const FormInput = ({
 			/>
 		</Box>
 	);
-};

@@ -20,8 +20,8 @@ export interface IFormInput {
 	marginTop?: string | number;
 	value?: string;
 	name: string;
+  error?: boolean;
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	sx?: {
 		[key: string]: string;
 	};
-}
