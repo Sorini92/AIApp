@@ -8,8 +8,9 @@ import help from "../../img/auth/help.png";
 import "./signUpForm.scss";
 
 export const SignUpForm = () => {
-  const [communityChecked, setCommunityChecked] = useState(false);
+  const [communityChecked, setCommunityChecked] = useState<boolean>(false);
   const [creationStatus, setCreationStatus] = useState<boolean>(false);
+  //const [isEmailExisting, setIsEmailExisting] = useState<boolean>(false);
   const [formData, setFormData] = useState<IUser>({
     email: "",
     password: "",
@@ -61,7 +62,11 @@ export const SignUpForm = () => {
         onChange={handleChange}
         label="Email"
         name="email"
+        // error={isEmailExisting}
       />
+      {/* {isEmailExisting && (
+        <Typography sx={{ fontSize: "14px", color: "red" }}>Такой Email уже существует</Typography>
+      )} */}
       <FormInput
         value={formData.password}
         onChange={handleChange}
@@ -107,7 +112,16 @@ export const SignUpForm = () => {
         >
           I want to be a part of
         </Typography>
-        <Link sx={{ marginRight: "4px" }} underline="none" href="#">
+        <Link
+          sx={{
+            marginRight: "4px",
+            ":hover": {
+              color: "#1976D2",
+            },
+          }}
+          underline="hover"
+          href="#"
+        >
           AdvisorZen Community
         </Link>
         <img className="help" src={help} />

@@ -36,13 +36,29 @@ export const Auth = () => {
           <div></div>
         ) : (
           <Box sx={{ fontSize: "14px", color: "#4F4F4F" }}>
-            By proceeding, you agree to our
-            <Link href="#" underline="none">
-              &nbsp;Terms&nbsp;
+            By proceeding, you agree to our&nbsp;
+            <Link
+              href="#"
+              underline="hover"
+              sx={{
+                ":hover": {
+                  color: "#1976D2",
+                },
+              }}
+            >
+              Terms
             </Link>
-            and
-            <Link href="#" underline="none">
-              &nbsp;Privacy Policy&nbsp;
+            &nbsp;and&nbsp;
+            <Link
+              href="#"
+              underline="hover"
+              sx={{
+                ":hover": {
+                  color: "#1976D2",
+                },
+              }}
+            >
+              Privacy Policy
             </Link>
           </Box>
         )}
