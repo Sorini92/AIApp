@@ -23,6 +23,7 @@ export const FormInput = ({
   marginTop = "16px",
   value,
   onChange,
+  name,
 }: IFormInput) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -67,6 +68,7 @@ export const FormInput = ({
         id={label}
         fullWidth
         required
+        name={name}
         value={value}
         onChange={onChange}
         type={showPasswordToggler ? (showPassword ? "text" : "password") : "text"}

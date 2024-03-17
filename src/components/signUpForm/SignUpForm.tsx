@@ -9,7 +9,7 @@ import "./signUpForm.scss";
 
 export const SignUpForm = () => {
   const [communityChecked, setCommunityChecked] = useState(false);
-  const [isDisabled, setIsDisabled] = useState<boolean>(true);
+  const [creationStatus, setCreationStatus] = useState<boolean>(false);
   const [formData, setFormData] = useState<IUser>({
     email: "",
     password: "",
@@ -21,7 +21,7 @@ export const SignUpForm = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsDisabled(false);
+    setCreationStatus(true);
 
     setFormData({
       email: "",
@@ -49,32 +49,26 @@ export const SignUpForm = () => {
     }));
   };
 
-  console.log(formData);
+  //console.log(formData);
 
   return (
-    <Box component="form" noValidate autoComplete="off" onSubmit={handleSubmit}>
+    <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
       {/* inputs emeil and password */}
-      <Box
-        sx={{
-          marginTop: "24px",
-          height: "168px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-        }}
-      >
-        <FormInput
-          //value={formData.email}
-          //onChange={handleChange}
-          label="Email"
-        />
-        <FormInput
-          //value={formData.password}
-          //onChange={handleChange}
-          label="Password"
-          showPasswordToggler
-        />
-      </Box>
+
+      <FormInput
+        marginTop="24px"
+        value={formData.email}
+        onChange={handleChange}
+        label="Email"
+        name="email"
+      />
+      <FormInput
+        value={formData.password}
+        onChange={handleChange}
+        label="Password"
+        showPasswordToggler
+        name="password"
+      />
 
       {/* validation mark */}
       <Box
@@ -123,25 +117,25 @@ export const SignUpForm = () => {
       {communityChecked && (
         <>
           <FormInput
-            //value={formData.username}
-            //onChange={handleChange}
+            value={formData.userName}
+            onChange={handleChange}
             label="Usename"
+            name="userName"
           />
-          <Box
-            sx={{ display: "flex", justifyContent: "space-between", marginTop: "22px" }}
-            className="wrapper"
-          >
+          <Box sx={{ display: "flex", justifyContent: "space-between" }} className="wrapper">
             <FormInput
-              //value={formData.firstName}
-              //onChange={handleChange}
+              value={formData.firstName}
+              onChange={handleChange}
               label="First Name"
               width={"226px"}
+              name="firstName"
             />
             <FormInput
-              //value={formData.lastName}
-              //onChange={handleChange}
+              value={formData.lastName}
+              onChange={handleChange}
               label="Last Name"
               width={"226px"}
+              name="lastName"
             />
           </Box>
 
@@ -181,8 +175,9 @@ export const SignUpForm = () => {
       <CustomButton
         text="Create Account"
         clickFunction={() => console.log(formData)}
-        type="dark"
-        disabled={isDisabled}
+        kind="dark"
+        type="submit"
+        disabled={creationStatus}
       />
     </Box>
   );

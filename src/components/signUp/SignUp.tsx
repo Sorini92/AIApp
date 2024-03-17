@@ -42,15 +42,15 @@ export const SignUp = () => {
           <CustomButton
             text={"Sign Up with Email"}
             clickFunction={handleClickCreationNewAccount}
-            type="transparent"
+            kind="transparent"
           />
-          <CustomButton text={"Sign Up with Google"} clickFunction={() => {}} type="transparent" />
+          <CustomButton text={"Sign Up with Google"} clickFunction={() => {}} kind="transparent" />
           <CustomButton
             text={"Sign Up with LinkedIn"}
             clickFunction={() => {}}
-            type="transparent"
+            kind="transparent"
           />
-          <CustomButton text={"Sign Up with Apple"} clickFunction={() => {}} type="transparent" />
+          <CustomButton text={"Sign Up with Apple"} clickFunction={() => {}} kind="transparent" />
         </Box>
       )}
     </>
