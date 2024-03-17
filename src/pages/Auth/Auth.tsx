@@ -1,37 +1,36 @@
 import { useState } from "react";
 import { Tabs, Tab, Box, Link } from "@mui/material";
-import { SignUp } from "../../components/signUp/SignUp";
-import { LogIn } from "../../components/logIn/index";
+import { SignUp } from "../../components/auth/signUp/SignUp";
+import { LogIn } from "../../components/auth/logIn/index";
 
 export const Auth = () => {
-	const [value, setValue] = useState(0);
+  const [value, setValue] = useState(0);
 
-	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-		setValue(newValue);
-	};
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
 
-	return (
-		<Box sx={{ display: "flex", justifyContent: "end" }}>
-			<Box
-				sx={{
-					padding: "48px",
-					backgroundColor: "#fff",
-					width: "560px",
-					height: "100vh",
-					display: "flex",
-					flexDirection: "column",
-					justifyContent: "space-between",
-				}}
-			>
-				<Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-					<Tabs value={value} onChange={handleChange}>
-						<Tab sx={{ width: "232px" }} label="Sign Up" />
-						<Tab sx={{ width: "232px" }} label="Log In" />
-					</Tabs>
-				</Box>
+  return (
+    <Box sx={{ display: "flex", justifyContent: "end" }}>
+      <Box
+        sx={{
+          padding: "48px",
+          backgroundColor: "#fff",
+          width: "560px",
+          height: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
+      >
+        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <Tabs value={value} onChange={handleChange}>
+            <Tab sx={{ width: "232px" }} label="Sign Up" />
+            <Tab sx={{ width: "232px" }} label="Log In" />
+          </Tabs>
+        </Box>
 
-				<Box>{value ? <LogIn /> : <SignUp />}</Box>
-
+        <Box>{value ? <LogIn /> : <SignUp />}</Box>
 
         {value ? (
           <div></div>
