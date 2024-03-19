@@ -77,7 +77,7 @@ export const SignUpForm = () => {
 			/>
 
 			{/* validation mark */}
-			<PassValidation value={formData.password} />
+			<PassValidation value={formData.password} email={formData.email} />
 			{/* <Box
 				sx={{
 					display: "flex",
