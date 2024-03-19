@@ -1,10 +1,15 @@
+import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { Tabs, Tab, Box, Link } from "@mui/material";
 import { SignUp } from "../../components/auth/signUp/SignUp";
 import { LogIn } from "../../components/auth/logIn/index";
 
-export const Auth = () => {
-  const [value, setValue] = useState(0);
+interface IAuth {
+  component: string;
+}
+
+export const Auth = ({ component }: IAuth) => {
+  const [value, setValue] = useState(component === "login" ? 1 : 0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -25,14 +30,14 @@ export const Auth = () => {
       >
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs value={value} onChange={handleChange}>
-            <Tab sx={{ width: "232px" }} label="Sign Up" />
-            <Tab sx={{ width: "232px" }} label="Log In" />
+            <Tab sx={{ width: "232px" }} component={NavLink} to="/auth/signup" label={"Sign Up"} />
+            <Tab sx={{ width: "232px" }} component={NavLink} to="/auth/login" label="Log In" />
           </Tabs>
         </Box>
 
-        <Box>{value ? <LogIn /> : <SignUp />}</Box>
+        <Box>{component === "login" ? <LogIn /> : <SignUp />}</Box>
 
-        {value ? (
+        {component === "login" ? (
           <div></div>
         ) : (
           <Box sx={{ fontSize: "14px", color: "#4F4F4F" }}>
