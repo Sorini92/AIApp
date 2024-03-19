@@ -1,5 +1,5 @@
 export interface ICustomButton {
-  text: string;
+  text: string | JSX.Element;
   kind: "transparent" | "dark" | "red";
   type?: "button" | "submit";
   height?: number;

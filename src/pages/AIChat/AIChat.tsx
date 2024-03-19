@@ -1,5 +1,11 @@
+import { Navigation } from "../../components/navigation";
+
 const AIChat = () => {
-  return <div>AIChat</div>;
+  return (
+    <>
+      <Navigation />
+    </>
+  );
 };
 
 export default AIChat;
