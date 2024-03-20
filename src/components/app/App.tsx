@@ -2,8 +2,8 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../../theme";
-import { Auth } from "../../pages/Auth/Auth";
-import { AIChat } from "../../pages/AIChat/AIChat";
+import { Auth } from "../../pages/auth/Auth";
+import { AIChat } from "../../pages/aiChat/AIChat";
 import { Navigation } from "../../components/navigation";
 import { Box } from "@mui/material";
 import { Community } from "../../pages/community/Community";
@@ -51,15 +51,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/settings",
-        element: <Settings />,
+        element: <Settings component="public" />,
       },
       {
         path: "/settings/public",
-        element: <Settings />,
+        element: <Settings component="public" />,
       },
       {
         path: "/settings/general",
-        element: <Settings />,
+        element: <Settings component="general" />,
       },
       {
         path: "/auth/signup",

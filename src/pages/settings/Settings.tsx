@@ -11,12 +11,15 @@ import {
   Divider,
 } from "@mui/material";
 import { Header } from "../../components/app/common/header/Header";
-
 import { logoutIcon, profileIcon, generalIcon } from "../../img/settings";
 import { PublicProfile } from "../../components/settings/publicProfile";
 import { General } from "../../components/settings/general";
 
-export const Settings = () => {
+interface ISettings {
+  component: string;
+}
+
+export const Settings = ({ component }: ISettings) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const breadcrumbs = [
@@ -110,10 +113,7 @@ export const Settings = () => {
             </nav>
           </Box>
         </Box>
-        <Box>
-          <PublicProfile />
-          <General />
-        </Box>
+        <Box>{component === "public" ? <PublicProfile /> : <General />}</Box>
       </Box>
     </Box>
   );

@@ -1,2 +1,3 @@
 import { FormInput } from "./FormInput";
-export { FormInput };
+import { InputFileUpload } from "./InputFileUpload";
+export { FormInput, InputFileUpload };
