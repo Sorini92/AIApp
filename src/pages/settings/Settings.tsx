@@ -22,13 +22,22 @@ interface ISettings {
 export const Settings = ({ component }: ISettings) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const breadcrumbs = [
+  const publicBreadcrumbs = [
     { text: "Settings", type: "link", to: "/settings/public" },
     { text: "Public Profile", type: "text", to: "" },
   ];
+
+  const generalBreadcrumbs = [
+    { text: "Settings", type: "link", to: "/settings/general" },
+    { text: "General", type: "text", to: "" },
+  ];
+
   return (
     <Box>
-      <Header breadcrumbs={breadcrumbs} searchFunc={() => {}} />
+      <Header
+        breadcrumbs={component === "public" ? publicBreadcrumbs : generalBreadcrumbs}
+        searchFunc={() => {}}
+      />
       <Box sx={{ display: "flex", justifyContent: "center", marginTop: "24px" }}>
         <Box
           sx={{

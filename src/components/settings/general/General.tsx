@@ -167,7 +167,8 @@ export const General = () => {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-              height: "72px",
+              height: "40px",
+              marginBottom: "16px",
             }}
           >
             <Typography
@@ -232,8 +233,8 @@ export const General = () => {
 
           <Box sx={{ marginTop: "24px", display: "flex", justifyContent: "flex-end" }}>
             <CustomButton
-              kind="transparent"
-              text="Cancel"
+              kind="dark"
+              text="Nevermind"
               sx={{
                 width: "130px",
                 height: "48px",
@@ -242,8 +243,8 @@ export const General = () => {
               }}
             />
             <CustomButton
-              kind="dark"
-              text="Save Changes"
+              kind="red"
+              text="Delete My Account"
               sx={{
                 width: "170px",
                 height: "48px",
