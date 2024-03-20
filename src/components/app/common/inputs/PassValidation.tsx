@@ -1,53 +1,37 @@
-import * as yup from "yup";
+// import * as yup from "yup";
 import { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 
+interface IPassValidation {
+	value: string;
+	email: string;
+}
+
 export const PassValidation = ({ value, email }: IPassValidation) => {
-	// const [isEnoughChar, setIsEnoughChar] = useState(false);
-	// const [isEnoughUppercase, setIsEnoughUppercase] = useState(false);
-	// const [isEnoughNumOrSymb, setIsEnoughNumOrSymb] = useState(false);
-	// const [isContainNameOrEmail, setIsContainNameOrEmail] = useState(false);
+	const [isEnoughChar, setIsEnoughChar] = useState(false);
+	const [isEnoughUppercase, setIsEnoughUppercase] = useState(false);
+	const [isEnoughNumOrSymb, setIsEnoughNumOrSymb] = useState(false);
+	const [isContainNameOrEmail, setIsContainNameOrEmail] = useState(false);
+	const [isTouched, setIsTouched] = useState(false);
 
-	const schema1 = yup
-		.string()
-		.min(8, "Имя должно содержать минимум 5 символов");
+	const checkAmountOfChar = () => {
+		value.length >= 1 ? setIsTouched(true) : null;
+		value.length >= 8 ? setIsEnoughChar(true) : setIsEnoughChar(false);
 
-	const schema2 = yup.object({
-		email: yup.string().email("Неправильный формат email"),
-	});
+		/[A-Z]/.test(value)
+			? setIsEnoughUppercase(true)
+			: setIsEnoughUppercase(false);
 
-	const schema3 = yup.object({
-		age: yup.number().min(18, "Возраст должен быть не менее 18 лет"),
-	});
+		/[0-9!@#$%^&*()_+{}\[\]:;<>,.?\/\\|~-]/.test(value)
+			? setIsEnoughNumOrSymb(true)
+			: setIsEnoughNumOrSymb(false);
 
-	const schema4 = yup.string().matches(/(hi|bye)/);
+		!value.toLowerCase().includes(email.toLowerCase())
+			? setIsContainNameOrEmail(true)
+			: setIsContainNameOrEmail(false);
+	};
 
-	// Данные для валидации
-	const data1 = { name: "John" };
-	const data2 = { email: "invalidemail.com" };
-	const data3 = { age: 15 };
-	const data4 = { password: "123" };
-
-	// Валидация каждой схемы отдельно
-	schema1
-		.validate(data1)
-		.then((validData) => console.log("Данные 1 валидны:", validData))
-		.catch((error) => console.log("Ошибка 1:", error.message));
-
-	schema2
-		.validate(data2)
-		.then((validData) => console.log("Данные 2 валидны:", validData))
-		.catch((error) => console.log("Ошибка 2:", error.message));
-
-	schema3
-		.validate(data3)
-		.then((validData) => console.log("Данные 3 валидны:", validData))
-		.catch((error) => console.log("Ошибка 3:", error.message));
-
-	schema4
-		.validate(data4)
-		.then((validData) => console.log("Данные 4 валидны:", validData))
-		.catch((error) => console.log("Ошибка 4:", error.message));
+	useEffect(checkAmountOfChar, [value, email]);
 
 	return (
 		<Box
@@ -60,17 +44,39 @@ export const PassValidation = ({ value, email }: IPassValidation) => {
 				color: "#828282",
 			}}
 		>
-			<Box sx={{ color: isEnoughChar ? "green" : "red" }}>
-				&#10003; Minimum 8 characters
+			<Box
+				sx={{ color: isTouched ? (isEnoughChar ? "green" : "red") : "#828282" }}
+			>
+				{isTouched ? (isEnoughChar ? "\u2713" : "\u00D7") : "\u00D7"}
+				&nbsp;Minimum 8 characters
 			</Box>
-			<Box sx={{ color: isEnoughUppercase ? "green" : "red" }}>
-				&times; Contains at least 1 uppercase
+			<Box
+				sx={{
+					color: isTouched ? (isEnoughUppercase ? "green" : "red") : "#828282",
+				}}
+			>
+				{isTouched ? (isEnoughUppercase ? "\u2713" : "\u00D7") : "\u00D7"}
+				&nbsp;Contains at least 1 uppercase
 			</Box>
-			<Box sx={{ color: isEnoughNumOrSymb ? "green" : "red" }}>
-				&times; Contains at least 1 number or symbol
+			<Box
+				sx={{
+					color: isTouched ? (isEnoughNumOrSymb ? "green" : "red") : "#828282",
+				}}
+			>
+				{isTouched ? (isEnoughNumOrSymb ? "\u2713" : "\u00D7") : "\u00D7"}
+				&nbsp;Contains at least 1 number or symbol
 			</Box>
-			<Box sx={{ color: isContainNameOrEmail ? "green" : "red" }}>
-				&times; Cannot contain your name or email address
+			<Box
+				sx={{
+					color: isTouched
+						? isContainNameOrEmail
+							? "green"
+							: "red"
+						: "#828282",
+				}}
+			>
+				{isTouched ? (isContainNameOrEmail ? "\u2713" : "\u00D7") : "\u00D7"}
+				&nbsp;Cannot contain your name or email address
 			</Box>
 		</Box>
 	);
@@ -82,32 +88,43 @@ export const PassValidation = ({ value, email }: IPassValidation) => {
 // }
 
 // export const PassValidation = ({ value, email }: IPassValidation) => {
-// 	const [isEnoughChar, setIsEnoughChar] = useState(false);
-// 	const [isEnoughUppercase, setIsEnoughUppercase] = useState(false);
-// 	const [isEnoughNumOrSymb, setIsEnoughNumOrSymb] = useState(false);
-// 	const [isContainNameOrEmail, setIsContainNameOrEmail] = useState(false);
+// const [isEnoughChar, setIsEnoughChar] = useState(false);
+// const [isEnoughUppercase, setIsEnoughUppercase] = useState(false);
+// const [isEnoughNumOrSymb, setIsEnoughNumOrSymb] = useState(false);
+// const [isContainNameOrEmail, setIsContainNameOrEmail] = useState(false);
 
-// 	console.log("value", { value }, "email", { email });
+// const schema1 = yup.string().min(8);
 
-// 	const checkAmountOfChar = () => {
-// 		value.length >= 8 ? setIsEnoughChar(true) : setIsEnoughChar(false);
+// const schema2 = yup.string().matches(/[A-Z]/);
 
-// 		/[A-Z]/.test(value)
-// 			? setIsEnoughUppercase(true)
-// 			: setIsEnoughUppercase(false);
+// const schema3 = yup.string().matches(/[0-9!@#$%^&*()_+{}\[\]:;<>,.?\/\\|~-]/);
 
-// 		/[0-9!@#$%^&*()_+{}\[\]:;<>,.?\/\\|~-]/.test(value)
-// 			? setIsEnoughNumOrSymb(true)
-// 			: setIsEnoughNumOrSymb(false);
+// const schema4 = yup.string().matches(email);
 
-// 		!value.toLowerCase().includes(email.toLowerCase())
-// 			? setIsContainNameOrEmail(true)
-// 			: setIsContainNameOrEmail(false);
+// Валидация каждой схемы отдельно
+// schema1
+// 	.validate(value)
+// 	.then(() => {
+// 		setIsEnoughChar(true);
+// 	})
+// 	.catch(() => {
+// 		setIsEnoughChar(false);
+// 	});
 
-// 		console.log("check");
-// 	};
+// schema2
+// 	.validate(value)
+// 	.then((validData) => console.log("Данные 2 валидны:", validData))
+// 	.catch((error) => console.log("Ошибка 2:", error.message));
 
-// 	useEffect(checkAmountOfChar, [value]);
+// schema3
+// 	.validate(value)
+// 	.then((validData) => console.log("Данные 3 валидны:", validData))
+// 	.catch((error) => console.log("Ошибка 3:", error.message));
+
+// schema4
+// 	.validate(value)
+// 	.then((validData) => console.log("Данные 4 валидны:", validData))
+// 	.catch((error) => console.log("Ошибка 4:", error.message));
 
 // 	return (
 // 		<Box
@@ -123,7 +140,7 @@ export const PassValidation = ({ value, email }: IPassValidation) => {
 // 			<Box sx={{ color: isEnoughChar ? "green" : "red" }}>
 // 				&#10003; Minimum 8 characters
 // 			</Box>
-// 			<Box sx={{ color: isEnoughUppercase ? "green" : "red" }}>
+// 			{/* <Box sx={{ color: isEnoughUppercase ? "green" : "red" }}>
 // 				&times; Contains at least 1 uppercase
 // 			</Box>
 // 			<Box sx={{ color: isEnoughNumOrSymb ? "green" : "red" }}>
@@ -131,7 +148,7 @@ export const PassValidation = ({ value, email }: IPassValidation) => {
 // 			</Box>
 // 			<Box sx={{ color: isContainNameOrEmail ? "green" : "red" }}>
 // 				&times; Cannot contain your name or email address
-// 			</Box>
+// 			</Box> */}
 // 		</Box>
 // 	);
 // };
