@@ -26,6 +26,9 @@ export const FormInput = ({
   name,
   error = false,
   sx = {},
+  multiline = false,
+  rows = 1,
+  placeholder = "",
 }: IFormInput) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -76,9 +79,12 @@ export const FormInput = ({
       <OutlinedInput
         id={label}
         fullWidth
+        multiline={multiline}
+        rows={rows}
         error={error}
-        required
+        required={required}
         name={name}
+        placeholder={placeholder}
         value={value}
         onChange={onChange}
         type={showPasswordToggler ? (showPassword ? "text" : "password") : "text"}

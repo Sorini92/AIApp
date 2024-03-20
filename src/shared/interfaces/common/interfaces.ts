@@ -21,6 +21,9 @@ export interface IFormInput {
   value?: string;
   name: string;
   error?: boolean;
+  multiline?: boolean;
+  rows?: number;
+  placeholder?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   sx?: {
     [key: string]: string;

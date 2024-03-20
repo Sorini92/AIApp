@@ -1,3 +1,5 @@
+import { PageUnderDev } from "../../components/inbox/pageUnderDev/PageUnderDev";
+
 export const Inbox = () => {
-  return <div>Inbox</div>;
+  return <PageUnderDev />;
 };
