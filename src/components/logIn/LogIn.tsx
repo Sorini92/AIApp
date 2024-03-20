@@ -6,8 +6,8 @@ import { LogInEmailSent } from "../logInEmailSent";
 // import { LogInSetNewPass } from "../app/logInSetNewPass";
 
 export const LogIn = () => {
-	const [subpage, setSubpage] = useState("LogInForm");
-	const [emailSent, setEmailSent] = useState("");
+	const [subpage, setSubpage] = useState<string>("LogInForm");
+	const [emailSent, setEmailSent] = useState<string>("");
 
 	// const handleChangeSubpage = (nextpage: string) => {
 	// 	setSubpage(nextpage);
