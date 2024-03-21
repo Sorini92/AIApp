@@ -233,6 +233,7 @@ export const General = () => {
 
           <Box sx={{ marginTop: "24px", display: "flex", justifyContent: "flex-end" }}>
             <CustomButton
+              clickFunction={() => handleClose()}
               kind="dark"
               text="Nevermind"
               sx={{
