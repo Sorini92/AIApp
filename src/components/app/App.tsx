@@ -9,6 +9,7 @@ import { Box } from "@mui/material";
 import { Community } from "../../pages/community/Community";
 import { Inbox } from "../../pages/inbox/Inbox";
 import { Settings } from "../../pages/settings/Settings";
+import { PageNotFound } from "../../pages/pageNotFound/PageNotFound";
 
 /* function App() {
   return (
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
-    //errorElement: <PageNotFound />,
+    errorElement: <PageNotFound />,
     children: [
       {
         path: "/",
