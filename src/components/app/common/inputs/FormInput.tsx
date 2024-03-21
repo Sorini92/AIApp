@@ -27,7 +27,7 @@ export const FormInput = ({
 	error = false,
 	sx = {},
 }: IFormInput) => {
-	const [showPassword, setShowPassword] = useState(false);
+	const [showPassword, setShowPassword] = useState<boolean>(false);
 
 	const handleClickShowPassword = () => setShowPassword((show) => !show);
 

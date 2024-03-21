@@ -11,6 +11,7 @@ import "./signUpForm.scss";
 export const SignUpForm = () => {
 	const [communityChecked, setCommunityChecked] = useState<boolean>(false);
 	const [creationStatus, setCreationStatus] = useState<boolean>(false);
+	const [inputError, setInputError] = useState<boolean>(true);
 	//const [isEmailExisting, setIsEmailExisting] = useState<boolean>(false);
 	const [formData, setFormData] = useState<IUser>({
 		email: "",
@@ -20,6 +21,10 @@ export const SignUpForm = () => {
 		lastName: "",
 		isRegistered: false,
 	});
+
+	// useEffect(
+	// 	{setInputError()}, [inputError]
+	// )
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -51,6 +56,9 @@ export const SignUpForm = () => {
 		}));
 	};
 
+	// const changeInputError = (isError: boolean) => {
+	// 	setInputError(isError);
+	// };
 	//console.log(formData);
 
 	return (
@@ -74,10 +82,15 @@ export const SignUpForm = () => {
 				label="Password"
 				showPasswordToggler
 				name="password"
+				// error={inputError}
 			/>
 
 			{/* validation mark */}
-			<PassValidation value={formData.password} email={formData.email} />
+			<PassValidation
+				value={formData.password}
+				email={formData.email}
+				setInputError={setInputError}
+			/>
 			{/* <Box
 				sx={{
 					display: "flex",
@@ -209,7 +222,7 @@ export const SignUpForm = () => {
 				clickFunction={() => console.log(formData)}
 				kind="dark"
 				type="submit"
-				disabled={creationStatus}
+				disabled={creationStatus || inputError}
 			/>
 		</Box>
 	);
