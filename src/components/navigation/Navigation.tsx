@@ -15,17 +15,19 @@ import {
 } from "@mui/material";
 import { Drawer } from "../app/common/drower";
 
-import leftArrowIcon from "../../img/navigation/leftArrow.svg";
-import rightArrowIcon from "../../img/navigation/rightArrow.svg";
-import avatarIcon from "../../img/navigation/avatar.png";
-import threeDotsIcon from "../../img/navigation/threeDots.svg";
-import aichatIcon from "../../img/navigation/aichat.svg";
-import communityIcon from "../../img/navigation/community.svg";
-import inboxIcon from "../../img/navigation/inbox.svg";
-import settingIcon from "../../img/navigation/setting.svg";
-import privacyIcon from "../../img/navigation/privacy.svg";
-import helpCenterIcon from "../../img/navigation/helpCenter.svg";
-import logOutIcon from "../../img/navigation/logOut.svg";
+import {
+  leftArrowIcon,
+  rightArrowIcon,
+  avatarIcon,
+  threeDotsIcon,
+  aichatIcon,
+  communityIcon,
+  inboxIcon,
+  settingIcon,
+  privacyIcon,
+  helpCenterIcon,
+  logOutIcon,
+} from "../../img/navigation";
 
 export const Navigation = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -36,7 +38,7 @@ export const Navigation = () => {
   };
 
   return (
-    <Drawer variant="permanent" open={open}>
+    <Drawer variant="permanent" open={open} openedwidth={240} closedwidth={80}>
       <Box
         sx={{
           padding: "16px",

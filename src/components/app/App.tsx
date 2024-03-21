@@ -28,41 +28,50 @@ import { Settings } from "../../pages/settings/Settings";
 } */
 
 const router = createBrowserRouter([
-	{
-		path: "/",
-		element: <Root />,
-		//errorElement: <PageNotFound />,
-		children: [
-			{
-				path: "/",
-				element: <AIChat />,
-			},
-			{
-				path: "/aichat",
-				element: <AIChat />,
-			},
-			{
-				path: "/community",
-				element: <Community />,
-			},
-			{
-				path: "/inbox",
-				element: <Inbox />,
-			},
-			{
-				path: "/settings",
-				element: <Settings />,
-			},
-			{
-				path: "/auth/signup",
-				element: <Auth component="signup" />,
-			},
-			{
-				path: "/auth/login",
-				element: <Auth component="login" />,
-			},
-		],
-	},
+  {
+    path: "/",
+    element: <Root />,
+    //errorElement: <PageNotFound />,
+    children: [
+      {
+        path: "/",
+        element: <AIChat />,
+      },
+      {
+        path: "/aichat",
+        element: <AIChat />,
+      },
+      {
+        path: "/community",
+        element: <Community />,
+      },
+      {
+        path: "/inbox",
+        element: <Inbox />,
+      },
+      {
+        path: "/settings",
+        element: <Settings component="public" />,
+      },
+      {
+        path: "/settings/public",
+        element: <Settings component="public" />,
+      },
+      {
+        path: "/settings/general",
+        element: <Settings component="general" />,
+      },
+      {
+        path: "/auth/signup",
+        element: <Auth component="signup" />,
+      },
+      {
+        path: "/auth/login",
+        element: <Auth component="login" />,
+      },
+    ],
+  },
+
 ]);
 
 function App() {
@@ -70,18 +79,19 @@ function App() {
 }
 
 function Root() {
-	return (
-		<GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-			<ThemeProvider theme={theme}>
-				<Box sx={{ display: "flex" }}>
-					<Navigation />
-					<Box sx={{ padding: "0 24px", height: "100vh", width: "100%" }}>
-						<Outlet />
-					</Box>
-				</Box>
-			</ThemeProvider>
-		</GoogleOAuthProvider>
-	);
+  return (
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+      <ThemeProvider theme={theme}>
+        <Box sx={{ display: "flex" }}>
+          <Navigation />
+          <Box sx={{ height: "100vh", width: "100%" }}>
+            <Outlet />
+          </Box>
+        </Box>
+      </ThemeProvider>
+    </GoogleOAuthProvider>
+  );
+
 }
 
 export default App;
