@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Box, Typography } from "@mui/material";
-import { CustomButton } from "../app/common/buttons/CustomButton";
+import { CustomButton } from "../../app/common/buttons/CustomButton";
 import { SignUpForm } from "../signUpForm/SignUpForm";
+import { useGoogleLogin } from "@react-oauth/google";
 
 export const SignUp = () => {
   const [isCreation, setIsCreation] = useState(false);
@@ -9,6 +10,12 @@ export const SignUp = () => {
   const handleClickCreationNewAccount = () => {
     setIsCreation(!isCreation);
   };
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: (tokenResponse) => console.log(tokenResponse),
+    onError: () => console.log("Login Failed"),
+    flow: "auth-code",
+  });
 
   return (
     <>
@@ -44,7 +51,11 @@ export const SignUp = () => {
             clickFunction={handleClickCreationNewAccount}
             kind="transparent"
           />
-          <CustomButton text={"Sign Up with Google"} clickFunction={() => {}} kind="transparent" />
+          <CustomButton
+            text={"Sign Up with Google"}
+            clickFunction={() => googleLogin()}
+            kind="transparent"
+          />
           <CustomButton
             text={"Sign Up with LinkedIn"}
             clickFunction={() => {}}
