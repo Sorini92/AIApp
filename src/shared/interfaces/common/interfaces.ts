@@ -1,14 +1,14 @@
 export interface ICustomButton {
-  text: string | JSX.Element;
-  kind: "transparent" | "dark" | "red";
-  type?: "button" | "submit";
-  height?: number;
-  width?: number | string;
-  disabled?: boolean;
-  clickFunction?: () => void;
-  sx?: {
-    [key: string]: string;
-  };
+	text: string | JSX.Element;
+	kind: "transparent" | "dark" | "red";
+	type?: "button" | "submit";
+	height?: number;
+	width?: number | string;
+	disabled?: boolean;
+	clickFunction?: () => void;
+	sx?: {
+		[key: string]: string;
+	};
 }
 
 export interface IFormInput {

@@ -1,3 +1,4 @@
 import { FormInput } from "./FormInput";
 import { InputFileUpload } from "./InputFileUpload";
-export { FormInput, InputFileUpload };
+import { PassValidation } from "./PassValidation";
+export { FormInput, InputFileUpload, PassValidation };
