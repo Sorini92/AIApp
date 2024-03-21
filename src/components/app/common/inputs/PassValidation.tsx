@@ -3,109 +3,91 @@ import { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 
 interface IPassValidation {
-	value: string;
-	email: string;
-	setInputError: (isError: boolean) => void;
+  value: string;
+  email: string;
+  setInputError: (isError: boolean) => void;
 }
 
-export const PassValidation = ({
-	value,
-	email,
-	setInputError,
-}: IPassValidation) => {
-	const [isEnoughChar, setIsEnoughChar] = useState<boolean>(false);
-	const [isEnoughUppercase, setIsEnoughUppercase] = useState<boolean>(false);
-	const [isEnoughNumOrSymb, setIsEnoughNumOrSymb] = useState<boolean>(false);
-	const [isContainNameOrEmail, setIsContainNameOrEmail] =
-		useState<boolean>(false);
-	const [isTouched, setIsTouched] = useState<boolean>(false);
+export const PassValidation = ({ value, email, setInputError }: IPassValidation) => {
+  const [isEnoughChar, setIsEnoughChar] = useState<boolean>(false);
+  const [isEnoughUppercase, setIsEnoughUppercase] = useState<boolean>(false);
+  const [isEnoughNumOrSymb, setIsEnoughNumOrSymb] = useState<boolean>(false);
+  const [isContainNameOrEmail, setIsContainNameOrEmail] = useState<boolean>(false);
+  const [isTouched, setIsTouched] = useState<boolean>(false);
 
-	const validationItemsData = [
-		{
-			validation: isEnoughChar,
-			text: "Minimum 8 characters",
-		},
-		{
-			validation: isEnoughUppercase,
-			text: "Contains at least 1 uppercase",
-		},
-		{
-			validation: isEnoughNumOrSymb,
-			text: "Contains at least 1 number or symbol",
-		},
-		{
-			validation: isContainNameOrEmail,
-			text: "Cannot contain your name or email address",
-		},
-	];
+  const validationItemsData = [
+    {
+      validation: isEnoughChar,
+      text: "Minimum 8 characters",
+    },
+    {
+      validation: isEnoughUppercase,
+      text: "Contains at least 1 uppercase",
+    },
+    {
+      validation: isEnoughNumOrSymb,
+      text: "Contains at least 1 number or symbol",
+    },
+    {
+      validation: isContainNameOrEmail,
+      text: "Cannot contain your name or email address",
+    },
+  ];
 
-	const checkAmountOfChar = () => {
-		value.length >= 1 ? setIsTouched(true) : null;
+  const checkAmountOfChar = () => {
+    value.length >= 1 ? setIsTouched(true) : null;
 
-		if (isTouched) {
-			value.length >= 8 ? setIsEnoughChar(true) : setIsEnoughChar(false);
+    if (isTouched) {
+      value.length >= 8 ? setIsEnoughChar(true) : setIsEnoughChar(false);
 
-			/[A-Z]/.test(value)
-				? setIsEnoughUppercase(true)
-				: setIsEnoughUppercase(false);
+      /[A-Z]/.test(value) ? setIsEnoughUppercase(true) : setIsEnoughUppercase(false);
 
-			/[0-9!@#$%^&*()_+{}\[\]:;<>,.?\/\\|~-]/.test(value)
-				? setIsEnoughNumOrSymb(true)
-				: setIsEnoughNumOrSymb(false);
+      /[0-9!@#$%^&*()_+{}\[\]:;<>,.?\/\\|~-]/.test(value)
+        ? setIsEnoughNumOrSymb(true)
+        : setIsEnoughNumOrSymb(false);
 
-			!value.toLowerCase().includes(email.toLowerCase())
-				? setIsContainNameOrEmail(true)
-				: setIsContainNameOrEmail(false);
+      !value.toLowerCase().includes(email.toLowerCase())
+        ? setIsContainNameOrEmail(true)
+        : setIsContainNameOrEmail(false);
 
-			setInputError(
-				!(
-					isEnoughChar &&
-					isEnoughUppercase &&
-					isEnoughNumOrSymb &&
-					isContainNameOrEmail
-				)
-			);
-		}
-	};
+      setInputError(
+        !(isEnoughChar && isEnoughUppercase && isEnoughNumOrSymb && isContainNameOrEmail)
+      );
+    }
+  };
 
-	useEffect(() => {
-		checkAmountOfChar();
-	}, [
-		value,
-		email,
-		isEnoughChar,
-		isEnoughUppercase,
-		isEnoughNumOrSymb,
-		isContainNameOrEmail,
-	]);
+  useEffect(() => {
+    checkAmountOfChar();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value, email, isEnoughChar, isEnoughUppercase, isEnoughNumOrSymb, isContainNameOrEmail]);
 
-	const validationItems = validationItemsData.map((item, id) => {
-		return (
-			<Box
-				key={id}
-				sx={{
-					color: isTouched ? (item.validation ? "green" : "red") : "#828282",
-				}}
-			>
-				{isTouched ? (item.validation ? "\u2713" : "\u00D7") : "\u00D7"}
-				&nbsp;{item.text}
-			</Box>
-		);
-	});
+  const validationItems = validationItemsData.map((item, id) => {
+    return (
+      <Box
+        key={id}
+        sx={{
+          color: isTouched ? (item.validation ? "green" : "red") : "#828282",
+        }}
+      >
+        {isTouched ? (item.validation ? "\u2713" : "\u00D7") : "\u00D7"}
+        &nbsp;{item.text}
+      </Box>
+    );
+  });
 
-	return (
-		<Box
-			sx={{
-				display: "flex",
-				flexDirection: "column",
-				marginTop: "4px",
-				fontSize: "14px",
-				lineHeight: "20px",
-				color: "#828282",
-			}}
-		>
-			{validationItems}
-			{/* <Box
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        marginTop: "4px",
+        fontSize: "14px",
+        lineHeight: "20px",
+        color: "#828282",
+      }}
+    >
+      {validationItems}
+      {/* <Box
 				sx={{ color: isTouched ? (isEnoughChar ? "green" : "red") : "#828282" }}
 			>
 				{isTouched ? (isEnoughChar ? "\u2713" : "\u00D7") : "\u00D7"}
@@ -139,8 +121,8 @@ export const PassValidation = ({
 				{isTouched ? (isContainNameOrEmail ? "\u2713" : "\u00D7") : "\u00D7"}
 				&nbsp;Cannot contain your name or email address
 			</Box> */}
-		</Box>
-	);
+    </Box>
+  );
 };
 
 //

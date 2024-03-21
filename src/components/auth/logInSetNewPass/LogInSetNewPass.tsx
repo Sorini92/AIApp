@@ -1,10 +1,27 @@
 import { Typography, Box } from "@mui/material";
 
-import { FormInput } from "../../app/common/inputs";
+import { FormInput, PassValidation } from "../../app/common/inputs";
 import { CustomButton } from "../../app/common/buttons";
-// import { CustomButton } from "../common/buttons";
+import { useEffect, useRef, useState } from "react";
 
-export const LogInSetNewPass = () => {
+interface ILogInSetNewPass {
+  handleChangeSubpage: (nextpage: string) => void;
+}
+
+export const LogInSetNewPass = ({ handleChangeSubpage }: ILogInSetNewPass) => {
+  const [inputError, setInputError] = useState<boolean>(true);
+  const [newPassword, setNewPassword] = useState<string>("");
+  const [confirmNewPassword, setConfirmNewPassword] = useState<string>("");
+  const [isTouched, setIsTouched] = useState<boolean>(false);
+
+  const email = useRef<string>();
+  email.current = "aaa@gmail.com";
+
+  useEffect(() => {
+    confirmNewPassword.length >= 1 ? setIsTouched(true) : null;
+  }, [confirmNewPassword, newPassword]);
+  console.log(confirmNewPassword === newPassword);
+
   return (
     <>
       <Typography
@@ -28,29 +45,24 @@ export const LogInSetNewPass = () => {
         Your new password must be different from the previous password you used.
       </Typography>
 
-      <FormInput label="Password" name="password" showPasswordToggler marginTop="24px" />
+      <FormInput
+        label="Password"
+        name="newPassword"
+        showPasswordToggler
+        marginTop="24px"
+        value={newPassword}
+        onChange={(e) => setNewPassword(e.target.value)}
+      />
 
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          marginTop: "4px",
-          fontSize: "14px",
-          lineHeight: "20px",
-          color: "#828282",
-        }}
-      >
-        <Box className="validated">&#10003; Minimum 8 characters</Box>
-        <Box>&times; Contains at least 1 uppercase</Box>
-        <Box>&times; Contains at least 1 number or symbol</Box>
-        <Box>&times; Cannot contain your name or email address</Box>
-      </Box>
+      <PassValidation value={newPassword} email={email.current} setInputError={setInputError} />
 
       <FormInput
         label="Confirm New Password"
         name="newPassword"
         showPasswordToggler
         marginTop="24px"
+        value={confirmNewPassword}
+        onChange={(e) => setConfirmNewPassword(e.target.value)}
       />
 
       <Box
@@ -63,15 +75,23 @@ export const LogInSetNewPass = () => {
           color: "#828282",
         }}
       >
-        <Box>&times; Both passwords must match</Box>
+        <Box
+          sx={{
+            color: isTouched ? (confirmNewPassword === newPassword ? "green" : "red") : "#828282",
+          }}
+        >
+          {isTouched ? (confirmNewPassword === newPassword ? "\u2713" : "\u00D7") : "\u00D7"}
+          &nbsp;Both passwords must match
+        </Box>
       </Box>
 
       <CustomButton
         text="Reset Password and Log In"
+        disabled={!(!inputError && confirmNewPassword === newPassword)}
         kind="dark"
         type="submit"
         sx={{ marginTop: "24px" }}
-        clickFunction={() => {}}
+        clickFunction={() => handleChangeSubpage("LogInForm")}
       />
     </>
   );
