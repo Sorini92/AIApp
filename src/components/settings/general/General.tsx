@@ -1,5 +1,5 @@
 import { Box, Typography, Link, Divider } from "@mui/material";
-import { FormInput } from "../../app/common/inputs";
+import { FormInput, PassValidation } from "../../app/common/inputs";
 import { CustomButton } from "../../app/common/buttons";
 import { useState } from "react";
 import { CustomModal } from "../../app/common/modal";
@@ -7,7 +7,11 @@ import closeBtn from "../../../img/common/close.svg";
 
 export const General = () => {
   const [open, setOpen] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
+  const [inputError, setInputError] = useState<boolean>(true);
+  const [isUnderstandChecked, setIsUnderstandChecked] = useState<boolean>(false);
+  const [currentEmail, setCurrentEmail] = useState<string>("aaa@gmail.com");
+  const [currentPassword, setCurrentPassword] = useState<string>("");
+  const [newPassword, setNewPassword] = useState<string>("");
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -34,7 +38,13 @@ export const General = () => {
         >
           Email
         </Typography>
-        <FormInput label="Email Addres" name="email" required={false} />
+        <FormInput
+          label="Email Addres"
+          name="email"
+          required={false}
+          value={currentEmail}
+          onChange={(e) => setCurrentEmail(e.target.value)}
+        />
 
         {/* if email changed */}
 
@@ -82,27 +92,29 @@ export const General = () => {
         >
           Password
         </Typography>
-        <FormInput label="Current Password" name="currentPassword" />
-        <FormInput label="New Password" name="newPassword" />
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            marginTop: "4px",
-            fontSize: "14px",
-            lineHeight: "20px",
-            color: "#828282",
-          }}
-        >
-          <Box className="validated">&#10003; Minimum 8 characters</Box>
-          <Box>&times; Contains at least 1 uppercase</Box>
-          <Box>&times; Contains at least 1 number or symbol</Box>
-          <Box>&times; Cannot contain your name or email address</Box>
-        </Box>
+
+        <FormInput
+          showPasswordToggler
+          value={currentPassword}
+          onChange={(e) => setCurrentPassword(e.target.value)}
+          label="Current Password"
+          name="currentPassword"
+        />
+        <FormInput
+          showPasswordToggler
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
+          label="New Password"
+          name="newPassword"
+        />
+
+        <PassValidation value={newPassword} email={currentEmail} setInputError={setInputError} />
+
         <Box sx={{ marginTop: "24px", display: "flex", justifyContent: "flex-end" }}>
           <CustomButton
             kind="dark"
             text="Save Changes"
+            disabled={inputError}
             sx={{
               width: "170px",
               height: "48px",
@@ -200,7 +212,8 @@ export const General = () => {
             will permanently lose your profile, photos, and chats history. Your forum messages will
             remain visible but without your authorship. This cannot be undone.
           </Typography>
-          <FormInput name="password" label="Password" required={false} />
+
+          <FormInput name="password" label="Password" required={false} showPasswordToggler />
 
           <Box
             sx={{
@@ -211,8 +224,8 @@ export const General = () => {
             }}
           >
             <div
-              className={isChecked ? "checkbox checked" : "checkbox"}
-              onClick={() => setIsChecked(!isChecked)}
+              className={isUnderstandChecked ? "checkbox checked" : "checkbox"}
+              onClick={() => setIsUnderstandChecked(!isUnderstandChecked)}
             >
               <div className="checkbox-checkmark">&#10003;</div>
               <input type="checkbox" />
@@ -246,6 +259,7 @@ export const General = () => {
             <CustomButton
               kind="red"
               text="Delete My Account"
+              disabled={!isUnderstandChecked}
               sx={{
                 width: "170px",
                 height: "48px",

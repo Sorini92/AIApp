@@ -1,7 +1,7 @@
 import { useState, FormEvent, ChangeEvent } from "react";
 import { Typography, Box, Link } from "@mui/material";
 import { CustomButton } from "../../app/common/buttons";
-import { FormInput } from "../../app/common/inputs";
+import { FormInput, PassValidation } from "../../app/common/inputs";
 import { IUser } from "../../../shared/interfaces/auth";
 import help from "../../../img/auth/help.png";
 
@@ -10,6 +10,7 @@ import "./signUpForm.scss";
 export const SignUpForm = () => {
   const [communityChecked, setCommunityChecked] = useState<boolean>(false);
   const [creationStatus, setCreationStatus] = useState<boolean>(false);
+  const [inputError, setInputError] = useState<boolean>(true);
   //const [isEmailExisting, setIsEmailExisting] = useState<boolean>(false);
   const [formData, setFormData] = useState<IUser>({
     email: "",
@@ -76,21 +77,11 @@ export const SignUpForm = () => {
       />
 
       {/* validation mark */}
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          marginTop: "4px",
-          fontSize: "14px",
-          lineHeight: "20px",
-          color: "#828282",
-        }}
-      >
-        <Box className="validated">&#10003; Minimum 8 characters</Box>
-        <Box>&times; Contains at least 1 uppercase</Box>
-        <Box>&times; Contains at least 1 number or symbol</Box>
-        <Box>&times; Cannot contain your name or email address</Box>
-      </Box>
+      <PassValidation
+        value={formData.password}
+        email={formData.email}
+        setInputError={setInputError}
+      />
 
       {/* agreement to join community */}
       <Box sx={{ display: "flex", alignItems: "center", height: "24px", margin: "24px 0" }}>
@@ -191,7 +182,7 @@ export const SignUpForm = () => {
         clickFunction={() => console.log(formData)}
         kind="dark"
         type="submit"
-        disabled={creationStatus}
+        disabled={creationStatus || inputError}
       />
     </Box>
   );

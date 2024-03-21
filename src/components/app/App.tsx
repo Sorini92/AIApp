@@ -1,9 +1,9 @@
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet, useLocation } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../../theme";
-import { Auth } from "../../pages/Auth/Auth";
-import { AIChat } from "../../pages/AIChat/AIChat";
+import { Auth } from "../../pages/auth/Auth";
+import { AIChat } from "../../pages/aiChat/AIChat";
 import { Navigation } from "../../components/navigation";
 import { Box } from "@mui/material";
 import { Community } from "../../pages/community/Community";
@@ -71,19 +71,22 @@ const router = createBrowserRouter([
       },
     ],
   },
-
 ]);
 
 function App() {
-	return <RouterProvider router={router} />;
+  return <RouterProvider router={router} />;
 }
 
 function Root() {
+  const location = useLocation();
+
+  const isAuthPage = location.pathname.startsWith("/auth");
+
   return (
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
       <ThemeProvider theme={theme}>
         <Box sx={{ display: "flex" }}>
-          <Navigation />
+          {!isAuthPage && <Navigation />}
           <Box sx={{ height: "100vh", width: "100%" }}>
             <Outlet />
           </Box>
@@ -91,7 +94,6 @@ function Root() {
       </ThemeProvider>
     </GoogleOAuthProvider>
   );
-
 }
 
 export default App;

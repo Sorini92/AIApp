@@ -10,7 +10,7 @@ export const LogIn = () => {
   const [emailSent, setEmailSent] = useState("");
 
   // const handleChangeSubpage = (nextpage: string) => {
-  // 	setSubpage(nextpage);
+  //   setSubpage(nextpage);
   // };
 
   return (
@@ -23,8 +23,8 @@ export const LogIn = () => {
         <LogInEmailSent handleChangeSubpage={setSubpage} emailSent={emailSent} />
       ) : null}
       {/* {subpage === "LogInSetNewPass" ? (
-				<LogInSetNewPass handleChangeSubpage={handleChangeSubpage} />
-			) : null} */}
+        <LogInSetNewPass handleChangeSubpage={handleChangeSubpage} />
+      ) : null} */}
     </>
   );
 };
