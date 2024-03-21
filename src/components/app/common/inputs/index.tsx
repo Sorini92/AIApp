@@ -1,2 +1,3 @@
 import { FormInput } from "./FormInput";
-export { FormInput };
+import { PassValidation } from "./PassValidation";
+export { FormInput, PassValidation };
