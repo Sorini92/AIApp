@@ -5,15 +5,22 @@ interface ICustomModal {
   handleClose: () => void;
   children: JSX.Element;
   width?: number;
+  padding?: number;
 }
 
-export const CustomModal = ({ open, handleClose, children, width = 400 }: ICustomModal) => {
+export const CustomModal = ({
+  open,
+  handleClose,
+  children,
+  width = 400,
+  padding = 16,
+}: ICustomModal) => {
   const style = {
     position: "absolute",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    padding: "16px",
+    padding: padding,
     width: `${width}px`,
     bgcolor: "background.paper",
     boxShadow: 24,
