@@ -54,7 +54,14 @@ export const Community = () => {
           marginTop: "24px",
         }}
       >
-        <Box sx={{ display: "flex", flexDirection: "column", marginRight: "24px" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            marginRight: "24px",
+            alignSelf: "flex-start",
+          }}
+        >
           <Box
             sx={{ width: "830px", borderRadius: "16px", backgroundColor: "#fff", padding: "16px" }}
           >
@@ -176,6 +183,7 @@ export const Community = () => {
             padding: "16px",
             display: "flex",
             flexDirection: "column",
+            alignSelf: "flex-start",
           }}
         >
           <Box

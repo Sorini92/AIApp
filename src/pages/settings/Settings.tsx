@@ -78,7 +78,7 @@ export const Settings = ({ component }: ISettings) => {
                     onClick={() => setSelectedIndex(0)}
                   >
                     <ListItemIcon sx={{ minWidth: "32px" }}>
-                      <img alt="aichat icon" src={profileIcon} />
+                      <Box component="img" alt="aichat icon" src={profileIcon} />
                     </ListItemIcon>
                     <ListItemText primary="Public Profile" />
                   </ListItemButton>
@@ -100,7 +100,7 @@ export const Settings = ({ component }: ISettings) => {
                     onClick={() => setSelectedIndex(1)}
                   >
                     <ListItemIcon sx={{ minWidth: "32px" }}>
-                      <img alt="aichat icon" src={generalIcon} />
+                      <Box component="img" alt="aichat icon" src={generalIcon} />
                     </ListItemIcon>
                     <ListItemText primary="General" />
                   </ListItemButton>
@@ -113,7 +113,7 @@ export const Settings = ({ component }: ISettings) => {
                     sx={{ borderRadius: "8px", padding: "8px 12px", marginTop: "4px" }}
                   >
                     <ListItemIcon sx={{ minWidth: "32px" }}>
-                      <img alt="log out icon" src={logoutIcon} />
+                      <Box component="img" alt="log out icon" src={logoutIcon} />
                     </ListItemIcon>
                     <ListItemText primary="Log Out" />
                   </ListItemButton>

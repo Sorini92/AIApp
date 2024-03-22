@@ -59,6 +59,8 @@ export const Navigation = () => {
               position: "relative",
             }}
           >
+            {/* title and button */}
+
             <Typography
               sx={{ fontWeight: 600, fontSize: "20px", ...(!open && { display: "none" }) }}
             >
@@ -80,9 +82,11 @@ export const Navigation = () => {
                 },
               }}
             >
-              <img alt="leftArrow" src={!open ? rightArrowIcon : leftArrowIcon} />
+              <Box component="img" alt="leftArrow" src={!open ? rightArrowIcon : leftArrowIcon} />
             </Button>
           </Box>
+
+          {/* avatar */}
 
           <Box
             sx={{
@@ -113,9 +117,11 @@ export const Navigation = () => {
                 },
               }}
             >
-              <img alt="leftArrow" src={threeDotsIcon} />
+              <Box component="img" alt="leftArrow" src={threeDotsIcon} />
             </Button>
           </Box>
+
+          {/* nav links */}
 
           <Box sx={{ marginTop: "12px" }}>
             <nav aria-label="nav links">

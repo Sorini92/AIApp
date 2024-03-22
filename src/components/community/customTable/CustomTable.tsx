@@ -8,15 +8,11 @@ import {
   Paper,
   Box,
   Divider,
-  Typography,
-  IconButton,
   Button,
 } from "@mui/material";
 import { tableCellClasses } from "@mui/material/TableCell";
 import { Link } from "react-router-dom";
-
-import upRatingIcon from "../../../img/community/upRating.svg";
-import downRatingIcon from "../../../img/community/downRating.svg";
+import { RatingCounter } from "../ratingCounter";
 
 type oneLine = {
   name: string;
@@ -67,34 +63,19 @@ export function CustomTable({ data, isShowRaiting = true, maxSimbols = 69, heigh
               {isShowRaiting && (
                 <StyledTableCell sx={{ width: "160px" }} align="right">
                   <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <Box
-                      sx={{
-                        backgroundColor: "#d6d8e1",
-                        borderRadius: "999px",
-                        padding: "2px",
-                        width: "104px",
-                        height: "28px",
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                      }}
-                    >
-                      <IconButton sx={{ padding: "0" }}>
-                        <img alt="up rating button" src={upRatingIcon} />
-                      </IconButton>
-                      <Typography sx={{ fontWeight: 500, fontSize: "14px" }}>
-                        {row.rating}
-                      </Typography>
-                      <IconButton sx={{ padding: "0" }}>
-                        <img alt="down rating button" src={downRatingIcon} />
-                      </IconButton>
-                    </Box>
+                    <RatingCounter
+                      count={row.rating}
+                      handleUpClick={() => {}}
+                      handleDownClick={() => {}}
+                    />
+
                     <Divider
                       orientation="vertical"
                       variant="middle"
                       flexItem
                       sx={{ height: "7px", margin: "10px 12px" }}
                     />
+
                     <Button
                       onClick={() => {}}
                       sx={{
