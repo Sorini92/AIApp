@@ -1,73 +1,25 @@
-import { Box, Avatar, Typography, Badge } from "@mui/material";
+import { useState } from "react";
+import {
+	Box,
+	Avatar,
+	Typography,
+	Divider,
+	FormControlLabel,
+	Checkbox,
+	TextField,
+} from "@mui/material";
 
+import { AIChatHeader } from "../../components/app/aiChat/aiChatHeader/AIChatHeader";
 import { CustomButton } from "../../components/app/common/buttons";
+import { CustomModal } from "../../components/app/common/modal";
 import avatarIcon from "../../img/aiChat/avatarIcon.svg";
-import bell from "../../img/aiChat/bell.svg";
-import envelope from "../../img/aiChat/envelope.svg";
+import close from "../../img/aiChat/close.svg";
 
 export const AIChat = () => {
+	const [isOpenModal, setIsOpenModal] = useState(true);
 	return (
 		<>
-			<Box
-				sx={{
-					display: "flex",
-					flexDirection: "row",
-					justifyContent: "flex-end",
-					alignItems: "center",
-					padding: "12px 24px",
-					width: "100%",
-					height: "56px",
-					background: "#FFFFFF",
-				}}
-			>
-				<Box sx={{ display: "flex", alignItems: "center" }}>
-					<Badge
-						badgeContent={1}
-						color="primary"
-						invisible={false}
-						sx={{
-							marginRight: "20px",
-							"& .MuiBadge-badge": {
-								right: 0,
-								backgroundColor: "#ffbf74",
-								color: "#000",
-								minWidth: "16px",
-								height: "16px",
-								fontSize: "10px",
-							},
-						}}
-					>
-						<Box component="img" src={bell} />
-					</Badge>
-					<Badge
-						badgeContent={1}
-						color="primary"
-						invisible={false}
-						sx={{
-							marginRight: "20px",
-							"& .MuiBadge-badge": {
-								right: 0,
-								backgroundColor: "#ffbf74",
-								color: "#000",
-								minWidth: "16px",
-								height: "16px",
-								fontSize: "10px",
-							},
-						}}
-					>
-						<Box component="img" src={envelope} />
-					</Badge>
-
-					<Typography sx={{ fontWeight: 500, fontSize: "14px" }}>
-						Davis Botosh
-					</Typography>
-					<Avatar
-						alt="avatar"
-						src={avatarIcon}
-						sx={{ marginLeft: "10px", width: "32px", height: "32px" }}
-					/>
-				</Box>
-			</Box>
+			<AIChatHeader />
 			<Typography
 				sx={{
 					fontWeight: 600,
@@ -415,6 +367,96 @@ export const AIChat = () => {
 					/>
 				</Box>
 			</Box>
+			<CustomModal
+				open={isOpenModal}
+				handleClose={() => setIsOpenModal(false)}
+				width={584}
+				padding="0"
+			>
+				<Box
+					component="form"
+					sx={{
+						display: "flex",
+						flexDirection: "column",
+						height: "688px",
+					}}
+				>
+					<Box
+						sx={{
+							display: "flex",
+							justifyContent: "space-between",
+							padding: "24px",
+						}}
+					>
+						<Typography sx={{ fontWeight: 600, fontSize: "24px" }}>
+							Onboarding
+						</Typography>
+						<Box component="img" src={close}></Box>
+					</Box>
+					<Divider sx={{ height: "1px", width: "584px" }} />
+					<Box
+						sx={{
+							display: "flex",
+							flexDirection: "column",
+							padding: "0 24px",
+						}}
+					>
+						<Typography
+							sx={{ fontWeight: 600, fontSize: "16px", marginTop: "24px" }}
+						>
+							What type of financial analysis or research are you currently
+							focusing on?
+						</Typography>
+						<FormControlLabel
+							control={<Checkbox />}
+							label="Equities"
+							sx={{
+								margin: "12px 0 0 -4px",
+								border: "1px solid #adadad",
+								borderRadius: "4px",
+								width: "16px",
+								height: "16px",
+							}}
+						/>
+						<FormControlLabel
+							control={<Checkbox />}
+							label="Macroeconomic analysis"
+							sx={{ marginTop: "12px" }}
+						/>
+						<FormControlLabel
+							control={<Checkbox />}
+							label="Fixed income"
+							sx={{ marginTop: "12px" }}
+						/>
+						<FormControlLabel
+							control={<Checkbox />}
+							label={<TextField placeholder="Other" />}
+							sx={{ marginTop: "12px" }}
+						/>
+						<Typography sx={{ fontWeight: 600, fontSize: "16px" }}>
+							What type of financial analysis or research are you currently
+							focusing on?
+						</Typography>
+						<FormControlLabel
+							control={<Checkbox />}
+							label="Equities"
+							sx={{ marginTop: "12px" }}
+						/>
+						<FormControlLabel
+							control={<Checkbox />}
+							label="Macroeconomic analysis"
+							sx={{ marginTop: "12px" }}
+						/>
+						<FormControlLabel
+							control={<Checkbox />}
+							label={<TextField placeholder="Other" />}
+							sx={{ marginTop: "12px" }}
+						/>
+					</Box>
+					<Divider sx={{ height: "1px", width: "584px" }} />
+					<Box></Box>
+				</Box>
+			</CustomModal>
 		</>
 	);
 };
