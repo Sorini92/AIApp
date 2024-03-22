@@ -1,11 +1,47 @@
-import { Box, Divider, Typography } from "@mui/material";
+import { useState } from "react";
+import { Box, Divider, Typography, SelectChangeEvent } from "@mui/material";
 import { Header } from "../../components/app/common/header/Header";
 import { Link } from "react-router-dom";
+import { CustomTable } from "../../components/community/customTable";
+import { CustomSelect } from "../../components/app/common/select";
 
 import stub from "../../img/community/stub.png";
 
 export const Community = () => {
   const communityBreadcrumbs = [{ text: "Community", type: "text", to: "" }];
+
+  const data = [
+    { name: "Some text here", rating: 159, link: "discussion" },
+    { name: "Some text here", rating: 159, link: "discussion" },
+    {
+      name: "As an experienced financial advisor, your task is to analyze economic trends for a [sector].",
+      rating: 159,
+      link: "discussion",
+    },
+    {
+      name: "As an experienced financial advisor, your task is to analyze economic trends for a [sector].",
+      rating: 159,
+      link: "discussion",
+    },
+    { name: "Some text here", rating: 159, link: "discussion" },
+    { name: "Some text here", rating: 159, link: "discussion" },
+    {
+      name: "As an experienced financial advisor, your task is to analyze economic trends for a [sector].",
+      rating: 159,
+      link: "discussion",
+    },
+    { name: "Some text here", rating: 159, link: "discussion" },
+    { name: "Some text here", rating: 159, link: "discussion" },
+    { name: "Some text here", rating: 159, link: "discussion" },
+  ];
+
+  const categories = ["For Another Advisor", "For Test Advisor"];
+
+  const [category, setCategory] = useState<string>("");
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setCategory(event.target.value);
+  };
 
   return (
     <>
@@ -14,11 +50,11 @@ export const Community = () => {
         sx={{
           padding: "0 24px",
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: "center",
           marginTop: "24px",
         }}
       >
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", marginRight: "24px" }}>
           <Box
             sx={{ width: "830px", borderRadius: "16px", backgroundColor: "#fff", padding: "16px" }}
           >
@@ -44,7 +80,12 @@ export const Community = () => {
                 See All
               </Box>
             </Box>
+
+            <CustomSelect value={category} categories={categories} onChange={handleChange} />
+            <CustomTable data={data} />
           </Box>
+
+          {/* forum */}
 
           <Box
             sx={{

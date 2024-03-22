@@ -10,6 +10,7 @@ import { Community } from "../../pages/community/Community";
 import { Inbox } from "../../pages/inbox/Inbox";
 import { Settings } from "../../pages/settings/Settings";
 import { PageNotFound } from "../../pages/pageNotFound/PageNotFound";
+import { PromptDiscussion } from "../../pages/community/PromptDiscussion";
 
 /* function App() {
   return (
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "/community",
         element: <Community />,
+      },
+      {
+        path: "/community/discussion",
+        element: <PromptDiscussion />,
       },
       {
         path: "/inbox",
