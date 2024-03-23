@@ -1,8 +1,9 @@
+import { useState } from "react";
 import { Box, Typography, Link, Divider } from "@mui/material";
 import { FormInput, PassValidation } from "../../app/common/inputs";
 import { CustomButton } from "../../app/common/buttons";
-import { useState } from "react";
 import { CustomModal } from "../../app/common/modal";
+
 import closeBtn from "../../../img/common/close.svg";
 
 export const General = () => {
@@ -201,41 +202,70 @@ export const General = () => {
                 alignItems: "center",
               }}
             >
-              <img src={closeBtn} alt="close btn" />
+              <Box component="img" src={closeBtn} alt="close btn" />
             </Link>
           </Box>
-
           <Divider />
-
           <Typography sx={{ fontWeight: 400, fontSize: "16px", color: "#333", marginTop: "25px" }}>
             Are you sure you want to delete your account? If you proceed, you <br />
             will permanently lose your profile, photos, and chats history. Your forum messages will
             remain visible but without your authorship. This cannot be undone.
           </Typography>
-
           <FormInput name="password" label="Password" required={false} showPasswordToggler />
+
+          {/* delete accaunt checkbox */}
 
           <Box
             sx={{
               display: "flex",
-              justifyContent: "start",
-              marginTop: "16px",
-              marginBottom: "24px",
+              alignItems: "center",
+              height: "24px",
+              margin: "24px 0",
             }}
           >
-            <div
-              className={isUnderstandChecked ? "checkbox checked" : "checkbox"}
+            <Box
+              sx={{
+                width: "16px",
+                height: "16px",
+                borderRadius: "4px",
+                backgroundColor: `${isUnderstandChecked ? "#2F80ED" : "#E0E0E0"}`,
+                position: "relative",
+                cursor: "pointer",
+                color: `${isUnderstandChecked ? "#fff" : "inherit "}`,
+              }}
               onClick={() => setIsUnderstandChecked(!isUnderstandChecked)}
             >
-              <div className="checkbox-checkmark">&#10003;</div>
-              <input type="checkbox" />
-            </div>
+              <Box
+                sx={{
+                  height: "12px",
+                  width: "12px",
+                  left: "1px",
+                  top: "2px",
+                  lineHeight: "12px",
+                  position: "absolute",
+                  color: "#E0E0E0",
+                  backgroundColor: "inherit",
+                  userSelect: "none",
+                }}
+                className="checkbox-checkmark"
+              >
+                &#10003;
+              </Box>
+              <Box
+                component="input"
+                sx={{ width: "16px", height: "16px", visibility: "hidden" }}
+                type="checkbox"
+                checked={isUnderstandChecked}
+                onChange={() => setIsUnderstandChecked(!isUnderstandChecked)}
+              />
+            </Box>
             <Typography
               sx={{
-                fontWeight: 400,
+                marginLeft: "12px",
+                fontWeight: "400",
                 fontSize: "16px",
-                color: "#333",
-                marginLeft: "8px",
+                lineHeight: "24px",
+                marginRight: "4px",
               }}
             >
               I understand that all of my account data will be deleted and want to proceed

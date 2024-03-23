@@ -59,6 +59,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+    padding: 0 calc(18px - (100vw - 100%)) 0 0;
 }
 
 ul,
@@ -99,7 +100,7 @@ html {
 
 body {
 	position: relative;
-    margin: 0;
-    max-width: 1440px;
+    max-width: 1458px;
 	margin: 0 auto;
+    padding-left: 18px;
 }
