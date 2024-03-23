@@ -5,7 +5,7 @@ interface ICustomModal {
 	handleClose: () => void;
 	children: JSX.Element;
 	width?: number;
-	padding?: string;
+	padding?: number;
 }
 
 export const CustomModal = ({
@@ -13,14 +13,14 @@ export const CustomModal = ({
 	handleClose,
 	children,
 	width = 400,
-	padding = "16px",
+	padding = 16,
 }: ICustomModal) => {
 	const style = {
 		position: "absolute",
 		top: "50%",
 		left: "50%",
 		transform: "translate(-50%, -50%)",
-		padding: padding,
+		padding: `${padding}px`,
 		width: `${width}px`,
 		bgcolor: "background.paper",
 		boxShadow: 24,

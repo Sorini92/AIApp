@@ -16,6 +16,7 @@ import { Inbox } from "../../pages/inbox/Inbox";
 import { Settings } from "../../pages/settings/Settings";
 import { PageNotFound } from "../../pages/pageNotFound/PageNotFound";
 import { PromptDiscussion } from "../../pages/community/PromptDiscussion";
+import { OnBoarding } from "../../pages/aiChat/OnBoarding";
 
 /* function App() {
   return (
@@ -35,53 +36,57 @@ import { PromptDiscussion } from "../../pages/community/PromptDiscussion";
 } */
 
 const router = createBrowserRouter([
-{
-    path: "/",
-    element: <Root />,
-    errorElement: <PageNotFound />,
-    children: [
-      {
-        path: "/",
-        element: <AIChat />,
-      },
-      {
-        path: "/aichat",
-        element: <AIChat />,
-      },
-      {
-        path: "/community",
-        element: <Community />,
-      },
-      {
-        path: "/community/discussion",
-        element: <PromptDiscussion />,
-      },
-      {
-        path: "/inbox",
-        element: <Inbox />,
-      },
-      {
-        path: "/settings",
-        element: <Settings component="public" />,
-      },
-      {
-        path: "/settings/public",
-        element: <Settings component="public" />,
-      },
-      {
-        path: "/settings/general",
-        element: <Settings component="general" />,
-      },
-      {
-        path: "/auth/signup",
-        element: <Auth component="signup" />,
-      },
-      {
-        path: "/auth/login",
-        element: <Auth component="login" />,
-      },
-    ],
-  },
+	{
+		path: "/",
+		element: <Root />,
+		errorElement: <PageNotFound />,
+		children: [
+			{
+				path: "/",
+				element: <AIChat />,
+			},
+			{
+				path: "/aichat",
+				element: <AIChat />,
+			},
+			{
+				path: "/onboarding",
+				element: <OnBoarding />,
+			},
+			{
+				path: "/community",
+				element: <Community />,
+			},
+			{
+				path: "/community/discussion",
+				element: <PromptDiscussion />,
+			},
+			{
+				path: "/inbox",
+				element: <Inbox />,
+			},
+			{
+				path: "/settings",
+				element: <Settings component="public" />,
+			},
+			{
+				path: "/settings/public",
+				element: <Settings component="public" />,
+			},
+			{
+				path: "/settings/general",
+				element: <Settings component="general" />,
+			},
+			{
+				path: "/auth/signup",
+				element: <Auth component="signup" />,
+			},
+			{
+				path: "/auth/login",
+				element: <Auth component="login" />,
+			},
+		],
+	},
 ]);
 
 function App() {

@@ -1,8 +1,8 @@
 import { Box, Avatar, Typography, Badge } from "@mui/material";
 
-import avatarIcon from "../../../../img/aiChat/avatarIcon.svg";
-import bell from "../../../../img/aiChat/bell.svg";
-import envelope from "../../../../img/aiChat/envelope.svg";
+import avatarIcon from "../../../img/aiChat/avatarIcon.svg";
+import bell from "../../../img/aiChat/bell.svg";
+import envelope from "../../../img/aiChat/envelope.svg";
 
 export const AIChatHeader = () => {
 	return (
