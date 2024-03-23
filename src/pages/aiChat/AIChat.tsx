@@ -412,26 +412,22 @@ export const AIChat = () => {
 							label="Equities"
 							sx={{
 								margin: "12px 0 0 -4px",
-								border: "1px solid #adadad",
-								borderRadius: "4px",
-								width: "16px",
-								height: "16px",
 							}}
 						/>
 						<FormControlLabel
 							control={<Checkbox />}
 							label="Macroeconomic analysis"
-							sx={{ marginTop: "12px" }}
+							sx={{ margin: "12px 0 0 -4px" }}
 						/>
 						<FormControlLabel
 							control={<Checkbox />}
 							label="Fixed income"
-							sx={{ marginTop: "12px" }}
+							sx={{ margin: "12px 0 0 -4px" }}
 						/>
 						<FormControlLabel
 							control={<Checkbox />}
 							label={<TextField placeholder="Other" />}
-							sx={{ marginTop: "12px" }}
+							sx={{ margin: "12px 0 0 -4px" }}
 						/>
 						<Typography sx={{ fontWeight: 600, fontSize: "16px" }}>
 							What type of financial analysis or research are you currently
@@ -440,17 +436,17 @@ export const AIChat = () => {
 						<FormControlLabel
 							control={<Checkbox />}
 							label="Equities"
-							sx={{ marginTop: "12px" }}
+							sx={{ margin: "12px 0 0 -4px" }}
 						/>
 						<FormControlLabel
 							control={<Checkbox />}
 							label="Macroeconomic analysis"
-							sx={{ marginTop: "12px" }}
+							sx={{ margin: "12px 0 0 -4px" }}
 						/>
 						<FormControlLabel
 							control={<Checkbox />}
 							label={<TextField placeholder="Other" />}
-							sx={{ marginTop: "12px" }}
+							sx={{ margin: "12px 0 0 -4px" }}
 						/>
 					</Box>
 					<Divider sx={{ height: "1px", width: "584px" }} />
