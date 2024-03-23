@@ -1,4 +1,9 @@
-import { createBrowserRouter, RouterProvider, Outlet, useLocation } from "react-router-dom";
+import {
+	createBrowserRouter,
+	RouterProvider,
+	Outlet,
+	useLocation,
+} from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../../theme";
@@ -30,7 +35,7 @@ import { PromptDiscussion } from "../../pages/community/PromptDiscussion";
 } */
 
 const router = createBrowserRouter([
-  {
+{
     path: "/",
     element: <Root />,
     errorElement: <PageNotFound />,
@@ -80,26 +85,26 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+	return <RouterProvider router={router} />;
 }
 
 function Root() {
-  const location = useLocation();
+	const location = useLocation();
 
-  const isAuthPage = location.pathname.startsWith("/auth");
+	const isAuthPage = location.pathname.startsWith("/auth");
 
-  return (
-    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-      <ThemeProvider theme={theme}>
-        <Box sx={{ display: "flex" }}>
-          {!isAuthPage && <Navigation />}
-          <Box sx={{ height: "100vh", width: "100%" }}>
-            <Outlet />
-          </Box>
-        </Box>
-      </ThemeProvider>
-    </GoogleOAuthProvider>
-  );
+	return (
+		<GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+			<ThemeProvider theme={theme}>
+				<Box sx={{ display: "flex" }}>
+					{!isAuthPage && <Navigation />}
+					<Box sx={{ height: "100vh", width: "100%" }}>
+						<Outlet />
+					</Box>
+				</Box>
+			</ThemeProvider>
+		</GoogleOAuthProvider>
+	);
 }
 
 export default App;
