@@ -30,7 +30,7 @@ export const Auth = ({ component }: IAuth) => {
       >
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs value={value} onChange={handleChange}>
-            <Tab sx={{ width: "232px" }} component={NavLink} to="/auth/signup" label={"Sign Up"} />
+            <Tab sx={{ width: "232px" }} component={NavLink} to="/auth/signup" label="Sign Up" />
             <Tab sx={{ width: "232px" }} component={NavLink} to="/auth/login" label="Log In" />
           </Tabs>
         </Box>
@@ -38,7 +38,7 @@ export const Auth = ({ component }: IAuth) => {
         <Box>{component === "login" ? <LogIn /> : <SignUp />}</Box>
 
         {component === "login" ? (
-          <div></div>
+          <Box />
         ) : (
           <Box sx={{ fontSize: "14px", color: "#4F4F4F" }}>
             By proceeding, you agree to our&nbsp;

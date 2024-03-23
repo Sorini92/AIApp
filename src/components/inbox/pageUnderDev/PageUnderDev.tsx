@@ -34,7 +34,7 @@ export const PageUnderDev = () => {
             justifyContent: "center",
           }}
         >
-          <img alt="dev logo" src={devIcon} />
+          <Box component="img" alt="dev logo" src={devIcon} />
         </Box>
         <Typography sx={{ fontWeight: 500, fontSize: "20px", textAlign: "center", color: "#000" }}>
           The page is under development. Stay tuned for updates soon!

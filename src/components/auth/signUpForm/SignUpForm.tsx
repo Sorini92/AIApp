@@ -3,9 +3,8 @@ import { Typography, Box, Link } from "@mui/material";
 import { CustomButton } from "../../app/common/buttons";
 import { FormInput, PassValidation } from "../../app/common/inputs";
 import { IUser } from "../../../shared/interfaces/auth";
-import help from "../../../img/auth/help.png";
 
-import "./signUpForm.scss";
+import help from "../../../img/auth/help.png";
 
 export const SignUpForm = () => {
   const [communityChecked, setCommunityChecked] = useState<boolean>(false);
@@ -66,8 +65,9 @@ export const SignUpForm = () => {
         // error={isEmailExisting}
       />
       {/* {isEmailExisting && (
-        <Typography sx={{ fontSize: "14px", color: "red" }}>Такой Email уже существует</Typography>
+        <Typography sx={{ fontSize: "14px", color: "red" }}>It's email already existing</Typography>
       )} */}
+
       <FormInput
         value={formData.password}
         onChange={handleChange}
@@ -77,6 +77,7 @@ export const SignUpForm = () => {
       />
 
       {/* validation mark */}
+
       <PassValidation
         value={formData.password}
         email={formData.email}
@@ -84,14 +85,50 @@ export const SignUpForm = () => {
       />
 
       {/* agreement to join community */}
-      <Box sx={{ display: "flex", alignItems: "center", height: "24px", margin: "24px 0" }}>
-        <div
-          className={communityChecked ? "checkbox checked" : "checkbox"}
+
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          height: "24px",
+          margin: "24px 0",
+        }}
+      >
+        <Box
+          sx={{
+            width: "16px",
+            height: "16px",
+            borderRadius: "4px",
+            backgroundColor: `${communityChecked ? "#2F80ED" : "#E0E0E0"}`,
+            position: "relative",
+            cursor: "pointer",
+            color: `${communityChecked ? "#fff" : "inherit "}`,
+          }}
           onClick={() => setCommunityChecked(!communityChecked)}
         >
-          <div className="checkbox-checkmark">&#10003;</div>
-          <input type="checkbox" defaultChecked={communityChecked} />
-        </div>
+          <Box
+            sx={{
+              height: "12px",
+              width: "12px",
+              left: "1px",
+              top: "2px",
+              lineHeight: "12px",
+              position: "absolute",
+              color: "#E0E0E0",
+              backgroundColor: "inherit",
+              userSelect: "none",
+            }}
+            className="checkbox-checkmark"
+          >
+            &#10003;
+          </Box>
+          <Box
+            component="input"
+            sx={{ width: "16px", height: "16px", visibility: "hidden" }}
+            type="checkbox"
+            defaultChecked={communityChecked}
+          />
+        </Box>
         <Typography
           sx={{
             marginLeft: "12px",
@@ -115,10 +152,11 @@ export const SignUpForm = () => {
         >
           AdvisorZen Community
         </Link>
-        <img className="help" src={help} />
+        <Box component="img" sx={{ width: "16px", height: "16px", cursor: "pointer" }} src={help} />
       </Box>
 
       {/* render new inputs when checkbox checked */}
+
       {communityChecked && (
         <>
           <FormInput
@@ -145,6 +183,7 @@ export const SignUpForm = () => {
           </Box>
 
           {/* checkbox registered advisor */}
+
           <Box
             sx={{
               display: "flex",
@@ -153,13 +192,42 @@ export const SignUpForm = () => {
               margin: "24px 0",
             }}
           >
-            <div
-              className={formData.isRegistered ? "checkbox checked" : "checkbox"}
+            <Box
+              sx={{
+                width: "16px",
+                height: "16px",
+                borderRadius: "4px",
+                backgroundColor: `${formData.isRegistered ? "#2F80ED" : "#E0E0E0"}`,
+                position: "relative",
+                cursor: "pointer",
+                color: `${formData.isRegistered ? "#fff" : "inherit "}`,
+              }}
               onClick={handleChangeCheckbox}
             >
-              <div className="checkbox-checkmark">&#10003;</div>
-              <input type="checkbox" checked={formData.isRegistered} onChange={handleChange} />
-            </div>
+              <Box
+                sx={{
+                  height: "12px",
+                  width: "12px",
+                  left: "1px",
+                  top: "2px",
+                  lineHeight: "12px",
+                  position: "absolute",
+                  color: "#E0E0E0",
+                  backgroundColor: "inherit",
+                  userSelect: "none",
+                }}
+                className="checkbox-checkmark"
+              >
+                &#10003;
+              </Box>
+              <Box
+                component="input"
+                sx={{ width: "16px", height: "16px", visibility: "hidden" }}
+                type="checkbox"
+                checked={formData.isRegistered}
+                onChange={handleChange}
+              />
+            </Box>
             <Typography
               sx={{
                 marginLeft: "12px",
@@ -171,12 +239,17 @@ export const SignUpForm = () => {
             >
               I’m Registered Investment Advisor
             </Typography>
-            <img className="help" src={help} />
+            <Box
+              component="img"
+              sx={{ width: "16px", height: "16px", cursor: "pointer" }}
+              src={help}
+            />
           </Box>
         </>
       )}
 
       {/* create account button */}
+
       <CustomButton
         text="Create Account"
         clickFunction={() => console.log(formData)}
