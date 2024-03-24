@@ -10,4 +10,5 @@ export const AIChat = () => {
 			<Outlet />
 		</Box>
 	);
+
 };

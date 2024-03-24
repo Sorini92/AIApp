@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Avatar, Box, Button, Divider, SelectChangeEvent, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import { Header } from "../../components/app/common/header/Header";
 import { CustomSelect } from "../../components/app/common/select";
 import { CustomTable } from "../../components/community/customTable";
 import { RatingCounter } from "../../components/community/ratingCounter";
@@ -15,11 +14,6 @@ import secondAvatarIcon from "../../img/community/secondAvatar.png";
 
 export const PromptDiscussion = () => {
   const [category, setCategory] = useState<string>("");
-
-  const promptBreadcrumbs = [
-    { text: "Community", type: "link", to: "/community" },
-    { text: "Prompt Discussion", type: "text", to: "" },
-  ];
 
   const data = [
     { name: "Some text here", link: "discussion" },
@@ -53,7 +47,6 @@ export const PromptDiscussion = () => {
 
   return (
     <>
-      <Header breadcrumbs={promptBreadcrumbs} searchFunc={() => {}} />
       <Box
         sx={{
           padding: "0 24px",

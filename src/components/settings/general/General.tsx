@@ -18,7 +18,7 @@ export const General = () => {
   const handleClose = () => setOpen(false);
 
   return (
-    <>
+    <Box>
       <Box
         sx={{
           width: "716px",
@@ -299,6 +299,6 @@ export const General = () => {
           </Box>
         </Box>
       </CustomModal>
-    </>
+    </Box>
   );
 };

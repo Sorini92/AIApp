@@ -4,8 +4,8 @@ import { Tabs, Tab, Box, Link } from "@mui/material";
 
 export const Auth = () => {
   const [value, setValue] = useState(0);
-  const location = useLocation();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (location.pathname === "/auth") navigate("signup");
