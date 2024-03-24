@@ -1,9 +1,9 @@
 import {
-  createBrowserRouter,
-  RouterProvider,
-  Outlet,
-  useLocation,
-  Navigate,
+	createBrowserRouter,
+	RouterProvider,
+	Outlet,
+	useLocation,
+	Navigate,
 } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { ThemeProvider } from "@mui/material/styles";
@@ -22,8 +22,9 @@ import { GuidlinesItem } from "../../pages/community/Guidlines";
 import { SignUp } from "../auth/signUp/SignUp";
 import { LogInForgotPass } from "../auth/logInForgotPass";
 import { LogInEmailSent } from "../auth/logInEmailSent";
-import { LogIn } from "../auth/login";
 import { LogInSetNewPass } from "../auth/logInSetNewPass";
+import { LogIn } from "../auth/logIn";
+import { FirstSession } from "../../pages/aiChat/FirstSession";
 
 /* function App() {
   return (
@@ -43,102 +44,112 @@ import { LogInSetNewPass } from "../auth/logInSetNewPass";
 } */
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    errorElement: <PageNotFound />,
-    children: [
-      {
-        path: "/",
-        element: <Navigate replace to="/aichat" />,
-      },
-      {
-        path: "aichat",
-        element: <AIChat />,
-      },
-      {
-        path: "community",
-        element: <Community />,
-      },
-      {
-        path: "community/discussion",
-        element: <PromptDiscussion />,
-      },
-      {
-        path: "community/guidlines",
-        element: <GuidlinesItem />,
-      },
-      {
-        path: "inbox",
-        element: <Inbox />,
-      },
-      {
-        path: "settings",
-        element: <Settings component="public" />,
-      },
-      {
-        path: "settings/public",
-        element: <Settings component="public" />,
-      },
-      {
-        path: "settings/general",
-        element: <Settings component="general" />,
-      },
-      {
-        path: "auth",
-        element: <Auth />,
-        children: [
-          {
-            path: "signup",
-            element: <SignUp />,
-          },
-          {
-            path: "login",
-            element: <LogIn />,
-          },
-          {
-            path: "login/forgotpassword",
-            element: <LogInForgotPass />,
-          },
-          {
-            path: "login/forgotpassword/emailsent",
-            element: <LogInEmailSent />,
-          },
-          {
-            path: "login/forgotpassword/setnewpassword",
-            element: <LogInSetNewPass />,
-          },
-        ],
-      },
-    ],
-  },
+	{
+		path: "/",
+		element: <Root />,
+		errorElement: <PageNotFound />,
+		children: [
+			{
+				path: "/",
+				element: <Navigate replace to="/aichat" />,
+			},
+			{
+				path: "aichat",
+				element: <AIChat />,
+				children: [
+					{
+						path: "",
+						element: <FirstSession />,
+					},
+					{
+						path: "onboarding",
+						element: <OnBoarding />,
+					},
+				],
+			},
+			{
+				path: "community",
+				element: <Community />,
+			},
+			{
+				path: "community/discussion",
+				element: <PromptDiscussion />,
+			},
+			{
+				path: "community/guidlines",
+				element: <GuidlinesItem />,
+			},
+			{
+				path: "inbox",
+				element: <Inbox />,
+			},
+			{
+				path: "settings",
+				element: <Settings component="public" />,
+			},
+			{
+				path: "settings/public",
+				element: <Settings component="public" />,
+			},
+			{
+				path: "settings/general",
+				element: <Settings component="general" />,
+			},
+			{
+				path: "auth",
+				element: <Auth />,
+				children: [
+					{
+						path: "signup",
+						element: <SignUp />,
+					},
+					{
+						path: "login",
+						element: <LogIn />,
+					},
+					{
+						path: "login/forgotpassword",
+						element: <LogInForgotPass />,
+					},
+					{
+						path: "login/forgotpassword/emailsent",
+						element: <LogInEmailSent />,
+					},
+					{
+						path: "login/forgotpassword/setnewpassword",
+						element: <LogInSetNewPass />,
+					},
+				],
+			},
+		],
+	},
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+	return <RouterProvider router={router} />;
 }
 
 function Root() {
-  const location = useLocation();
-  const isAuthPage = location.pathname.startsWith("/auth");
+	const location = useLocation();
+	const isAuthPage = location.pathname.startsWith("/auth");
 
-  return (
-    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-      <ThemeProvider theme={theme}>
-        <Box sx={{ display: "flex" }}>
-          {!isAuthPage && <Navigation />}
-          <Box
-            sx={{
-              width: "100%",
-              minHeight: "100vh",
-            }}
-          >
-            <Outlet />
-          </Box>
-        </Box>
-      </ThemeProvider>
-    </GoogleOAuthProvider>
-  );
+	return (
+		<GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+			<ThemeProvider theme={theme}>
+				<Box sx={{ display: "flex" }}>
+					{!isAuthPage && <Navigation />}
+					<Box
+						sx={{
+							width: "100%",
+							minHeight: "100vh",
+						}}
+					>
+						<Outlet />
+					</Box>
+				</Box>
+			</ThemeProvider>
+		</GoogleOAuthProvider>
+	);
 }
 
 export default App;

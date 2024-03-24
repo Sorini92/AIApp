@@ -1,9 +1,9 @@
-import { AIChatHeader } from "../../components/aiChat/aiChatHeader/AIChatHeader";
+import { Box } from "@mui/material";
 
 export const OnBoarding = () => {
 	return (
 		<>
-			<AIChatHeader />
+			<Box>OnBoarding</Box>
 		</>
 	);
 };
