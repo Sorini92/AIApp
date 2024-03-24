@@ -33,7 +33,7 @@ export const Header = ({ breadcrumbs }: IHeader) => {
   const text = breadcrumbs.map((item, i) => {
     if (item.type === "text") {
       return (
-        <Typography key={i} color="text.primary">
+        <Typography sx={{ fontSize: "14px" }} key={i} color="text.primary">
           {item.text}
         </Typography>
       );
@@ -51,7 +51,7 @@ export const Header = ({ breadcrumbs }: IHeader) => {
         alignItems: "center",
       }}
     >
-      <Breadcrumbs sx={{ fontSize: "14px" }}>
+      <Breadcrumbs separator="›" sx={{ fontSize: "14px", color: "#333" }}>
         {links}
         {text}
       </Breadcrumbs>

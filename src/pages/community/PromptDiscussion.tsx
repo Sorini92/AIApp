@@ -16,7 +16,7 @@ import secondAvatarIcon from "../../img/community/secondAvatar.png";
 export const PromptDiscussion = () => {
   const [category, setCategory] = useState<string>("");
 
-  const promptreadcrumbs = [
+  const promptBreadcrumbs = [
     { text: "Community", type: "link", to: "/community" },
     { text: "Prompt Discussion", type: "text", to: "" },
   ];
@@ -53,7 +53,7 @@ export const PromptDiscussion = () => {
 
   return (
     <>
-      <Header breadcrumbs={promptreadcrumbs} searchFunc={() => {}} />
+      <Header breadcrumbs={promptBreadcrumbs} searchFunc={() => {}} />
       <Box
         sx={{
           padding: "0 24px",

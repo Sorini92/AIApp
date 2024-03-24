@@ -37,35 +37,29 @@ export const Navigation = () => {
 		setOpen(!open);
 	};
 
-	return (
-		<Drawer
-			variant="permanent"
-			open={open}
-			openedwidth={240}
-			closedwidth={80}
-			sx={{ display: "flex", justifyContent: "stretch" }}
-		>
-			<Box
-				sx={{
-					padding: "16px",
-					backgroundColor: "#fff",
-					height: "100vh",
-					display: "flex",
-					flexDirection: "column",
-					justifyContent: "space-between",
-				}}
-			>
-				<Box>
-					<Box
-						sx={{
-							display: "flex",
-							justifyContent: "space-between",
-							alignItems: "center",
-							height: "40px",
-							position: "relative",
-						}}
-					>
-						{/* title and button */}
+  return (
+    <Drawer variant="permanent" open={open} openedwidth={240} closedwidth={80}>
+      <Box
+        sx={{
+          padding: "16px",
+          backgroundColor: "#fff",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
+      >
+        <Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              height: "40px",
+              position: "relative",
+            }}
+          >
+            {/* title and button */}
 
 						<Typography
 							sx={{
@@ -319,23 +313,25 @@ export const Navigation = () => {
 					</Box>
 				</Box>
 
-				<Box>
-					<Box sx={{ marginTop: "12px" }}>
-						<nav>
-							<List>
-								<ListItem disablePadding>
-									<ListItemButton
-										sx={{ borderRadius: "8px", padding: "8px 12px" }}
-									>
-										<ListItemIcon sx={{ minWidth: "32px" }}>
-											<img alt="help center icon" src={helpCenterIcon} />
-										</ListItemIcon>
-										<ListItemText
-											primary="Help center"
-											sx={{ opacity: open ? 1 : 0 }}
-										/>
-									</ListItemButton>
-								</ListItem>
+        <Box>
+          <Box
+            sx={{
+              marginTop: "12px",
+              position: "fixed",
+              bottom: 0,
+              width: `${open ? "218px" : "66.5px"}`,
+            }}
+          >
+            <nav>
+              <List>
+                <ListItem disablePadding>
+                  <ListItemButton sx={{ borderRadius: "8px", padding: "8px 12px" }}>
+                    <ListItemIcon sx={{ minWidth: "32px" }}>
+                      <Box component="img" alt="help center icon" src={helpCenterIcon} />
+                    </ListItemIcon>
+                    <ListItemText primary="Help center" sx={{ opacity: open ? 1 : 0 }} />
+                  </ListItemButton>
+                </ListItem>
 
 								<ListItem disablePadding>
 									<ListItemButton

@@ -39,7 +39,7 @@ export const Drawer = styled(MuiDrawer, {
   whiteSpace: "nowrap",
   boxSizing: "border-box",
   ...(open && {
-    width: openedwidth,
+    width: `${openedwidth} `,
     ...openedMixin(theme),
     "& .MuiDrawer-paper": {
       width: openedwidth,
@@ -47,7 +47,7 @@ export const Drawer = styled(MuiDrawer, {
     },
   }),
   ...(!open && {
-    width: closedwidth,
+    width: `${closedwidth} `,
     ...closedMixin(theme),
     "& .MuiDrawer-paper": {
       width: closedwidth,
