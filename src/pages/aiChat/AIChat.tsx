@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+
   Box,
   Avatar,
   Typography,
@@ -14,6 +15,7 @@ import { CustomButton } from "../../components/app/common/buttons";
 import { CustomModal } from "../../components/app/common/modal";
 import avatarIcon from "../../img/aiChat/avatarIcon.svg";
 import close from "../../img/aiChat/close.svg";
+import { Link } from "react-router-dom";
 
 export const AIChat = () => {
   const [isOpenModal, setIsOpenModal] = useState(true);

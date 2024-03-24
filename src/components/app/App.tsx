@@ -17,6 +17,7 @@ import { Inbox } from "../../pages/inbox/Inbox";
 import { Settings } from "../../pages/settings/Settings";
 import { PageNotFound } from "../../pages/pageNotFound/PageNotFound";
 import { PromptDiscussion } from "../../pages/community/PromptDiscussion";
+import { OnBoarding } from "../../pages/aiChat/OnBoarding";
 import { GuidlinesItem } from "../../pages/community/Guidlines";
 import { SignUp } from "../auth/signUp/SignUp";
 import { LogInForgotPass } from "../auth/logInForgotPass";
