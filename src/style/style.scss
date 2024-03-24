@@ -59,7 +59,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-    padding: 0 calc(18px - (100vw - 100%)) 0 0;
+    padding: 0 calc(17px - (100vw - 100%)) 0 0;
 }
 
 ul,
@@ -95,12 +95,13 @@ p {
 }
 
 html {
-	background-color: #D9D9D9;
+	background-color: #f1f1f1;
+    
 }
 
 body {
 	position: relative;
-    max-width: 1458px;
+    width: 1440px;
 	margin: 0 auto;
-    padding-left: 18px;
+    padding: 0 !important;
 }

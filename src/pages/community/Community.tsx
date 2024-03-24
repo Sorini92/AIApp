@@ -6,8 +6,11 @@ import { CustomTable } from "../../components/community/customTable";
 import { CustomSelect } from "../../components/app/common/select";
 
 import stub from "../../img/community/stub.png";
+import { VideoItem } from "../../components/community/videoItem";
 
 export const Community = () => {
+  const [category, setCategory] = useState<string>("");
+
   const communityBreadcrumbs = [{ text: "Community", type: "text", to: "" }];
 
   const data = [
@@ -37,7 +40,23 @@ export const Community = () => {
 
   const categories = ["For Another Advisor", "For Test Advisor"];
 
-  const [category, setCategory] = useState<string>("");
+  const videoItems = [
+    {
+      text: "How to get the best results while working with John, the Research Analyst",
+      videoImg: stub,
+      link: "guidlines",
+    },
+    {
+      text: "How to get the best results while working with Rayna, the SMM & Content Strategist",
+      videoImg: stub,
+      link: "guidlines",
+    },
+    {
+      text: "How to get the best results while working with Olivia, the Journalist",
+      videoImg: stub,
+      link: "guidlines",
+    },
+  ];
 
   const handleChange = (event: SelectChangeEvent) => {
     setCategory(event.target.value);
@@ -211,104 +230,9 @@ export const Community = () => {
 
           {/* video item */}
 
-          <Box
-            sx={{
-              borderRadius: "12px",
-              padding: "16px",
-              width: "100%",
-              height: "260px",
-              marginTop: "16px",
-              backgroundColor: "#f1f1f1",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <Box
-              sx={{
-                width: "100%",
-                height: "120px",
-                borderRadius: "8px",
-              }}
-            >
-              <img alt="video img" src={stub} />
-            </Box>
-            <Typography
-              sx={{
-                fontWeight: 500,
-                fontSize: "16px",
-                color: " #333",
-                marginTop: "12px",
-              }}
-            >
-              How to get the best results while working with John, the Research Analyst
-            </Typography>
-          </Box>
-
-          <Box
-            sx={{
-              borderRadius: "12px",
-              padding: "16px",
-              width: "100%",
-              height: "260px",
-              marginTop: "16px",
-              backgroundColor: "#f1f1f1",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <Box
-              sx={{
-                width: "100%",
-                height: "120px",
-                borderRadius: "8px",
-              }}
-            >
-              <img alt="video img" src={stub} />
-            </Box>
-            <Typography
-              sx={{
-                fontWeight: 500,
-                fontSize: "16px",
-                color: " #333",
-                marginTop: "12px",
-              }}
-            >
-              How to get the best results while working with Rayna, the SMM & Content Strategist
-            </Typography>
-          </Box>
-
-          <Box
-            sx={{
-              borderRadius: "12px",
-              padding: "16px",
-              width: "100%",
-              height: "260px",
-              marginTop: "16px",
-              backgroundColor: "#f1f1f1",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <Box
-              sx={{
-                width: "100%",
-                height: "120px",
-                borderRadius: "8px",
-              }}
-            >
-              <img alt="video img" src={stub} />
-            </Box>
-            <Typography
-              sx={{
-                fontWeight: 500,
-                fontSize: "16px",
-                color: " #333",
-                marginTop: "12px",
-              }}
-            >
-              How to get the best results while working with Olivia, the Journalist
-            </Typography>
-          </Box>
+          {videoItems.map((item, i) => {
+            return <VideoItem key={i} text={item.text} videoImg={item.videoImg} link={item.link} />;
+          })}
         </Box>
       </Box>
     </>

@@ -1,15 +1,17 @@
-import { Typography, Box, Link } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 
 import { CustomButton } from "../../app/common/buttons";
+import { Link, useNavigate } from "react-router-dom";
 
-interface ILogInEmailSent {
+/* interface ILogInEmailSent {
   handleChangeSubpage: (nextpage: string) => void;
   emailSent: string;
-}
+} */
 
-export const LogInEmailSent = ({ handleChangeSubpage, emailSent }: ILogInEmailSent) => {
+export const LogInEmailSent = () => {
+  const navigate = useNavigate();
   return (
-    <>
+    <Box>
       <Typography
         sx={{
           fontWeight: "600",
@@ -37,7 +39,7 @@ export const LogInEmailSent = ({ handleChangeSubpage, emailSent }: ILogInEmailSe
           lineHeight: "24px",
         }}
       >
-        {emailSent}
+        email@gmail
       </Typography>
 
       <Box
@@ -49,25 +51,40 @@ export const LogInEmailSent = ({ handleChangeSubpage, emailSent }: ILogInEmailSe
         }}
       >
         If you don’t recieve it, please&nbsp;
-        <Link href="#" underline="hover">
-          contact support
+        <Link to={""}>
+          <Typography
+            sx={{
+              color: "#2F80ED",
+              cursor: "pointer",
+              fontSize: "16px",
+              ":hover": { color: "#2F80ED" },
+            }}
+          >
+            contact support
+          </Typography>
         </Link>
         &nbsp;or&nbsp;
-        <Link
-          underline="hover"
-          component="button"
-          onClick={() => handleChangeSubpage("LogInForgotPass")}
+        <Typography
+          sx={{
+            color: "#2F80ED",
+            cursor: "pointer",
+            fontSize: "16px",
+            ":hover": { color: "#2F80ED" },
+          }}
+          onClick={() => navigate(-1)}
         >
           try another email address
-        </Link>
+        </Typography>
       </Box>
 
-      <CustomButton
-        text="Back to Log In"
-        kind="dark"
-        sx={{ marginTop: "24px" }}
-        clickFunction={() => handleChangeSubpage("LogInForgotPass")}
-      />
-    </>
+      <Box component={Link} to={"/auth/login"} sx={{ width: "100%" }}>
+        <CustomButton
+          text="Back to Log In"
+          kind="dark"
+          sx={{ marginTop: "24px" }}
+          //clickFunction={() => handleChangeSubpage("LogInForgotPass")}
+        />
+      </Box>
+    </Box>
   );
 };

@@ -18,7 +18,7 @@ export const SignUp = () => {
   });
 
   return (
-    <>
+    <Box>
       <Box sx={{ flexDirection: "column" }}>
         <Typography
           sx={{
@@ -64,6 +64,6 @@ export const SignUp = () => {
           <CustomButton text={"Sign Up with Apple"} clickFunction={() => {}} kind="transparent" />
         </Box>
       )}
-    </>
+    </Box>
   );
 };

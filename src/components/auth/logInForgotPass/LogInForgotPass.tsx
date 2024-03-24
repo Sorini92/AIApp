@@ -3,17 +3,16 @@ import { Typography, Box } from "@mui/material";
 
 import { FormInput } from "../../app/common/inputs";
 import { CustomButton } from "../../app/common/buttons";
+import { Link, useNavigate } from "react-router-dom";
 
-interface ILogInForgotPass {
+/* interface ILogInForgotPass {
   handleChangeSubpage: (nextpage: string) => void;
   handleChangeEmailSent: (emailSent: string) => void;
-}
+} */
 
-export const LogInForgotPass = ({
-  handleChangeSubpage,
-  handleChangeEmailSent,
-}: ILogInForgotPass) => {
+export const LogInForgotPass = () => {
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -22,8 +21,8 @@ export const LogInForgotPass = ({
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     console.log(`email: ${email}`);
-    handleChangeEmailSent(email);
-    handleChangeSubpage("LogInEmailSent");
+    //handleChangeEmailSent(email);
+    //handleChangeSubpage("LogInEmailSent");
   };
 
   return (
@@ -50,12 +49,14 @@ export const LogInForgotPass = ({
         onChange={handleEmailChange}
         marginTop={24}
       />
-      <CustomButton
-        text="Request a Reset Link"
-        kind="dark"
-        type="submit"
-        sx={{ marginTop: "24px" }}
-      />
+      <Link to={"emailsent"}>
+        <CustomButton
+          text="Request a Reset Link"
+          kind="dark"
+          type="submit"
+          sx={{ marginTop: "24px" }}
+        />
+      </Link>
       <Box
         sx={{
           marginTop: "12px",
@@ -67,9 +68,7 @@ export const LogInForgotPass = ({
           color: "#2F80ED",
           cursor: "pointer",
         }}
-        onClick={() => {
-          handleChangeSubpage("LogInForm");
-        }}
+        onClick={() => navigate(-1)}
       >
         Back to Log In
       </Box>
