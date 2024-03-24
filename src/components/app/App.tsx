@@ -1,8 +1,9 @@
 import {
-	createBrowserRouter,
-	RouterProvider,
-	Outlet,
-	useLocation,
+  createBrowserRouter,
+  RouterProvider,
+  Outlet,
+  useLocation,
+  Navigate,
 } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { ThemeProvider } from "@mui/material/styles";
@@ -16,6 +17,12 @@ import { Inbox } from "../../pages/inbox/Inbox";
 import { Settings } from "../../pages/settings/Settings";
 import { PageNotFound } from "../../pages/pageNotFound/PageNotFound";
 import { PromptDiscussion } from "../../pages/community/PromptDiscussion";
+import { GuidlinesItem } from "../../pages/community/Guidlines";
+import { SignUp } from "../auth/signUp/SignUp";
+import { LogInForgotPass } from "../auth/logInForgotPass";
+import { LogInEmailSent } from "../auth/logInEmailSent";
+import { LogIn } from "../auth/login";
+import { LogInSetNewPass } from "../auth/logInSetNewPass";
 
 /* function App() {
   return (
@@ -35,76 +42,102 @@ import { PromptDiscussion } from "../../pages/community/PromptDiscussion";
 } */
 
 const router = createBrowserRouter([
-{
+  {
     path: "/",
     element: <Root />,
     errorElement: <PageNotFound />,
     children: [
       {
         path: "/",
+        element: <Navigate replace to="/aichat" />,
+      },
+      {
+        path: "aichat",
         element: <AIChat />,
       },
       {
-        path: "/aichat",
-        element: <AIChat />,
-      },
-      {
-        path: "/community",
+        path: "community",
         element: <Community />,
       },
       {
-        path: "/community/discussion",
+        path: "community/discussion",
         element: <PromptDiscussion />,
       },
       {
-        path: "/inbox",
+        path: "community/guidlines",
+        element: <GuidlinesItem />,
+      },
+      {
+        path: "inbox",
         element: <Inbox />,
       },
       {
-        path: "/settings",
+        path: "settings",
         element: <Settings component="public" />,
       },
       {
-        path: "/settings/public",
+        path: "settings/public",
         element: <Settings component="public" />,
       },
       {
-        path: "/settings/general",
+        path: "settings/general",
         element: <Settings component="general" />,
       },
       {
-        path: "/auth/signup",
-        element: <Auth component="signup" />,
-      },
-      {
-        path: "/auth/login",
-        element: <Auth component="login" />,
+        path: "auth",
+        element: <Auth />,
+        children: [
+          {
+            path: "signup",
+            element: <SignUp />,
+          },
+          {
+            path: "login",
+            element: <LogIn />,
+          },
+          {
+            path: "login/forgotpassword",
+            element: <LogInForgotPass />,
+          },
+          {
+            path: "login/forgotpassword/emailsent",
+            element: <LogInEmailSent />,
+          },
+          {
+            path: "login/forgotpassword/setnewpassword",
+            element: <LogInSetNewPass />,
+          },
+        ],
       },
     ],
   },
 ]);
 
 function App() {
-	return <RouterProvider router={router} />;
+  return <RouterProvider router={router} />;
 }
 
 function Root() {
-	const location = useLocation();
+  const location = useLocation();
+  const isAuthPage = location.pathname.startsWith("/auth");
 
-	const isAuthPage = location.pathname.startsWith("/auth");
-
-	return (
-		<GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-			<ThemeProvider theme={theme}>
-				<Box sx={{ display: "flex" }}>
-					{!isAuthPage && <Navigation />}
-					<Box sx={{ height: "100vh", width: "100%" }}>
-						<Outlet />
-					</Box>
-				</Box>
-			</ThemeProvider>
-		</GoogleOAuthProvider>
-	);
+  return (
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+      <ThemeProvider theme={theme}>
+        <Box sx={{ display: "flex" }}>
+          {!isAuthPage && <Navigation />}
+          <Box
+            sx={{
+              width: "100%",
+              minHeight: "100vh",
+            }}
+          >
+            <Outlet />
+          </Box>
+        </Box>
+      </ThemeProvider>
+    </GoogleOAuthProvider>
+  );
 }
 
 export default App;

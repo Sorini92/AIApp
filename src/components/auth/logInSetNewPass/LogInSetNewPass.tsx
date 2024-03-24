@@ -4,11 +4,11 @@ import { FormInput, PassValidation } from "../../app/common/inputs";
 import { CustomButton } from "../../app/common/buttons";
 import { useEffect, useRef, useState } from "react";
 
-interface ILogInSetNewPass {
+/* interface ILogInSetNewPass {
   handleChangeSubpage: (nextpage: string) => void;
-}
+} */
 
-export const LogInSetNewPass = ({ handleChangeSubpage }: ILogInSetNewPass) => {
+export const LogInSetNewPass = () => {
   const [inputError, setInputError] = useState<boolean>(true);
   const [newPassword, setNewPassword] = useState<string>("");
   const [confirmNewPassword, setConfirmNewPassword] = useState<string>("");
@@ -23,7 +23,7 @@ export const LogInSetNewPass = ({ handleChangeSubpage }: ILogInSetNewPass) => {
   console.log(confirmNewPassword === newPassword);
 
   return (
-    <>
+    <Box>
       <Typography
         sx={{
           fontWeight: "600",
@@ -91,8 +91,8 @@ export const LogInSetNewPass = ({ handleChangeSubpage }: ILogInSetNewPass) => {
         kind="dark"
         type="submit"
         sx={{ marginTop: "24px" }}
-        clickFunction={() => handleChangeSubpage("LogInForm")}
+        //clickFunction={() => handleChangeSubpage("LogInForm")}
       />
-    </>
+    </Box>
   );
 };

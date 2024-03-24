@@ -43,7 +43,7 @@ export const Navigation = () => {
         sx={{
           padding: "16px",
           backgroundColor: "#fff",
-          height: "100vh",
+          height: "100%",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
@@ -284,13 +284,20 @@ export const Navigation = () => {
         </Box>
 
         <Box>
-          <Box sx={{ marginTop: "12px" }}>
+          <Box
+            sx={{
+              marginTop: "12px",
+              position: "fixed",
+              bottom: 0,
+              width: `${open ? "218px" : "66.5px"}`,
+            }}
+          >
             <nav>
               <List>
                 <ListItem disablePadding>
                   <ListItemButton sx={{ borderRadius: "8px", padding: "8px 12px" }}>
                     <ListItemIcon sx={{ minWidth: "32px" }}>
-                      <img alt="help center icon" src={helpCenterIcon} />
+                      <Box component="img" alt="help center icon" src={helpCenterIcon} />
                     </ListItemIcon>
                     <ListItemText primary="Help center" sx={{ opacity: open ? 1 : 0 }} />
                   </ListItemButton>
