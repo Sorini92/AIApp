@@ -1,37 +1,37 @@
 import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
-  Avatar,
-  Box,
-  Button,
-  Typography,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Divider,
-  Badge,
+	Avatar,
+	Box,
+	Button,
+	Typography,
+	List,
+	ListItem,
+	ListItemButton,
+	ListItemIcon,
+	ListItemText,
+	Divider,
+	Badge,
 } from "@mui/material";
 import { Drawer } from "../app/common/drower";
 
 import {
-  leftArrowIcon,
-  rightArrowIcon,
-  avatarIcon,
-  threeDotsIcon,
-  aichatIcon,
-  communityIcon,
-  inboxIcon,
-  settingIcon,
-  privacyIcon,
-  helpCenterIcon,
-  logOutIcon,
+	leftArrowIcon,
+	rightArrowIcon,
+	avatarIcon,
+	threeDotsIcon,
+	aichatIcon,
+	communityIcon,
+	inboxIcon,
+	settingIcon,
+	privacyIcon,
+	helpCenterIcon,
+	logOutIcon,
 } from "../../img/navigation";
 
 export const Navigation = () => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [open, setOpen] = useState(true);
+	const [selectedIndex, setSelectedIndex] = useState(0);
+	const [open, setOpen] = useState(true);
 
   const location = useLocation();
 
@@ -39,56 +39,65 @@ export const Navigation = () => {
     setOpen(!open);
   };
 
-  return (
-    <Drawer variant="permanent" open={open} openedwidth={240} closedwidth={80}>
-      <Box
-        sx={{
-          padding: "16px",
-          backgroundColor: "#fff",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-        }}
-      >
-        <Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              height: "40px",
-              position: "relative",
-            }}
-          >
-            {/* title and button */}
 
-            <Typography
-              sx={{ fontWeight: 600, fontSize: "20px", ...(!open && { display: "none" }) }}
-            >
-              AdvizorZen
-            </Typography>
-            <Button
-              onClick={handleDrawerToggle}
-              sx={{
-                position: "absolute",
-                right: `${open ? "0px" : "4px"}`,
-                width: "40px",
-                height: "40px",
-                minWidth: "30px",
-                color: "#797979",
-                border: "1px solid #e9e9e9;",
-                borderRadius: "8px",
-                ":hover": {
-                  backgroundColor: "#F2F2F2",
-                },
-              }}
-            >
-              <Box component="img" alt="leftArrow" src={!open ? rightArrowIcon : leftArrowIcon} />
-            </Button>
-          </Box>
+	return (
+		<Drawer variant="permanent" open={open} openedwidth={240} closedwidth={80}>
+			<Box
+				sx={{
+					padding: "16px",
+					backgroundColor: "#fff",
+					height: "100%",
+					display: "flex",
+					flexDirection: "column",
+					justifyContent: "space-between",
+				}}
+			>
+				<Box>
+					<Box
+						sx={{
+							display: "flex",
+							justifyContent: "space-between",
+							alignItems: "center",
+							height: "40px",
+							position: "relative",
+						}}
+					>
+						{/* title and button */}
 
-          {/* avatar */}
+						<Typography
+							sx={{
+								fontWeight: 600,
+								fontSize: "20px",
+								...(!open && { display: "none" }),
+							}}
+						>
+							AdvizorZen
+						</Typography>
+						<Button
+							onClick={handleDrawerToggle}
+							sx={{
+								position: "absolute",
+								right: `${open ? "0px" : "4px"}`,
+								width: "40px",
+								height: "40px",
+								minWidth: "30px",
+								color: "#797979",
+								border: "1px solid #e9e9e9;",
+								borderRadius: "8px",
+								":hover": {
+									backgroundColor: "#F2F2F2",
+								},
+							}}
+						>
+							<Box
+								component="img"
+								alt="leftArrow"
+								src={!open ? rightArrowIcon : leftArrowIcon}
+							/>
+						</Button>
+					</Box>
+
+					{/* avatar */}
 
           {location.pathname.split("/")[1] !== "aichat" && (
             <Box
@@ -125,11 +134,12 @@ export const Navigation = () => {
             </Box>
           )}
 
-          {/* nav links */}
 
-          <Box sx={{ marginTop: "12px" }}>
-            <nav aria-label="nav links">
-              <Divider />
+					{/* nav links */}
+
+					<Box sx={{ marginTop: "12px" }}>
+						<nav aria-label="nav links">
+							<Divider />
 
               <List>
                 <ListItem disablePadding>
@@ -259,8 +269,9 @@ export const Navigation = () => {
                   </ListItemButton>
                 </ListItem>
 
-                <Divider sx={{ marginTop: "4px" }} />
 
+								<Divider sx={{ marginTop: "4px" }} />
+                
                 <ListItem disablePadding>
                   <ListItemButton
                     component={NavLink}
@@ -287,25 +298,34 @@ export const Navigation = () => {
           </Box>
         </Box>
 
-        <Box>
-          <Box
-            sx={{
-              marginTop: "12px",
-              position: "fixed",
-              bottom: 0,
-              width: `${open ? "218px" : "66.5px"}`,
-            }}
-          >
-            <nav>
-              <List>
-                <ListItem disablePadding>
-                  <ListItemButton sx={{ borderRadius: "8px", padding: "8px 12px" }}>
-                    <ListItemIcon sx={{ minWidth: "32px" }}>
-                      <Box component="img" alt="help center icon" src={helpCenterIcon} />
-                    </ListItemIcon>
-                    <ListItemText primary="Help center" sx={{ opacity: open ? 1 : 0 }} />
-                  </ListItemButton>
-                </ListItem>
+				<Box>
+					<Box
+						sx={{
+							marginTop: "12px",
+							position: "fixed",
+							bottom: 0,
+							width: `${open ? "218px" : "66.5px"}`,
+						}}
+					>
+						<nav>
+							<List>
+								<ListItem disablePadding>
+									<ListItemButton
+										sx={{ borderRadius: "8px", padding: "8px 12px" }}
+									>
+										<ListItemIcon sx={{ minWidth: "32px" }}>
+											<Box
+												component="img"
+												alt="help center icon"
+												src={helpCenterIcon}
+											/>
+										</ListItemIcon>
+										<ListItemText
+											primary="Help center"
+											sx={{ opacity: open ? 1 : 0 }}
+										/>
+									</ListItemButton>
+								</ListItem>
 
                 <ListItem disablePadding>
                   <ListItemButton
@@ -318,7 +338,7 @@ export const Navigation = () => {
                   </ListItemButton>
                 </ListItem>
 
-                <Divider sx={{ marginTop: "4px" }} />
+								<Divider sx={{ marginTop: "4px" }} />
 
                 <ListItem disablePadding>
                   <ListItemButton
