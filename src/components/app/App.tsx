@@ -50,10 +50,6 @@ const router = createBrowserRouter([
 				element: <AIChat />,
 			},
 			{
-				path: "/onboarding",
-				element: <OnBoarding />,
-			},
-			{
 				path: "/community",
 				element: <Community />,
 			},
