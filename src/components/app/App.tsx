@@ -12,7 +12,7 @@ import { Auth } from "../../pages/auth/Auth";
 import { AIChat } from "../../pages/aiChat/AIChat";
 import { Navigation } from "../../components/navigation";
 import { Box } from "@mui/material";
-import { Community } from "../../pages/community/Community";
+import { CommunityMain } from "../../pages/community/CommunityMain";
 import { Inbox } from "../../pages/inbox/Inbox";
 import { Settings } from "../../pages/settings/Settings";
 import { PageNotFound } from "../../pages/pageNotFound/PageNotFound";
@@ -23,6 +23,9 @@ import { LogInForgotPass } from "../auth/logInForgotPass";
 import { LogInEmailSent } from "../auth/logInEmailSent";
 import { LogIn } from "../auth/login";
 import { LogInSetNewPass } from "../auth/logInSetNewPass";
+import { PublicProfile } from "../settings/publicProfile";
+import { General } from "../settings/general";
+import { Community } from "../../pages/community/Community";
 
 /* function App() {
   return (
@@ -57,15 +60,21 @@ const router = createBrowserRouter([
       },
       {
         path: "community",
-        element: <Community />,
-      },
-      {
-        path: "community/discussion",
-        element: <PromptDiscussion />,
-      },
-      {
-        path: "community/guidlines",
-        element: <GuidlinesItem />,
+        element: <CommunityMain />,
+        children: [
+          {
+            path: "",
+            element: <Community />,
+          },
+          {
+            path: "discussion",
+            element: <PromptDiscussion />,
+          },
+          {
+            path: "guidlines",
+            element: <GuidlinesItem />,
+          },
+        ],
       },
       {
         path: "inbox",
@@ -73,15 +82,17 @@ const router = createBrowserRouter([
       },
       {
         path: "settings",
-        element: <Settings component="public" />,
-      },
-      {
-        path: "settings/public",
-        element: <Settings component="public" />,
-      },
-      {
-        path: "settings/general",
-        element: <Settings component="general" />,
+        element: <Settings />,
+        children: [
+          {
+            path: "public",
+            element: <PublicProfile />,
+          },
+          {
+            path: "general",
+            element: <General />,
+          },
+        ],
       },
       {
         path: "auth",

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
   Box,
   Typography,
@@ -12,30 +12,33 @@ import {
 } from "@mui/material";
 import { Header } from "../../components/app/common/header/Header";
 import { logoutIcon, profileIcon, generalIcon } from "../../img/settings";
-import { PublicProfile } from "../../components/settings/publicProfile";
-import { General } from "../../components/settings/general";
 
-interface ISettings {
-  component: string;
-}
-
-export const Settings = ({ component }: ISettings) => {
+export const Settings = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.pathname === "/settings") navigate("public");
+  }, []);
+
   const publicBreadcrumbs = [
-    { text: "Settings", type: "link", to: "/settings/public" },
+    { text: "Settings", type: "link", to: "public" },
     { text: "Public Profile", type: "text", to: "" },
   ];
 
   const generalBreadcrumbs = [
-    { text: "Settings", type: "link", to: "/settings/general" },
+    { text: "Settings", type: "link", to: "general" },
     { text: "General", type: "text", to: "" },
   ];
 
   return (
     <Box>
       <Header
-        breadcrumbs={component === "public" ? publicBreadcrumbs : generalBreadcrumbs}
+        breadcrumbs={
+          location.pathname === "/settings/general" ? generalBreadcrumbs : publicBreadcrumbs
+        }
         searchFunc={() => {}}
       />
       <Box sx={{ display: "flex", justifyContent: "center", marginTop: "24px" }}>
@@ -122,7 +125,8 @@ export const Settings = ({ component }: ISettings) => {
             </nav>
           </Box>
         </Box>
-        <Box>{component === "public" ? <PublicProfile /> : <General />}</Box>
+        {/* <Box>{component === "public" ? <PublicProfile /> : <General />}</Box> */}
+        <Outlet />
       </Box>
     </Box>
   );

@@ -6,18 +6,18 @@ import {
   Divider,
   FormControlLabel,
   Checkbox,
-  TextField,
+  Button,
+  OutlinedInput,
 } from "@mui/material";
 
-import { AIChatHeader } from "../../components/aiChat/aiChatHeader";
+import { AIChatHeader } from "../../components/aiChat/aiChatHeader/AIChatHeader";
 import { CustomButton } from "../../components/app/common/buttons";
 import { CustomModal } from "../../components/app/common/modal";
 import avatarIcon from "../../img/aiChat/avatarIcon.svg";
 import close from "../../img/aiChat/close.svg";
 
 export const AIChat = () => {
-  const [isOpenModal, setIsOpenModal] = useState(true);
-
+  const [isOpenModal, setIsOpenModal] = useState(false);
   return (
     <>
       <AIChatHeader />
@@ -100,7 +100,7 @@ export const AIChat = () => {
           </Box>
           <CustomButton
             text="Start chat with James"
-            clickFunction={() => {}}
+            clickFunction={() => setIsOpenModal(true)}
             kind="dark"
             sx={{ height: "51px" }}
           />
@@ -159,7 +159,7 @@ export const AIChat = () => {
           </Box>
           <CustomButton
             text="Start chat with John"
-            clickFunction={() => {}}
+            clickFunction={() => setIsOpenModal(true)}
             kind="dark"
             sx={{ height: "51px" }}
           />
@@ -217,7 +217,7 @@ export const AIChat = () => {
           </Box>
           <CustomButton
             text="Start chat with Olivia"
-            clickFunction={() => {}}
+            clickFunction={() => setIsOpenModal(true)}
             kind="dark"
             sx={{ height: "51px" }}
           />
@@ -278,7 +278,7 @@ export const AIChat = () => {
           </Box>
           <CustomButton
             text="Start chat with Rayna"
-            clickFunction={() => {}}
+            clickFunction={() => setIsOpenModal(true)}
             kind="dark"
             sx={{ height: "51px" }}
           />
@@ -335,12 +335,15 @@ export const AIChat = () => {
           </Box>
           <CustomButton
             text="Start chat with James"
-            clickFunction={() => {}}
+            clickFunction={() => setIsOpenModal(true)}
             kind="dark"
             sx={{ height: "51px" }}
           />
         </Box>
       </Box>
+
+      {/* Onboarding modal */}
+
       <CustomModal
         open={isOpenModal}
         handleClose={() => setIsOpenModal(false)}
@@ -359,11 +362,21 @@ export const AIChat = () => {
             sx={{
               display: "flex",
               justifyContent: "space-between",
-              padding: "24px",
+              padding: "16px 24px",
             }}
           >
             <Typography sx={{ fontWeight: 600, fontSize: "24px" }}>Onboarding</Typography>
-            <Box component="img" src={close}></Box>
+            <Button
+              sx={{
+                minWidth: "40px",
+                height: "40px",
+                padding: "0",
+                borderRadius: "100%",
+              }}
+              onClick={() => setIsOpenModal(false)}
+            >
+              <Box component="img" src={close}></Box>
+            </Button>
           </Box>
           <Divider sx={{ height: "1px", width: "584px" }} />
           <Box
@@ -371,54 +384,168 @@ export const AIChat = () => {
               display: "flex",
               flexDirection: "column",
               padding: "0 24px",
+              height: "534px",
+              overflow: "auto",
             }}
           >
-            <Typography sx={{ fontWeight: 600, fontSize: "16px", marginTop: "24px" }}>
+            {/* first question */}
+            <Typography sx={{ fontWeight: 600, fontSize: "16px", margin: "24px 0 4px 0" }}>
               What type of financial analysis or research are you currently focusing on?
             </Typography>
             <FormControlLabel
               control={<Checkbox />}
               label="Equities"
               sx={{
+                height: "24px",
                 margin: "12px 0 0 -4px",
               }}
             />
             <FormControlLabel
               control={<Checkbox />}
               label="Macroeconomic analysis"
-              sx={{ margin: "12px 0 0 -4px" }}
+              sx={{ height: "24px", margin: "12px 0 0 -4px" }}
             />
             <FormControlLabel
               control={<Checkbox />}
               label="Fixed income"
-              sx={{ margin: "12px 0 0 -4px" }}
+              sx={{ height: "24px", margin: "12px 0 0 -4px" }}
             />
             <FormControlLabel
               control={<Checkbox />}
-              label={<TextField placeholder="Other" />}
-              sx={{ margin: "12px 0 0 -4px" }}
+              label={
+                <OutlinedInput
+                  placeholder="Other"
+                  name="otherTypeOfFinAnalysis"
+                  sx={{
+                    borderRadius: "4px",
+                    width: "200px",
+                    height: "40px",
+                  }}
+                />
+              }
+              sx={{
+                padding: "0",
+                margin: "12px 0 0 -4px",
+              }}
             />
-            <Typography sx={{ fontWeight: 600, fontSize: "16px" }}>
-              What type of financial analysis or research are you currently focusing on?
+            {/* second question */}
+            <Typography sx={{ fontWeight: 600, fontSize: "16px", margin: "24px 0 4px 0" }}>
+              What challenges do you typically encounter during your research process?
             </Typography>
             <FormControlLabel
               control={<Checkbox />}
-              label="Equities"
-              sx={{ margin: "12px 0 0 -4px" }}
+              label="Data Accuracy"
+              sx={{
+                height: "24px",
+                margin: "12px 0 0 -4px",
+              }}
             />
             <FormControlLabel
               control={<Checkbox />}
-              label="Macroeconomic analysis"
-              sx={{ margin: "12px 0 0 -4px" }}
+              label="Time-consuming Analysis"
+              sx={{ height: "24px", margin: "12px 0 0 -4px" }}
             />
             <FormControlLabel
               control={<Checkbox />}
-              label={<TextField placeholder="Other" />}
-              sx={{ margin: "12px 0 0 -4px" }}
+              label="Information Overload"
+              sx={{ height: "24px", margin: "12px 0 0 -4px" }}
+            />
+            <FormControlLabel
+              control={<Checkbox />}
+              label={
+                <OutlinedInput
+                  placeholder="Other"
+                  name="otherChallenges"
+                  sx={{
+                    borderRadius: "4px",
+                    width: "200px",
+                    height: "40px",
+                  }}
+                />
+              }
+              sx={{
+                padding: "0",
+                margin: "12px 0 0 -4px",
+              }}
+            />
+            {/* third question */}
+            <Typography sx={{ fontWeight: 600, fontSize: "16px", margin: "24px 0 4px 0" }}>
+              Which data sources do you rely on the most for your analysis?
+            </Typography>
+            <FormControlLabel
+              control={<Checkbox />}
+              label="Bloomberg"
+              sx={{
+                height: "24px",
+                margin: "12px 0 0 -4px",
+              }}
+            />
+            <FormControlLabel
+              control={<Checkbox />}
+              label="Reuters"
+              sx={{ height: "24px", margin: "12px 0 0 -4px" }}
+            />
+            <FormControlLabel
+              control={<Checkbox />}
+              label="Financial Statements"
+              sx={{ height: "24px", margin: "12px 0 0 -4px" }}
+            />
+            <FormControlLabel
+              control={<Checkbox />}
+              name="otherDataSources"
+              label={
+                <OutlinedInput
+                  placeholder="Other"
+                  sx={{
+                    borderRadius: "4px",
+                    width: "200px",
+                    height: "40px",
+                  }}
+                />
+              }
+              sx={{
+                padding: "0",
+                margin: "12px 0 0 -4px",
+              }}
             />
           </Box>
           <Divider sx={{ height: "1px", width: "584px" }} />
-          <Box></Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "flex-end",
+              alignContent: "center",
+              padding: "16px",
+              width: "584px",
+              height: "80px",
+            }}
+          >
+            <Button
+              onClick={() => {}}
+              sx={{
+                textTransform: "none",
+                fontWeight: 500,
+                fontSize: "16px",
+                lineHeight: "150%",
+                color: "#454545",
+                cursor: "pointer",
+                padding: "0",
+                marginRight: "24px",
+                ":hover": {
+                  backgroundColor: "#F2F2F2",
+                },
+              }}
+            >
+              Start without onboarding
+            </Button>
+            <CustomButton
+              text="Apply and start"
+              clickFunction={() => {}}
+              kind="dark"
+              width="198px"
+              height={48}
+            ></CustomButton>
+          </Box>
         </Box>
       </CustomModal>
     </>

@@ -1,5 +1,4 @@
 import { Box, Button, Typography } from "@mui/material";
-import { Header } from "../../components/app/common/header/Header";
 import { Link } from "react-router-dom";
 import { VideoItem } from "../../components/community/videoItem";
 
@@ -10,12 +9,6 @@ import leftArrowIcon from "../../img/community/leftArrow.svg";
 import rightArrowIcon from "../../img/community/rightArrow.svg";
 
 export const GuidlinesItem = () => {
-  const guidlinesBreadcrumbs = [
-    { text: "Community", type: "link", to: "/community" },
-    { text: "Guidlines", type: "link", to: "/community" },
-    { text: "How to get the...", type: "text", to: "" },
-  ];
-
   const videoItems = [
     {
       text: "How to get the best results while working with John, the Research Analyst",
@@ -41,7 +34,6 @@ export const GuidlinesItem = () => {
 
   return (
     <Box sx={{ minHeight: "100vh" }}>
-      <Header breadcrumbs={guidlinesBreadcrumbs} searchFunc={() => {}} />
       <Box sx={{ padding: "56px 280px" }}>
         <Typography sx={{ fontWeight: 500, fontSize: "32px" }}>
           How to get the best results while working with John, the Research Analyst
