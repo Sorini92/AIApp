@@ -568,6 +568,8 @@ export const FirstSession = () => {
 									cursor: "pointer",
 									padding: "0",
 									marginRight: "24px",
+									width: "220px",
+									height: "48px",
 									":hover": {
 										backgroundColor: "#F2F2F2",
 									},
