@@ -46,6 +46,7 @@ export const Auth = () => {
               href="#"
               underline="hover"
               sx={{
+                color: "#1976D2",
                 ":hover": {
                   color: "#1976D2",
                 },
@@ -58,6 +59,7 @@ export const Auth = () => {
               href="#"
               underline="hover"
               sx={{
+                color: "#1976D2",
                 ":hover": {
                   color: "#1976D2",
                 },
