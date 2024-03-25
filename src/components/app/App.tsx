@@ -1,9 +1,9 @@
 import {
-	createBrowserRouter,
-	RouterProvider,
-	Outlet,
-	useLocation,
-	Navigate,
+  createBrowserRouter,
+  RouterProvider,
+  Outlet,
+  useLocation,
+  Navigate,
 } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { ThemeProvider } from "@mui/material/styles";
@@ -28,6 +28,9 @@ import { General } from "../settings/general";
 import { Community } from "../../pages/community/Community";
 import { LogIn } from "../auth/logIn";
 import { FirstSession } from "../../pages/aiChat/FirstSession";
+import { Forum } from "../../pages/community/Forum";
+import { Category } from "../../pages/community/Category";
+import { NewPost } from "../../pages/community/NewPost";
 
 /* function App() {
   return (
@@ -52,84 +55,45 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <PageNotFound />,
     children: [
+      { path: "/", element: <Navigate replace to="/aichat" /> },
       {
-        path: "/",
-        element: <Navigate replace to="/aichat" />,
+        path: "aichat",
+        element: <AIChat />,
+        children: [
+          { path: "", element: <FirstSession /> },
+          { path: "onboarding", element: <OnBoarding /> },
+        ],
       },
-      {
-				path: "aichat",
-				element: <AIChat />,
-				children: [
-					{
-						path: "",
-						element: <FirstSession />,
-					},
-					{
-						path: "onboarding",
-						element: <OnBoarding />,
-					},
-				],
-			},
       {
         path: "community",
         element: <CommunityMain />,
         children: [
-          {
-            path: "",
-            element: <Community />,
-          },
-          {
-            path: "discussion",
-            element: <PromptDiscussion />,
-          },
-          {
-            path: "guidlines",
-            element: <GuidlinesItem />,
-          },
+          { path: "", element: <Community /> },
+          { path: "discussion", element: <PromptDiscussion /> },
+          { path: "guidlines", element: <GuidlinesItem /> },
+          { path: "forum", element: <Forum /> },
+          { path: "forum/category", element: <Category /> },
         ],
       },
-      {
-        path: "inbox",
-        element: <Inbox />,
-      },
+      { path: "community/forum/newpost", element: <NewPost /> },
+      { path: "inbox", element: <Inbox /> },
       {
         path: "settings",
         element: <Settings />,
         children: [
-          {
-            path: "public",
-            element: <PublicProfile />,
-          },
-          {
-            path: "general",
-            element: <General />,
-          },
+          { path: "public", element: <PublicProfile /> },
+          { path: "general", element: <General /> },
         ],
       },
       {
         path: "auth",
         element: <Auth />,
         children: [
-          {
-            path: "signup",
-            element: <SignUp />,
-          },
-          {
-            path: "login",
-            element: <LogIn />,
-          },
-          {
-            path: "login/forgotpassword",
-            element: <LogInForgotPass />,
-          },
-          {
-            path: "login/forgotpassword/emailsent",
-            element: <LogInEmailSent />,
-          },
-          {
-            path: "login/forgotpassword/setnewpassword",
-            element: <LogInSetNewPass />,
-          },
+          { path: "signup", element: <SignUp /> },
+          { path: "login", element: <LogIn /> },
+          { path: "login/forgotpassword", element: <LogInForgotPass /> },
+          { path: "login/forgotpassword/emailsent", element: <LogInEmailSent /> },
+          { path: "login/forgotpassword/setnewpassword", element: <LogInSetNewPass /> },
         ],
       },
     ],
@@ -137,30 +101,31 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-	return <RouterProvider router={router} />;
+  return <RouterProvider router={router} />;
 }
 
 function Root() {
-	const location = useLocation();
-	const isAuthPage = location.pathname.startsWith("/auth");
+  const location = useLocation();
+  const isAuthPage = location.pathname.startsWith("/auth");
+  const isNewPostPage = location.pathname.startsWith("/community/forum/newpost");
 
-	return (
-		<GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-			<ThemeProvider theme={theme}>
-				<Box sx={{ display: "flex" }}>
-					{!isAuthPage && <Navigation />}
-					<Box
-						sx={{
-							width: "100%",
-							minHeight: "100vh",
-						}}
-					>
-						<Outlet />
-					</Box>
-				</Box>
-			</ThemeProvider>
-		</GoogleOAuthProvider>
-	);
+  return (
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+      <ThemeProvider theme={theme}>
+        <Box sx={{ display: "flex" }}>
+          {!isNewPostPage && !isAuthPage && <Navigation />}
+          <Box
+            sx={{
+              width: "100%",
+              minHeight: "100vh",
+            }}
+          >
+            <Outlet />
+          </Box>
+        </Box>
+      </ThemeProvider>
+    </GoogleOAuthProvider>
+  );
 }
 
 export default App;

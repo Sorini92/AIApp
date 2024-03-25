@@ -129,7 +129,7 @@ export const Community = () => {
             <Typography sx={{ fontWeight: 600, fontSize: "16px", color: "#333" }}>Forum</Typography>
             <Box
               component={Link}
-              to={""}
+              to={"forum"}
               sx={{
                 color: "#2f80ed",
                 ":hover": { textDecoration: "underline", color: "#2f80ed" },

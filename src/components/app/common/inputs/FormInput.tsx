@@ -1,18 +1,17 @@
 import { useState } from "react";
 import {
-	InputLabel,
-	Typography,
-	OutlinedInput,
-	InputAdornment,
-	IconButton,
-	CardMedia,
-	Box,
+  InputLabel,
+  Typography,
+  OutlinedInput,
+  InputAdornment,
+  IconButton,
+  CardMedia,
+  Box,
 } from "@mui/material";
 
 import { IFormInput } from "../../../../shared/interfaces/common";
 import visibility from "../../../../img/auth/visibility.png";
 import visibilityOff from "../../../../img/auth/visibilityOff.png";
-import "./inputs.scss";
 
 export const FormInput = ({
   label,
@@ -30,22 +29,22 @@ export const FormInput = ({
   rows = 1,
   placeholder = "",
 }: IFormInput) => {
-	const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
-	const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-	const defaultStyles = {
-		width: typeof width === "number" ? `${width}px` : width,
-		height: typeof height === "number" ? `${height}px` : height,
-		borderRadius: "8px",
-		...sx,
-	};
+  const defaultStyles = {
+    width: typeof width === "number" ? `${width}px` : width,
+    height: typeof height === "number" ? `${height}px` : height,
+    borderRadius: "8px",
+    ...sx,
+  };
 
-	// const handleMouseDownPassword = (
-	// 	event: React.MouseEvent<HTMLButtonElement>
-	// ) => {
-	// 	event.preventDefault();
-	// };
+  // const handleMouseDownPassword = (
+  // 	event: React.MouseEvent<HTMLButtonElement>
+  // ) => {
+  // 	event.preventDefault();
+  // };
 
   return (
     <Box>

@@ -16,7 +16,7 @@ export const Auth = () => {
   };
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "end" }}>
+    <Box sx={{ display: "flex", justifyContent: "end", backgroundColor: "#d9d9d9" }}>
       <Box
         sx={{
           padding: "48px",
