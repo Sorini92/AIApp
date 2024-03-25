@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
 
 import themeIcon from "../../img/community/themeIcom.png";
+import { CheckboxButton } from "../../components/app/common/buttons/CheckboxButton";
 
 type CheckBoxState = {
   [key: string]: boolean;
@@ -133,127 +134,38 @@ export const Forum = () => {
               marginBottom: "16px",
             }}
           >
-            <Button
-              sx={{
-                padding: "0",
-                width: "70px",
-                height: "40px",
-                textTransform: "none",
-                fontSize: 16,
-                fontWeight: 500,
-                borderRadius: "8px",
-                color: `${checkBoxes.all ? "#fff" : "#4F4F4F"}`,
-                border: `1px solid ${checkBoxes.all ? "#454545" : "#4F4F4F"}`,
-                backgroundColor: `${checkBoxes.all ? "#454545" : "inherit"}`,
-                ":hover": {
-                  border: `1px solid ${checkBoxes.all ? "#454545" : "#4F4F4F"}`,
-                  backgroundColor: `${checkBoxes.all ? "#828282" : "#F2F2F2"}`,
-                },
-              }}
-            >
-              All
-              <Box
-                sx={{
-                  position: "absolute",
-                  width: "100%",
-                  height: "100%",
-                  opacity: 0,
-                }}
-                name="all"
-                component="input"
-                type="checkbox"
-                checked={checkBoxes.all}
-                onChange={() => handleCheckBoxChange("all")}
-              />
-            </Button>
+            <CheckboxButton
+              name="all"
+              isChecked={checkBoxes.all}
+              onChangeFunc={handleCheckBoxChange}
+              text="All"
+            />
 
-            <Button
-              sx={{
-                padding: "0",
-                width: "120px",
-                height: "40px",
-                textTransform: "none",
-                fontSize: 16,
-                fontWeight: 500,
-                borderRadius: "8px",
-                color: `${checkBoxes.wellness ? "#fff" : "#4F4F4F"}`,
-                border: `1px solid ${checkBoxes.wellness ? "#454545" : "#4F4F4F"}`,
-                backgroundColor: `${checkBoxes.wellness ? "#454545" : "inherit"}`,
-                ":hover": {
-                  border: `1px solid ${checkBoxes.wellness ? "#454545" : "#4F4F4F"}`,
-                  backgroundColor: `${checkBoxes.wellness ? "#828282" : "#F2F2F2"}`,
-                },
-              }}
-            >
-              Wellness
-              <Box
-                sx={{ position: "absolute", width: "100%", height: "100%", opacity: 0 }}
-                component="input"
-                type="checkbox"
-                name="wellness"
-                checked={checkBoxes.wellness}
-                onChange={() => handleCheckBoxChange("wellness")}
-              />
-            </Button>
+            <CheckboxButton
+              name="wellness"
+              isChecked={checkBoxes.wellness}
+              onChangeFunc={handleCheckBoxChange}
+              text="Wellness"
+              width={120}
+            />
 
-            <Button
-              sx={{
-                padding: "0",
-                width: "135px",
-                height: "40px",
-                textTransform: "none",
-                fontSize: 16,
-                fontWeight: 500,
-                borderRadius: "8px",
-                color: `${checkBoxes.investment ? "#fff" : "#4F4F4F"}`,
-                border: `1px solid ${checkBoxes.investment ? "#454545" : "#4F4F4F"}`,
-                backgroundColor: `${checkBoxes.investment ? "#454545" : "inherit"}`,
-                ":hover": {
-                  border: `1px solid ${checkBoxes.investment ? "#454545" : "#4F4F4F"}`,
-                  backgroundColor: `${checkBoxes.investment ? "#828282" : "#F2F2F2"}`,
-                },
-              }}
-            >
-              Investment
-              <Box
-                sx={{ position: "absolute", width: "100%", height: "100%", opacity: 0 }}
-                component="input"
-                type="checkbox"
-                name="investment"
-                checked={checkBoxes.investment}
-                onChange={() => handleCheckBoxChange("investment")}
-              />
-            </Button>
+            <CheckboxButton
+              name="investment"
+              isChecked={checkBoxes.investment}
+              onChangeFunc={handleCheckBoxChange}
+              text="Investment"
+              width={135}
+            />
 
-            <Button
-              sx={{
-                padding: "0",
-                width: "190px",
-                height: "40px",
-                textTransform: "none",
-                fontSize: 16,
-                fontWeight: 500,
-                borderRadius: "8px",
-                color: `${checkBoxes.financial ? "#fff" : "#4F4F4F"}`,
-                border: `1px solid ${checkBoxes.financial ? "#454545" : "#4F4F4F"}`,
-                backgroundColor: `${checkBoxes.financial ? "#454545" : "inherit"}`,
-                ":hover": {
-                  border: `1px solid ${checkBoxes.financial ? "#454545" : "#4F4F4F"}`,
-                  backgroundColor: `${checkBoxes.financial ? "#828282" : "#F2F2F2"}`,
-                },
-              }}
-            >
-              Financial Planning
-              <Box
-                sx={{ position: "absolute", width: "100%", height: "100%", opacity: 0 }}
-                component="input"
-                type="checkbox"
-                name="financial"
-                checked={checkBoxes.financial}
-                onChange={() => handleCheckBoxChange("financial")}
-              />
-            </Button>
+            <CheckboxButton
+              name="financial"
+              isChecked={checkBoxes.financial}
+              onChangeFunc={handleCheckBoxChange}
+              text="Financial Planning"
+              width={190}
+            />
           </Box>
+
           <Box sx={{ display: "flex", flexDirection: "column" }}>
             {themes.map((item, i) => {
               return (
