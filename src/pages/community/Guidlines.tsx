@@ -1,12 +1,9 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import { VideoItem } from "../../components/community/videoItem";
 
 import videoImgStub from "../../img/community/videoImgStub.png";
 import imgStub from "../../img/community/guidlinesImgStub.png";
 import stub from "../../img/community/stub.png";
-import leftArrowIcon from "../../img/community/leftArrow.svg";
-import rightArrowIcon from "../../img/community/rightArrow.svg";
 
 import { MyCarousel } from "../../components/community/myCarousel/MyCarousel";
 
@@ -19,6 +16,31 @@ export const GuidlinesItem = () => {
     },
     {
       text: "How to get the best results while working with Rayna, the SMM & Content Strategist",
+      videoImg: stub,
+      link: "guidlines",
+    },
+    {
+      text: "How to get the best results while working with Olivia, the Journalist",
+      videoImg: stub,
+      link: "guidlines",
+    },
+    {
+      text: "How to get the best results while working with Olivia, the Journalist",
+      videoImg: stub,
+      link: "guidlines",
+    },
+    {
+      text: "How to get the best results while working with Olivia, the Journalist",
+      videoImg: stub,
+      link: "guidlines",
+    },
+    {
+      text: "How to get the best results while working with Olivia, the Journalist",
+      videoImg: stub,
+      link: "guidlines",
+    },
+    {
+      text: "How to get the best results while working with Olivia, the Journalist",
       videoImg: stub,
       link: "guidlines",
     },
@@ -100,7 +122,6 @@ export const GuidlinesItem = () => {
 
       <Box
         sx={{
-          //width: "100%",
           height: "348px",
           padding: "24px",
           borderTopLeftRadius: "16px",

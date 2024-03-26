@@ -1,6 +1,7 @@
 import Carousel from "react-material-ui-carousel";
 import { Box } from "@mui/material";
 import { VideoItem } from "../videoItem";
+
 import leftArrowIcon from "../../../img/community/leftArrow.svg";
 import rightArrowIcon from "../../../img/community/rightArrow.svg";
 
@@ -16,12 +17,11 @@ interface IMyCarousel {
 
 export const MyCarousel = ({ items }: IMyCarousel) => {
   const chunkSize = 4;
-  const arrayOfArrays: IMyCarousel[][] = items.reduce<IMyCarousel[][]>((acc, _, index) => {
-    if (index % chunkSize === 0) {
-      acc.push(items.slice(index, index + chunkSize));
-    }
-    return acc;
-  }, []);
+  const arrayOfArrays: IMyCarouselItem[][] = [];
+
+  for (let i = 0; i < items.length; i += chunkSize) {
+    arrayOfArrays.push(items.slice(i, i + chunkSize));
+  }
 
   return (
     <Carousel
@@ -44,20 +44,18 @@ export const MyCarousel = ({ items }: IMyCarousel) => {
       sx={{
         height: "276px",
       }}
-      NextIcon={<Box component="img" alt="leftArrow" src={rightArrowIcon} />}
+      NextIcon={<Box component="img" alt="rightArrow" src={rightArrowIcon} />}
       PrevIcon={<Box component="img" alt="leftArrow" src={leftArrowIcon} />}
     >
-      {arrayOfArrays.map((item, i) => {
-        return (
-          <Box key={i} sx={{ display: "flex", justifyContent: "flex-start" }}>
-            {item.map((slide, i) => {
-              return (
-                <VideoItem key={i} text={slide.text} videoImg={slide.videoImg} link={slide.link} />
-              );
-            })}
-          </Box>
-        );
-      })}
+      {arrayOfArrays.map((slide, i) => (
+        <Box key={i} sx={{ display: "flex", justifyContent: "flex-start" }}>
+          {slide.map((item, j) => (
+            <VideoItem key={j} text={item.text} videoImg={item.videoImg} link={item.link} />
+          ))}
+        </Box>
+      ))}
     </Carousel>
   );
 };
+
+export default MyCarousel;
