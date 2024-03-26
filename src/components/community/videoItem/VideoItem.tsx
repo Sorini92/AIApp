@@ -21,6 +21,10 @@ export const VideoItem = ({ text, videoImg, link }: IVideoItem) => {
         backgroundColor: "#f1f1f1",
         display: "flex",
         flexDirection: "column",
+        marginRight: "16px",
+        ":last-child": {
+          marginRight: "0",
+        },
       }}
     >
       <Box

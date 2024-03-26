@@ -52,7 +52,7 @@ export const PromptDiscussion = () => {
           padding: "0 24px",
           display: "flex",
           justifyContent: "center",
-          marginTop: "24px",
+          margin: "24px 0",
         }}
       >
         <Box
@@ -164,20 +164,14 @@ export const PromptDiscussion = () => {
             <Button
               onClick={() => {}}
               sx={{
-                textTransform: "none",
-                fontWeight: 400,
-                fontSize: "16px",
-                lineHeight: "150%",
                 color: "#333",
-                cursor: "pointer",
-                padding: "0",
                 width: "75px",
                 height: "32px",
                 borderRadius: "999px",
                 backgroundColor: "#f1f1f1",
                 marginRight: "8px",
                 ":hover": {
-                  backgroundColor: "#F2F2F2",
+                  backgroundColor: "#f1f1f1",
                 },
               }}
             >

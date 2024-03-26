@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import themeIcon from "../../img/community/themeIcom.png";
 import { CheckboxButton } from "../../components/app/common/buttons/CheckboxButton";
@@ -112,7 +112,7 @@ export const Forum = () => {
           padding: "0 24px",
           display: "flex",
           justifyContent: "center",
-          marginTop: "24px",
+          margin: "24px 0",
         }}
       >
         <Box

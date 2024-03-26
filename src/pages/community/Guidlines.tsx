@@ -8,6 +8,8 @@ import stub from "../../img/community/stub.png";
 import leftArrowIcon from "../../img/community/leftArrow.svg";
 import rightArrowIcon from "../../img/community/rightArrow.svg";
 
+import { MyCarousel } from "../../components/community/myCarousel/MyCarousel";
+
 export const GuidlinesItem = () => {
   const videoItems = [
     {
@@ -98,7 +100,7 @@ export const GuidlinesItem = () => {
 
       <Box
         sx={{
-          width: "100%",
+          //width: "100%",
           height: "348px",
           padding: "24px",
           borderTopLeftRadius: "16px",
@@ -131,7 +133,13 @@ export const GuidlinesItem = () => {
           </Box>
         </Box>
 
-        <Box sx={{ display: "flex", justifyContent: "space-between", position: "relative" }}>
+        {/* carousel */}
+
+        <MyCarousel items={videoItems} />
+
+        {/* end carousel */}
+
+        {/* <Box sx={{ display: "flex", justifyContent: "space-between", position: "relative" }}>
           <Button
             sx={{
               position: "absolute",
@@ -173,7 +181,7 @@ export const GuidlinesItem = () => {
           >
             <Box component="img" alt="leftArrow" src={rightArrowIcon} />
           </Button>
-        </Box>
+        </Box> */}
       </Box>
     </Box>
   );

@@ -105,7 +105,11 @@ export const Navigation = () => {
               }}
             >
               <Box sx={{ display: "flex", alignItems: "center" }}>
-                <Avatar alt="avatar" src={avatarIcon} sx={{ marginRight: "10px" }} />
+                <Avatar
+                  alt="avatar"
+                  src={avatarIcon}
+                  sx={{ marginRight: "10px", maxWidth: "40px", maxHeight: "40px" }}
+                />
                 <Typography sx={{ fontWeight: 500, fontSize: "14px", opacity: open ? 1 : 0 }}>
                   Davis Botosh
                 </Typography>
