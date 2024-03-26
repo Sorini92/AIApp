@@ -21,6 +21,7 @@ export const VideoItem = ({ text, videoImg, link }: IVideoItem) => {
         backgroundColor: "#f1f1f1",
         display: "flex",
         flexDirection: "column",
+        alignItems: "center",
         marginRight: "16px",
         ":last-child": {
           marginRight: "0",
@@ -34,7 +35,12 @@ export const VideoItem = ({ text, videoImg, link }: IVideoItem) => {
           borderRadius: "8px",
         }}
       >
-        <Box component="img" alt="video img" src={videoImg} />
+        <Box
+          sx={{ width: "100%", height: "100%" }}
+          component="img"
+          alt="video img"
+          src={videoImg}
+        />
       </Box>
       <Typography
         sx={{

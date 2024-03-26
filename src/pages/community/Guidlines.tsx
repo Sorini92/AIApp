@@ -123,7 +123,7 @@ export const GuidlinesItem = () => {
       <Box
         sx={{
           height: "348px",
-          padding: "24px",
+          padding: "24px 0",
           borderTopLeftRadius: "16px",
           backgroundColor: "#fff",
           margin: "112px 0 56px 24px",
@@ -133,6 +133,7 @@ export const GuidlinesItem = () => {
       >
         <Box
           sx={{
+            padding: "0 24px",
             height: "24px",
             width: "100%",
             display: "flex",

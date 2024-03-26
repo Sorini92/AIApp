@@ -37,12 +37,13 @@ export const MyCarousel = ({ items }: IMyCarousel) => {
           width: "56px",
           height: "56px",
           boxShadow: "0 4px 13px 0 rgba(0, 0, 0, 0.15)",
-          marginRight: "-10px",
-          marginLeft: "-15px",
+          marginRight: "0px",
+          left: "-4px",
         },
       }}
       sx={{
         height: "276px",
+        paddingLeft: "25px",
       }}
       NextIcon={<Box component="img" alt="rightArrow" src={rightArrowIcon} />}
       PrevIcon={<Box component="img" alt="leftArrow" src={leftArrowIcon} />}
