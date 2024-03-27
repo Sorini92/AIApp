@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { ChangeEvent } from "react";
+import { ChangeEvent, createRef, useEffect } from "react";
 
 const buttonStyle = {
   textTransform: "none",
@@ -38,13 +38,28 @@ const VisuallyHiddenInput = styled("input")({
 interface IInputFileUpload {
   name: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  isDefaultButtonClick: boolean;
 }
 
-export const InputFileUpload = ({ name, onChange }: IInputFileUpload) => {
+export const InputFileUpload = ({ name, onChange, isDefaultButtonClick }: IInputFileUpload) => {
+  const fileInputRef = createRef<HTMLInputElement>();
+
+  useEffect(() => {
+    if (fileInputRef.current && isDefaultButtonClick) {
+      fileInputRef.current.value = "";
+    }
+  }, [isDefaultButtonClick]);
+
   return (
     <Button sx={buttonStyle} component="label" role={undefined} variant="outlined" tabIndex={-1}>
       Upload
-      <VisuallyHiddenInput onChange={onChange} name={name} type="file" accept=".jpg, .jpeg, .png" />
+      <VisuallyHiddenInput
+        ref={fileInputRef}
+        onChange={onChange}
+        name={name}
+        type="file"
+        accept=".jpg, .jpeg, .png"
+      />
     </Button>
   );
 };

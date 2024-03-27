@@ -4,18 +4,18 @@ import { CustomButton } from "../../app/common/buttons";
 import { InputFileUpload } from "../../app/common/inputs";
 import Cropper, { ReactCropperElement } from "react-cropper";
 import "cropperjs/dist/cropper.css";
+import "./myCropper.scss";
 
 import stub from "../../../img/navigation/avatar.png";
-import "./myCropper.scss";
 
 const defaultSrc = stub;
 
 export const MyCropper = () => {
   const [image, setImage] = useState(defaultSrc);
+  const [isDefaultButtonClick, setIsDefaultButtonClick] = useState(false);
   const [cropData, setCropData] = useState("#");
 
   const cropperRef = createRef<ReactCropperElement>();
-  const fileInputRef = createRef<HTMLInputElement>();
 
   const onChange = (e: any) => {
     e.preventDefault();
@@ -33,7 +33,11 @@ export const MyCropper = () => {
       setImage(reader.result as any);
     };
 
-    reader.readAsDataURL(files[0]);
+    if (files[0] && files[0].type.match("image.*")) {
+      reader.readAsDataURL(files[0]);
+    }
+
+    setIsDefaultButtonClick(false);
   };
 
   const getCropData = () => {
@@ -44,10 +48,7 @@ export const MyCropper = () => {
 
   const handleUseDefault = () => {
     setImage(defaultSrc);
-
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
+    setIsDefaultButtonClick(true);
   };
 
   return (
@@ -138,7 +139,11 @@ export const MyCropper = () => {
       </Box>
 
       <Box sx={{ marginTop: "12px", display: "flex", justifyContent: "flex-start" }}>
-        <InputFileUpload name="Upload" onChange={onChange} />
+        <InputFileUpload
+          name="Upload"
+          onChange={onChange}
+          isDefaultButtonClick={isDefaultButtonClick}
+        />
         <CustomButton
           kind="transparent"
           text="Crop Image"
