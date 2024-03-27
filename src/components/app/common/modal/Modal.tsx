@@ -25,6 +25,7 @@ export const CustomModal = ({
     bgcolor: "background.paper",
     boxShadow: 24,
     borderRadius: "16px",
+    maxHeight: "900px",
   };
 
   return (

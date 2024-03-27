@@ -8,11 +8,11 @@ const buttonStyle = {
   minWidth: "30px",
   minHeight: "30px",
   backgroundColor: "#454545",
-  borderRadius: "999px",
-  width: "170px",
+  borderRadius: "8px",
+  width: "95px",
+  marginRight: "12px",
   height: "40px",
   fontSize: "14px",
-  marginRight: "12px",
   boxShadow: "none",
   border: `1px solid #454545`,
   color: "#fff",
@@ -43,7 +43,7 @@ interface IInputFileUpload {
 export const InputFileUpload = ({ name, onChange }: IInputFileUpload) => {
   return (
     <Button sx={buttonStyle} component="label" role={undefined} variant="outlined" tabIndex={-1}>
-      Upload New Photo
+      Upload
       <VisuallyHiddenInput onChange={onChange} name={name} type="file" accept=".jpg, .jpeg, .png" />
     </Button>
   );
