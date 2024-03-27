@@ -2,7 +2,7 @@ export interface ICustomButton {
 	text: string | JSX.Element;
 	kind: "transparent" | "dark" | "red";
 	type?: "button" | "submit";
-	height?: number;
+	height?: number | string;
 	width?: number | string;
 	disabled?: boolean;
 	clickFunction?: () => void;
