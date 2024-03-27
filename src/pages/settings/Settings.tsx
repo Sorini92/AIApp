@@ -64,65 +64,61 @@ export const Settings = () => {
           </Typography>
 
           <Box sx={{ marginTop: "24px" }}>
-            <nav aria-label="nav links">
-              <List>
-                <ListItem disablePadding>
-                  <ListItemButton
-                    component={NavLink}
-                    to={"/settings/public"}
-                    sx={{
-                      borderRadius: "8px",
-                      padding: "8px 12px",
-                      "&.Mui-selected": {
-                        backgroundColor: "#d6dbea",
-                      },
-                    }}
-                    selected={selectedIndex === 0}
-                    onClick={() => setSelectedIndex(0)}
-                  >
-                    <ListItemIcon sx={{ minWidth: "32px" }}>
-                      <Box component="img" alt="aichat icon" src={profileIcon} />
-                    </ListItemIcon>
-                    <ListItemText primary="Public Profile" />
-                  </ListItemButton>
-                </ListItem>
+            <List>
+              <ListItem disablePadding>
+                <ListItemButton
+                  component={NavLink}
+                  to={"/settings/public"}
+                  sx={{
+                    borderRadius: "8px",
+                    padding: "8px 12px",
+                    "&.Mui-selected": {
+                      backgroundColor: "#d6dbea",
+                    },
+                  }}
+                  selected={selectedIndex === 0}
+                  onClick={() => setSelectedIndex(0)}
+                >
+                  <ListItemIcon sx={{ minWidth: "32px" }}>
+                    <Box component="img" alt="aichat icon" src={profileIcon} />
+                  </ListItemIcon>
+                  <ListItemText primary="Public Profile" />
+                </ListItemButton>
+              </ListItem>
 
-                <ListItem disablePadding>
-                  <ListItemButton
-                    component={NavLink}
-                    to={"/settings/general"}
-                    sx={{
-                      borderRadius: "8px",
-                      padding: "8px 12px",
-                      marginTop: "4px",
-                      "&.Mui-selected": {
-                        backgroundColor: "#d6dbea",
-                      },
-                    }}
-                    selected={selectedIndex === 1}
-                    onClick={() => setSelectedIndex(1)}
-                  >
-                    <ListItemIcon sx={{ minWidth: "32px" }}>
-                      <Box component="img" alt="aichat icon" src={generalIcon} />
-                    </ListItemIcon>
-                    <ListItemText primary="General" />
-                  </ListItemButton>
-                </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton
+                  component={NavLink}
+                  to={"/settings/general"}
+                  sx={{
+                    borderRadius: "8px",
+                    padding: "8px 12px",
+                    marginTop: "4px",
+                    "&.Mui-selected": {
+                      backgroundColor: "#d6dbea",
+                    },
+                  }}
+                  selected={selectedIndex === 1}
+                  onClick={() => setSelectedIndex(1)}
+                >
+                  <ListItemIcon sx={{ minWidth: "32px" }}>
+                    <Box component="img" alt="aichat icon" src={generalIcon} />
+                  </ListItemIcon>
+                  <ListItemText primary="General" />
+                </ListItemButton>
+              </ListItem>
 
-                <Divider sx={{ marginTop: "4px" }} />
+              <Divider sx={{ marginTop: "4px" }} />
 
-                <ListItem disablePadding>
-                  <ListItemButton
-                    sx={{ borderRadius: "8px", padding: "8px 12px", marginTop: "4px" }}
-                  >
-                    <ListItemIcon sx={{ minWidth: "32px" }}>
-                      <Box component="img" alt="log out icon" src={logoutIcon} />
-                    </ListItemIcon>
-                    <ListItemText primary="Log Out" />
-                  </ListItemButton>
-                </ListItem>
-              </List>
-            </nav>
+              <ListItem disablePadding>
+                <ListItemButton sx={{ borderRadius: "8px", padding: "8px 12px", marginTop: "4px" }}>
+                  <ListItemIcon sx={{ minWidth: "32px" }}>
+                    <Box component="img" alt="log out icon" src={logoutIcon} />
+                  </ListItemIcon>
+                  <ListItemText primary="Log Out" />
+                </ListItemButton>
+              </ListItem>
+            </List>
           </Box>
         </Box>
         {/* <Box>{component === "public" ? <PublicProfile /> : <General />}</Box> */}

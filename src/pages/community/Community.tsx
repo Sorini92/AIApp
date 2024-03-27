@@ -65,7 +65,7 @@ export const Community = () => {
         padding: "0 24px",
         display: "flex",
         justifyContent: "center",
-        marginTop: "24px",
+        margin: "24px 0",
       }}
     >
       <Box
@@ -129,7 +129,7 @@ export const Community = () => {
             <Typography sx={{ fontWeight: 600, fontSize: "16px", color: "#333" }}>Forum</Typography>
             <Box
               component={Link}
-              to={""}
+              to={"forum"}
               sx={{
                 color: "#2f80ed",
                 ":hover": { textDecoration: "underline", color: "#2f80ed" },

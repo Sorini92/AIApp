@@ -1,12 +1,11 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import { VideoItem } from "../../components/community/videoItem";
 
 import videoImgStub from "../../img/community/videoImgStub.png";
 import imgStub from "../../img/community/guidlinesImgStub.png";
 import stub from "../../img/community/stub.png";
-import leftArrowIcon from "../../img/community/leftArrow.svg";
-import rightArrowIcon from "../../img/community/rightArrow.svg";
+
+import { MyCarousel } from "../../components/community/myCarousel/MyCarousel";
 
 export const GuidlinesItem = () => {
   const videoItems = [
@@ -17,6 +16,31 @@ export const GuidlinesItem = () => {
     },
     {
       text: "How to get the best results while working with Rayna, the SMM & Content Strategist",
+      videoImg: stub,
+      link: "guidlines",
+    },
+    {
+      text: "How to get the best results while working with Olivia, the Journalist",
+      videoImg: stub,
+      link: "guidlines",
+    },
+    {
+      text: "How to get the best results while working with Olivia, the Journalist",
+      videoImg: stub,
+      link: "guidlines",
+    },
+    {
+      text: "How to get the best results while working with Olivia, the Journalist",
+      videoImg: stub,
+      link: "guidlines",
+    },
+    {
+      text: "How to get the best results while working with Olivia, the Journalist",
+      videoImg: stub,
+      link: "guidlines",
+    },
+    {
+      text: "How to get the best results while working with Olivia, the Journalist",
       videoImg: stub,
       link: "guidlines",
     },
@@ -98,9 +122,8 @@ export const GuidlinesItem = () => {
 
       <Box
         sx={{
-          width: "100%",
           height: "348px",
-          padding: "24px",
+          padding: "24px 0",
           borderTopLeftRadius: "16px",
           backgroundColor: "#fff",
           margin: "112px 0 56px 24px",
@@ -110,6 +133,7 @@ export const GuidlinesItem = () => {
       >
         <Box
           sx={{
+            padding: "0 24px",
             height: "24px",
             width: "100%",
             display: "flex",
@@ -131,7 +155,13 @@ export const GuidlinesItem = () => {
           </Box>
         </Box>
 
-        <Box sx={{ display: "flex", justifyContent: "space-between", position: "relative" }}>
+        {/* carousel */}
+
+        <MyCarousel items={videoItems} />
+
+        {/* end carousel */}
+
+        {/* <Box sx={{ display: "flex", justifyContent: "space-between", position: "relative" }}>
           <Button
             sx={{
               position: "absolute",
@@ -173,7 +203,7 @@ export const GuidlinesItem = () => {
           >
             <Box component="img" alt="leftArrow" src={rightArrowIcon} />
           </Button>
-        </Box>
+        </Box> */}
       </Box>
     </Box>
   );

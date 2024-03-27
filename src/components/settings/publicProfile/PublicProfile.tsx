@@ -1,20 +1,22 @@
 import { useState, ChangeEvent, FormEvent } from "react";
-import { Box, Typography, Avatar } from "@mui/material";
+import { Box, Typography, Avatar, Link } from "@mui/material";
+import { CustomButton } from "../../app/common/buttons";
+import { FormInput } from "../../app/common/inputs";
+import { IPublicProfileUser } from "../../../shared/interfaces/settings";
+import { CustomModal } from "../../app/common/modal";
+import { MyCropper } from "../myCropper";
 
 import avatarIcon from "../../../img/settings/avatar.png";
-import { CustomButton } from "../../app/common/buttons";
-import { FormInput, InputFileUpload } from "../../app/common/inputs";
+import closeBtn from "../../../img/common/close.svg";
 
-import { IPublicProfileUser } from "../../../shared/interfaces/settings";
-
-interface FileState {
+/* interface FileState {
   file: File | null;
   imagePreviewUrl: ArrayBuffer | string | null;
-}
+} */
 
 export const PublicProfile = () => {
   const [creationStatus, setCreationStatus] = useState<boolean>(false);
-  const [file, setFile] = useState<FileState>({ file: null, imagePreviewUrl: "" });
+  //const [file, setFile] = useState<FileState>({ file: null, imagePreviewUrl: "" });
   const [formData, setFormData] = useState<IPublicProfileUser>({
     userName: "",
     firstName: "",
@@ -24,6 +26,11 @@ export const PublicProfile = () => {
     personalSite: "",
     biography: "",
   });
+
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,7 +56,7 @@ export const PublicProfile = () => {
     }));
   };
 
-  const handleChangeFoto = (e: ChangeEvent<HTMLInputElement>) => {
+  /* const handleChangeFoto = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
 
@@ -61,7 +68,7 @@ export const PublicProfile = () => {
 
       reader.readAsDataURL(file);
     }
-  };
+  }; */
 
   return (
     <Box
@@ -97,10 +104,22 @@ export const PublicProfile = () => {
       >
         <Avatar
           alt="avatar"
-          src={!file.imagePreviewUrl ? avatarIcon : file.imagePreviewUrl.toString()}
+          src={avatarIcon}
           sx={{ width: "80px", height: "80px", marginRight: "24px" }}
         />
-        <InputFileUpload name="avatar" onChange={handleChangeFoto} />
+        {/* <InputFileUpload name="avatar" onChange={handleChangeFoto} /> */}
+        <CustomButton
+          clickFunction={() => handleOpen()}
+          kind="dark"
+          text="Upload New Foto"
+          sx={{
+            borderRadius: "999px",
+            width: "173px",
+            height: "40px",
+            fontSize: "14px",
+            marginRight: "12px",
+          }}
+        />
         <CustomButton
           kind="transparent"
           text="Delete"
@@ -188,6 +207,42 @@ export const PublicProfile = () => {
           }}
         />
       </Box>
+
+      <CustomModal open={open} handleClose={handleClose} width={750}>
+        <>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              height: "40px",
+              marginBottom: "12px",
+            }}
+          >
+            <Typography
+              sx={{ fontWeight: 600, fontSize: "20px", lineHeight: "120%", color: "#333" }}
+            >
+              Change foto
+            </Typography>
+            <Link
+              component="button"
+              onClick={() => handleClose()}
+              sx={{
+                width: "40px",
+                height: "40px",
+                borderRadius: "100%",
+                backgroundColor: "#f1f1f1",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Box component="img" src={closeBtn} alt="close btn" />
+            </Link>
+          </Box>
+          <MyCropper />
+        </>
+      </CustomModal>
     </Box>
   );
 };

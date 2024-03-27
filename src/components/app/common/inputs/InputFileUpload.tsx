@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { ChangeEvent } from "react";
+import { ChangeEvent, createRef, useEffect } from "react";
 
 const buttonStyle = {
   textTransform: "none",
@@ -8,11 +8,11 @@ const buttonStyle = {
   minWidth: "30px",
   minHeight: "30px",
   backgroundColor: "#454545",
-  borderRadius: "999px",
-  width: "170px",
+  borderRadius: "8px",
+  width: "95px",
+  marginRight: "12px",
   height: "40px",
   fontSize: "14px",
-  marginRight: "12px",
   boxShadow: "none",
   border: `1px solid #454545`,
   color: "#fff",
@@ -38,13 +38,28 @@ const VisuallyHiddenInput = styled("input")({
 interface IInputFileUpload {
   name: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  isDefaultButtonClick: boolean;
 }
 
-export const InputFileUpload = ({ name, onChange }: IInputFileUpload) => {
+export const InputFileUpload = ({ name, onChange, isDefaultButtonClick }: IInputFileUpload) => {
+  const fileInputRef = createRef<HTMLInputElement>();
+
+  useEffect(() => {
+    if (fileInputRef.current && isDefaultButtonClick) {
+      fileInputRef.current.value = "";
+    }
+  }, [isDefaultButtonClick]);
+
   return (
     <Button sx={buttonStyle} component="label" role={undefined} variant="outlined" tabIndex={-1}>
-      Upload New Photo
-      <VisuallyHiddenInput onChange={onChange} name={name} type="file" accept=".jpg, .jpeg, .png" />
+      Upload
+      <VisuallyHiddenInput
+        ref={fileInputRef}
+        onChange={onChange}
+        name={name}
+        type="file"
+        accept=".jpg, .jpeg, .png"
+      />
     </Button>
   );
 };

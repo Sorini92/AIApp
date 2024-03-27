@@ -83,6 +83,7 @@ export function CustomTable({ data, isShowRaiting = true, maxSimbols = 69, heigh
                         fontWeight: 400,
                         fontSize: "16px",
                         lineHeight: "150%",
+                        height: "28px",
                         color: "#333",
                         cursor: "pointer",
                         padding: "0",

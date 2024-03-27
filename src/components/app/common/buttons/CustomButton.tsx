@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { ICustomButton } from "../../../../shared/interfaces/common";
 
 export const CustomButton = ({
@@ -10,6 +10,7 @@ export const CustomButton = ({
   disabled = false,
   width = "100%",
   sx = {},
+  children,
 }: ICustomButton) => {
   const variantStyles = {
     transparent: {
@@ -59,6 +60,9 @@ export const CustomButton = ({
       disabled={disabled}
     >
       {text}
+      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        {children}
+      </Box>
     </Button>
   );
 };
