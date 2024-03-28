@@ -4,6 +4,7 @@ import {
   Outlet,
   useLocation,
   Navigate,
+  Link,
 } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { ThemeProvider } from "@mui/material/styles";
@@ -11,7 +12,7 @@ import { theme } from "../../theme";
 import { Auth } from "../../pages/auth/Auth";
 import { AIChat } from "../../pages/aiChat/AIChat";
 import { Navigation } from "../../components/navigation";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { CommunityMain } from "../../pages/community/CommunityMain";
 import { Inbox } from "../../pages/inbox/Inbox";
 import { Settings } from "../../pages/settings/Settings";
@@ -67,11 +68,35 @@ const router = createBrowserRouter([
       {
         path: "community",
         element: <CommunityMain />,
+        handle: {
+          crumb: () => <Link to={"/community"}>Community</Link>,
+        },
         children: [
-          { path: "", element: <Community /> },
-          { path: "discussion", element: <PromptDiscussion /> },
+          {
+            path: "",
+            element: <Community />,
+          },
+          {
+            path: "discussion",
+            element: <PromptDiscussion />,
+            handle: {
+              crumb: () => (
+                <Typography sx={{ color: "#bdbdbd", fontSize: "14px" }}>
+                  Prompt Discussion
+                </Typography>
+              ),
+            },
+          },
           { path: "guidlines", element: <GuidlinesItem /> },
-          { path: "forum", element: <Forum /> },
+          {
+            path: "forum",
+            element: <Forum />,
+            handle: {
+              crumb: () => (
+                <Typography sx={{ color: "#bdbdbd", fontSize: "14px" }}>Forum</Typography>
+              ),
+            },
+          },
           { path: "forum/category", element: <Category /> },
         ],
       },
@@ -80,9 +105,28 @@ const router = createBrowserRouter([
       {
         path: "settings",
         element: <Settings />,
+        handle: {
+          crumb: () => <Link to={"/settings/public"}>Settings</Link>,
+        },
         children: [
-          { path: "public", element: <PublicProfile /> },
-          { path: "general", element: <General /> },
+          {
+            path: "public",
+            element: <PublicProfile />,
+            handle: {
+              crumb: () => (
+                <Typography sx={{ color: "#bdbdbd", fontSize: "14px" }}>Public Profile</Typography>
+              ),
+            },
+          },
+          {
+            path: "general",
+            element: <General />,
+            handle: {
+              crumb: () => (
+                <Typography sx={{ color: "#bdbdbd", fontSize: "14px" }}>General</Typography>
+              ),
+            },
+          },
         ],
       },
       {
