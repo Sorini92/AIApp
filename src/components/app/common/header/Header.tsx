@@ -1,43 +1,42 @@
-import { Link } from "react-router-dom";
-import { Box, Typography, Breadcrumbs, OutlinedInput } from "@mui/material";
-import { useState } from "react";
+import { Params, useMatches } from "react-router-dom";
+import { Box, Breadcrumbs, OutlinedInput } from "@mui/material";
+import { ReactNode, useState } from "react";
 
-type breadcrumb = {
-  text: string;
-  type: string;
-  to: string;
+interface IMatches {
+  id: string;
+  pathname: string;
+  params: Params<string>;
+  data: unknown;
+  handle: unknown;
+}
+
+type HandleType = {
+  crumb: (param?: string) => ReactNode;
 };
 
 interface IHeader {
-  breadcrumbs: breadcrumb[];
   searchFunc: () => void;
 }
 
-export const Header = ({ breadcrumbs }: IHeader) => {
+export const Header = ({ searchFunc }: IHeader) => {
   const [searhedString, setSearhedString] = useState<string>("");
+
+  const matches: IMatches[] = useMatches();
+
+  const crumbs = matches
+    .filter((match) => Boolean(match.handle && (match.handle as HandleType).crumb))
+    .map((match) => {
+      const crumb = (match.handle as HandleType).crumb(match.data as string | undefined);
+      return crumb as React.ReactNode;
+    });
 
   const handleSearch = (value: string) => {
     setSearhedString(value);
+    searchFunc();
   };
 
-  const links = breadcrumbs.map((item, i) => {
-    if (item.type === "link") {
-      return (
-        <Link key={i} to={item.to}>
-          {item.text}
-        </Link>
-      );
-    }
-  });
-
-  const text = breadcrumbs.map((item, i) => {
-    if (item.type === "text") {
-      return (
-        <Typography sx={{ fontSize: "14px" }} key={i} color="text.primary">
-          {item.text}
-        </Typography>
-      );
-    }
+  const breadcrumbs = crumbs.map((crumb, i) => {
+    return <Box key={i}>{crumb}</Box>;
   });
 
   return (
@@ -51,9 +50,15 @@ export const Header = ({ breadcrumbs }: IHeader) => {
         alignItems: "center",
       }}
     >
-      <Breadcrumbs separator="›" sx={{ fontSize: "14px", color: "#333" }}>
-        {links}
-        {text}
+      <Breadcrumbs
+        separator="›"
+        sx={{
+          color: "#333",
+          fontSize: "14px",
+          ".MuiBreadcrumbs-separator": { color: "#bdbdbd" },
+        }}
+      >
+        {breadcrumbs}
       </Breadcrumbs>
 
       <OutlinedInput

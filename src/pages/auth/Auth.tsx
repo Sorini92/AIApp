@@ -1,19 +1,14 @@
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Tabs, Tab, Box, Link } from "@mui/material";
 
 export const Auth = () => {
-  const [value, setValue] = useState(0);
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
     if (location.pathname === "/auth") navigate("signup");
   }, []);
-
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
 
   return (
     <Box sx={{ display: "flex", justifyContent: "end", backgroundColor: "#d9d9d9" }}>
@@ -29,9 +24,21 @@ export const Auth = () => {
         }}
       >
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <Tabs value={value} onChange={handleChange}>
-            <Tab sx={{ width: "232px" }} component={NavLink} to="signup" label="Sign Up" />
-            <Tab sx={{ width: "232px" }} component={NavLink} to="login" label="Log In" />
+          <Tabs value={location.pathname}>
+            <Tab
+              sx={{ width: "232px" }}
+              component={NavLink}
+              to="signup"
+              value="/auth/signup"
+              label="Sign Up"
+            />
+            <Tab
+              sx={{ width: "232px" }}
+              component={NavLink}
+              value="/auth/login"
+              to="login"
+              label="Log In"
+            />
           </Tabs>
         </Box>
 

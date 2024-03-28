@@ -30,13 +30,16 @@ import {
 } from "../../img/navigation";
 
 export const Navigation = () => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
   const [open, setOpen] = useState(true);
 
   const location = useLocation();
 
   const handleDrawerToggle = () => {
     setOpen(!open);
+  };
+
+  const isActiveSettingTab = () => {
+    return location.pathname.startsWith("/settings/");
   };
 
   return (
@@ -140,154 +143,156 @@ export const Navigation = () => {
 
             <List>
               <ListItem disablePadding>
-                <ListItemButton
-                  component={NavLink}
-                  to={"/aichat"}
-                  sx={{
-                    borderRadius: "8px",
-                    padding: "8px 12px",
-                    "&.Mui-selected": {
-                      backgroundColor: "#d6dbea",
-                    },
-                  }}
-                  selected={selectedIndex === 0}
-                  onClick={() => setSelectedIndex(0)}
-                >
-                  <ListItemIcon sx={{ minWidth: "32px" }}>
-                    <Box component="img" alt="aichat icon" src={aichatIcon} />
-                  </ListItemIcon>
-                  <ListItemText primary="AI Chat" sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
+                <NavLink to={"/aichat"} style={{ width: "100%" }}>
+                  {({ isActive }) => (
+                    <ListItemButton
+                      sx={{
+                        borderRadius: "8px",
+                        padding: "8px 12px",
+                        "&.Mui-selected": {
+                          backgroundColor: "#d6dbea",
+                        },
+                      }}
+                      selected={isActive}
+                    >
+                      <ListItemIcon sx={{ minWidth: "32px" }}>
+                        <Box component="img" alt="aichat icon" src={aichatIcon} />
+                      </ListItemIcon>
+                      <ListItemText primary="AI Chat" sx={{ opacity: open ? 1 : 0 }} />
+                    </ListItemButton>
+                  )}
+                </NavLink>
               </ListItem>
 
               <ListItem disablePadding>
-                <ListItemButton
-                  component={NavLink}
-                  to={"/community"}
-                  sx={{
-                    borderRadius: "8px",
-                    marginTop: "4px",
-                    padding: "8px 12px",
-                    "&.Mui-selected": {
-                      backgroundColor: "#d6dbea",
-                    },
-                  }}
-                  selected={selectedIndex === 1}
-                  onClick={() => setSelectedIndex(1)}
-                >
-                  <Badge
-                    badgeContent={4}
-                    color="primary"
-                    invisible={open}
-                    sx={{
-                      "& .MuiBadge-badge": {
-                        right: 8,
-                        backgroundColor: "#ffbf74",
-                        color: "#000",
-                      },
-                    }}
-                  >
-                    <ListItemIcon sx={{ minWidth: "32px" }}>
-                      <Box component="img" alt="community icon" src={communityIcon} />
-                    </ListItemIcon>
-                  </Badge>
-                  <ListItemText primary="Community" sx={{ opacity: open ? 1 : 0 }} />
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backgroundColor: "#ffbf74",
-                      width: "24px",
-                      height: "24px",
-                      borderRadius: "100%",
-                      fontWeight: 500,
-                      fontSize: "11px",
-                      lineHeight: "145%",
-                      color: "#000",
-                      opacity: open ? 1 : 0,
-                    }}
-                  >
-                    4
-                  </Box>
-                </ListItemButton>
+                <NavLink to={"/community"} style={{ width: "100%" }}>
+                  {({ isActive }) => (
+                    <ListItemButton
+                      sx={{
+                        borderRadius: "8px",
+                        marginTop: "4px",
+                        padding: "8px 12px",
+                        "&.Mui-selected": {
+                          backgroundColor: "#d6dbea",
+                        },
+                      }}
+                      selected={isActive}
+                    >
+                      <Badge
+                        badgeContent={4}
+                        color="primary"
+                        invisible={open}
+                        sx={{
+                          "& .MuiBadge-badge": {
+                            right: 8,
+                            backgroundColor: "#ffbf74",
+                            color: "#000",
+                          },
+                        }}
+                      >
+                        <ListItemIcon sx={{ minWidth: "32px" }}>
+                          <Box component="img" alt="community icon" src={communityIcon} />
+                        </ListItemIcon>
+                      </Badge>
+                      <ListItemText primary="Community" sx={{ opacity: open ? 1 : 0 }} />
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          backgroundColor: "#ffbf74",
+                          width: "24px",
+                          height: "24px",
+                          borderRadius: "100%",
+                          fontWeight: 500,
+                          fontSize: "11px",
+                          lineHeight: "145%",
+                          color: "#000",
+                          opacity: open ? 1 : 0,
+                        }}
+                      >
+                        4
+                      </Box>
+                    </ListItemButton>
+                  )}
+                </NavLink>
               </ListItem>
 
               <ListItem disablePadding>
-                <ListItemButton
-                  component={NavLink}
-                  to={"/inbox"}
-                  sx={{
-                    borderRadius: "8px",
-                    marginTop: "4px",
-                    padding: "8px 12px",
-                    "&.Mui-selected": {
-                      backgroundColor: "#d6dbea",
-                    },
-                  }}
-                  selected={selectedIndex === 2}
-                  onClick={() => setSelectedIndex(2)}
-                >
-                  <Badge
-                    badgeContent={12}
-                    color="primary"
-                    invisible={open}
-                    sx={{
-                      "& .MuiBadge-badge": {
-                        right: 5,
-                        backgroundColor: "#ffbf74",
-                        color: "#000",
-                      },
-                    }}
-                  >
-                    <ListItemIcon sx={{ minWidth: "32px" }}>
-                      <Box component="img" alt="inbox icon" src={inboxIcon} />
-                    </ListItemIcon>
-                  </Badge>
-                  <ListItemText primary="Inbox" sx={{ opacity: open ? 1 : 0 }} />
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backgroundColor: "#ffbf74",
-                      width: "24px",
-                      height: "24px",
-                      borderRadius: "100%",
-                      fontWeight: 500,
-                      fontSize: "11px",
-                      lineHeight: "145%",
-                      color: "#000",
-                      opacity: open ? 1 : 0,
-                    }}
-                  >
-                    12
-                  </Box>
-                </ListItemButton>
+                <NavLink to={"/inbox"} style={{ width: "100%" }}>
+                  {({ isActive }) => (
+                    <ListItemButton
+                      sx={{
+                        borderRadius: "8px",
+                        marginTop: "4px",
+                        padding: "8px 12px",
+                        "&.Mui-selected": {
+                          backgroundColor: "#d6dbea",
+                        },
+                      }}
+                      selected={isActive}
+                    >
+                      <Badge
+                        badgeContent={12}
+                        color="primary"
+                        invisible={open}
+                        sx={{
+                          "& .MuiBadge-badge": {
+                            right: 5,
+                            backgroundColor: "#ffbf74",
+                            color: "#000",
+                          },
+                        }}
+                      >
+                        <ListItemIcon sx={{ minWidth: "32px" }}>
+                          <Box component="img" alt="inbox icon" src={inboxIcon} />
+                        </ListItemIcon>
+                      </Badge>
+                      <ListItemText primary="Inbox" sx={{ opacity: open ? 1 : 0 }} />
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          backgroundColor: "#ffbf74",
+                          width: "24px",
+                          height: "24px",
+                          borderRadius: "100%",
+                          fontWeight: 500,
+                          fontSize: "11px",
+                          lineHeight: "145%",
+                          color: "#000",
+                          opacity: open ? 1 : 0,
+                        }}
+                      >
+                        12
+                      </Box>
+                    </ListItemButton>
+                  )}
+                </NavLink>
               </ListItem>
 
               <Divider sx={{ marginTop: "4px" }} />
 
               <ListItem disablePadding>
-                <ListItemButton
-                  component={NavLink}
-                  to={"/settings/public"}
-                  sx={{
-                    borderRadius: "8px",
-                    marginTop: "4px",
-                    padding: "8px 12px",
-                    "&.Mui-selected": {
-                      backgroundColor: "#d6dbea",
-                    },
-                  }}
-                  selected={selectedIndex === 3}
-                  onClick={() => setSelectedIndex(3)}
-                >
-                  <ListItemIcon sx={{ minWidth: "32px" }}>
-                    <Box component="img" alt="setting icon" src={settingIcon} />
-                  </ListItemIcon>
-                  <ListItemText primary="Settings" sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
+                <NavLink to={"/settings/public"} style={{ width: "100%" }}>
+                  <ListItemButton
+                    sx={{
+                      borderRadius: "8px",
+                      marginTop: "4px",
+                      padding: "8px 12px",
+                      "&.Mui-selected": {
+                        backgroundColor: "#d6dbea",
+                      },
+                    }}
+                    selected={isActiveSettingTab()}
+                  >
+                    <ListItemIcon sx={{ minWidth: "32px" }}>
+                      <Box component="img" alt="setting icon" src={settingIcon} />
+                    </ListItemIcon>
+                    <ListItemText primary="Settings" sx={{ opacity: open ? 1 : 0 }} />
+                  </ListItemButton>
+                </NavLink>
               </ListItem>
             </List>
           </Box>
